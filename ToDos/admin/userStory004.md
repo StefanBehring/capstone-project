@@ -6,9 +6,9 @@ As a user I want to be able to add a question to the game
 
 ## Description
 
-### Mobile
+### Mobile and desktop
 
-### Desktop
+![mobileAndDesktop](userStory004mobile.svg)
 
 ## Acceptance Criteria
 
