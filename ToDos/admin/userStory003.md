@@ -8,7 +8,11 @@ As a user I need an option to delete a category
 
 ### Mobile
 
+![mobile](userStory003mobile.svg)
+
 ### Desktop
+
+![desktop](userStory003desktop.svg)
 
 ## Acceptance Criteria
 
