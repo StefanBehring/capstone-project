@@ -6,9 +6,9 @@ As a user I need an option to edit a category
 
 ## Description
 
-### Mobile
+### Mobile + Desktop
 
-### Desktop
+![MobileDesktop](userStory002mobile.svg)
 
 ## Acceptance Criteria
 
