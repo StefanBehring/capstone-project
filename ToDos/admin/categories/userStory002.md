@@ -1,4 +1,4 @@
-# Admin-Area – User Story 1
+# Admin-Area – Categories - User Story 2
 
 ## Value Statement
 
@@ -8,11 +8,11 @@ As a user I need a list of categorys so that I can see which the game offers
 
 ### Mobile
 
-![mobile](userStory001mobile.svg)
+![mobile](userStory002mobile.svg)
 
 ### Desktop
 
-![desktop](userStory001desktop.svg)
+![desktop](userStory002desktop.svg)
 
 ## Acceptance Criteria
 

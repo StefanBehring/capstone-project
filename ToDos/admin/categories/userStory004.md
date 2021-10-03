@@ -1,4 +1,4 @@
-# Admin-Area – User Story 3
+# Admin-Area – Categories - User Story 4
 
 ## Value Statement
 
@@ -8,11 +8,11 @@ As a user I need an option to delete a category
 
 ### Mobile
 
-![mobile](userStory003mobile.svg)
+![mobile](userStory004mobile.svg)
 
 ### Desktop
 
-![desktop](userStory003desktop.svg)
+![desktop](userStory004desktop.svg)
 
 ## Acceptance Criteria
 

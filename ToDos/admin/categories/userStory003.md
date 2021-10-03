@@ -1,4 +1,4 @@
-# Admin-Area – User Story 2
+# Admin-Area – Categories - User Story 3
 
 ## Value Statement
 
@@ -8,7 +8,7 @@ As a user I need an option to edit a category
 
 ### Mobile + Desktop
 
-![MobileDesktop](userStory002mobile.svg)
+![MobileDesktop](userStory003mobile.svg)
 
 ## Acceptance Criteria
 
