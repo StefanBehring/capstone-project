@@ -8,7 +8,11 @@ As a user I want to see a list of all pending pictures so that I can approve or 
 
 ### Mobile
 
+![mobile](userStory006mobile.svg)
+
 ### Desktop
+
+![desktop](userStory006desktop.svg)
 
 ## Acceptance Criteria
 
