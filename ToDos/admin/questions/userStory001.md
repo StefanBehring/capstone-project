@@ -1,4 +1,4 @@
-# Admin-Area – User Story 4
+# Admin-Area – Questions - User Story 1
 
 ## Value Statement
 
@@ -8,7 +8,7 @@ As a user I want to be able to add a question to the game
 
 ### Mobile and desktop
 
-![mobileAndDesktop](userStory004mobile.svg)
+![mobileAndDesktop](userStory001mobile.svg)
 
 ## Acceptance Criteria
 

@@ -1,4 +1,4 @@
-# Admin-Area – User Story 5
+# Admin-Area – Questions - User Story 2
 
 ## Value Statement
 
@@ -8,11 +8,11 @@ As a user I want to see a list of all pending questions so that I can approve or
 
 ### Mobile
 
-![mobile](userStory005mobile.svg)
+![mobile](userStory002mobile.svg)
 
 ### Desktop
 
-![desktop](userStory005desktop.svg)
+![desktop](userStory002desktop.svg)
 
 ## Acceptance Criteria
 

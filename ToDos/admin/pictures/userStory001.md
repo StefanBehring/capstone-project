@@ -1,4 +1,4 @@
-# Admin-Area – User Story 6
+# Admin-Area – Pictures - User Story 1
 
 ## Value Statement
 
@@ -8,11 +8,11 @@ As a user I want to see a list of all pending pictures so that I can approve or 
 
 ### Mobile
 
-![mobile](userStory006mobile.svg)
+![mobile](userStory001mobile.svg)
 
 ### Desktop
 
-![desktop](userStory006desktop.svg)
+![desktop](userStory001desktop.svg)
 
 ## Acceptance Criteria
 
