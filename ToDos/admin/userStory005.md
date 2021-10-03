@@ -8,7 +8,11 @@ As a user I want to see a list of all pending questions so that I can approve or
 
 ### Mobile
 
+![mobile](userStory005mobile.svg)
+
 ### Desktop
+
+![desktop](userStory005desktop.svg)
 
 ## Acceptance Criteria
 
