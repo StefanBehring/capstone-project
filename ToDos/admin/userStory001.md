@@ -8,7 +8,11 @@ As a user I need a list of categorys so that I can see which the game offers
 
 ### Mobile
 
+![mobile](userStory001mobile.svg)
+
 ### Desktop
+
+![desktop](userStory001desktop.svg)
 
 ## Acceptance Criteria
 
