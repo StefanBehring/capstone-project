@@ -13,6 +13,7 @@
 - News
 - Inbox
 - Start Quiz
+- Quiz history
 
 ## Quiz
 
