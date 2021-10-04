@@ -21,7 +21,7 @@ As a user I want to be able to add a question to the game
 - Create feature branch
 - Create form component
 - Write component tests
-- Add components to app
+- Add component to app
 - Add missing styles
 
 ## Complexity

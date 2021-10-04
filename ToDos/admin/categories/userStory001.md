@@ -21,7 +21,7 @@ As a user I want to be able to add a category
 - Create feature branch
 - Create add category component
 - Write component tests
-- Add components to app
+- Add component to app
 - Add missing styles
 
 ## Complexity
