@@ -13,6 +13,7 @@ app.use(express.json())
 
 app.use('/api/users', require('./routes/users'))
 app.use('/api/movies', require('./routes/movies'))
+app.use('/api/votings', require('./routes/votings'))
 
 app.use(errorHandler)
 
