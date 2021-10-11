@@ -23,7 +23,6 @@ const GlobalStyles = createGlobalStyle`
         background-color: var(--color-lila-dark);
         color: #fff;
         font-family: var(--font-family);
-        height: 100vh;
         margin: 0;
     }
 `
