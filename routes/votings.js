@@ -20,7 +20,7 @@ router.post('/', (request, response, next) => {
   }
 
   Voting.create(newVote)
-    .then(voting => response.status(201).json(voting))
+    .then(vote => response.status(201).json(vote))
     .catch(next)
 })
 
