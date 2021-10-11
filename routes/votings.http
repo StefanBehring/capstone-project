@@ -17,6 +17,6 @@ PATCH http://localhost:4000/api/votings/61641035590a4e9c5c32203e
 Content-Type: application/json
 
 {
-    "isCanceled": "false",
-    "first_movie_won": "true"
+    "isCanceled": false,
+    "first_movie_won": true
 }
