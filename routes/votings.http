@@ -1,0 +1,22 @@
+### POST
+POST http://localhost:4000/api/votings
+Content-Type: application/json
+
+{
+    "user_id": "616404cfd61ea5d4d551463a",
+    "first_movie_id": "6164051ad61ea5d4d5514641",
+    "second_movie_id": "6164051ad61ea5d4d5514641"
+}
+
+### GET id
+GET http://localhost:4000/api/votings/616434434460437e09d856f9
+
+
+### PATCH
+PATCH http://localhost:4000/api/votings/61641035590a4e9c5c32203e
+Content-Type: application/json
+
+{
+    "isCanceled": "false",
+    "first_movie_won": "true"
+}
