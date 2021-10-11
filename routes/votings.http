@@ -9,12 +9,14 @@ Content-Type: application/json
 }
 
 ### GET id
-GET http://localhost:4000/api/votings/61641035590a4e9c5c32203e
+GET http://localhost:4000/api/votings/616434434460437e09d856f9
+
 
 ### PATCH
 PATCH http://localhost:4000/api/votings/61641035590a4e9c5c32203e
 Content-Type: application/json
 
 {
+    "isCanceled": "false",
     "first_movie_won": "true"
 }
