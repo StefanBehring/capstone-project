@@ -16,7 +16,6 @@ router.post('/', (request, response, next) => {
     first_movie_id,
     second_movie_id,
     isVoted: false,
-    first_movie_won: false,
   }
 
   Voting.create(newVote)
@@ -41,16 +40,16 @@ router.get('/:id', (request, response, next) => {
 
 router.patch('/:id', (request, response, next) => {
   const { id } = request.params
-  const { first_movie_won } = request.body
+  const { isCanceled, first_movie_won } = request.body
 
-  if (!first_movie_won) {
+  if (!first_movie_won || !isCanceled) {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
 
   Voting.findByIdAndUpdate(
     id,
-    { isVoted: true, first_movie_won },
+    { isVoted: true, isCanceled, first_movie_won },
     { new: true }
   )
     .then(user => {
