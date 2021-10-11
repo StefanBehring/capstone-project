@@ -1,0 +1,23 @@
+### POST
+POST http://localhost:4000/api/users
+Content-Type: application/json
+
+{
+    "username": "Uhhu no version key!",
+    "email": "Max Mustermann",
+    "password": "notencrypted"
+}
+
+### GET id
+GET http://localhost:4000/api/users/616404cfd61ea5d4d551463a
+
+### PATCH
+PATCH http://localhost:4000/api/users/616404cfd61ea5d4d551463a
+Content-Type: application/json
+
+{
+    "password": "stillnotencrypted"
+}
+
+### DELETE
+DELETE  http://localhost:4000/api/users/616404cfd61ea5d4d551463a

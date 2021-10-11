@@ -11,7 +11,9 @@ connectDatabase(MONGODB_URI)
 
 app.use(express.json())
 
-// If an error occurs the request goes through the following middleware
+app.use('/api/users', require('./routes/users'))
+app.use('/api/movies', require('./routes/movies'))
+
 app.use(errorHandler)
 
 app.listen(PORT, () => {
