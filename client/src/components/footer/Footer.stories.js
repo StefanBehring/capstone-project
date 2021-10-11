@@ -6,6 +6,6 @@ export default {
   component: Footer,
 }
 
-const Template = args => <Footer {...args} />
+const Template = () => <Footer />
 
 export const JustFooter = Template.bind({})

@@ -6,6 +6,6 @@ export default {
   component: Home,
 }
 
-const Template = args => <Home {...args} />
+const Template = () => <Home />
 
 export const JustHome = Template.bind({})
