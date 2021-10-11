@@ -14,7 +14,7 @@ router.post('/', (request, response, next) => {
   const newMovie = { tmdb_id, rating: 1400 }
 
   Movie.create(newMovie)
-    .then(user => response.status(201).json(user))
+    .then(movie => response.status(201).json(movie))
     .catch(next)
 })
 
