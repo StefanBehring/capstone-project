@@ -7,7 +7,8 @@
     "start": "nodemon index.js",
     "dev:server": "nodemon index.js",
     "dev:client": "cd client && npm start",
-    "dev:client:test": "cd client && npm run test"
+    "dev:client:test": "cd client && npm run test",
+    "dev:client:storybook": "cd client && npm run storybook"
   },
   "keywords": [],
   "author": "",
