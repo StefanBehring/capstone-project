@@ -5,7 +5,7 @@ describe('Header', () => {
   it('renders', () => {
     render(<Header />)
 
-    const text = screen.getByText('Rate The Movie')
-    expect(text).toBeInTheDocument()
+    const h1element = screen.getByRole('heading')
+    expect(h1element).toBeInTheDocument()
   })
 })
