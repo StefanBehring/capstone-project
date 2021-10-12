@@ -3,8 +3,7 @@ import ButtonGreen from './ButtonGreen'
 
 describe('ButtonGreen', () => {
   it('renders', () => {
-    const message = 'Add movie'
-    render(<ButtonGreen message={message} />)
+    render(<ButtonGreen message="Add movie" />)
 
     const buttonElement = screen.getByRole('button')
     expect(buttonElement).toBeInTheDocument()
