@@ -3,15 +3,11 @@ import ErrorCard from './ErrorCard'
 
 describe('ErrorCard', () => {
   it('renders', () => {
-    const title = 'Title'
-    const message = 'Message'
-    render(<ErrorCard title={title} message={message} />)
+    const message = 'It was an error!'
+    render(<ErrorCard title="Title" message={message} />)
 
-    const h3Element = screen.getByRole('heading')
+    const h3Element = screen.getByRole('heading', { level: 3 })
     expect(h3Element).toBeInTheDocument()
-
-    const textTitle = screen.getByText(title)
-    expect(textTitle).toBeInTheDocument()
 
     const textMessage = screen.getByText(message)
     expect(textMessage).toBeInTheDocument()
