@@ -1,10 +1,7 @@
 import styled from 'styled-components/macro'
 import AddMovieForm from './components/AddMovieForm/AddMovieForm'
-import ErrorCard from './components/Messages/ErrorCard/ErrorCard'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import Home from './components/Home/Home'
-import MovieCard from './components/MovieCard/MovieCard'
 
 function App() {
   return (
