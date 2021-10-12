@@ -2,7 +2,7 @@ import React from 'react'
 import ErrorCard from './ErrorCard'
 
 export default {
-  title: 'Component/ErrorCard',
+  title: 'Component/Messages/ErrorCard',
   component: ErrorCard,
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import SuccessCard from './SuccessCard'
 
 export default {
-  title: 'Component/SuccessCard',
+  title: 'Component/Messages/SuccessCard',
   component: SuccessCard,
 }
 
