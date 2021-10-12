@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
     :root {
         --color-lila-dark: #2a0944;
@@ -9,10 +9,13 @@ const GlobalStyles = createGlobalStyle`
         --color-lila-light: #a12568;
         --color-yellow: #fec260;
         --color-green: #4caf50;
+        --color-green-hover: #69EE6E;
         --color-red: #AC140C;
+        --color-red-hover: #F1574F;
         --color-blue: #008cba;
+        --color-blue-hover: #40C2ED;
 
-        --font-family: 'Roboto', sans-serif;
+        --font-family: 'Montserrat', sans-serif;
     }
 
     * {
