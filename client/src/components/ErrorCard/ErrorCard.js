@@ -11,7 +11,6 @@ const ErrorCard = ({ title, message }) => {
 
 const Wrapper = styled.div`
   background-color: var(--color-red);
-  border: 2px solid var(--color-lila-dark);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
