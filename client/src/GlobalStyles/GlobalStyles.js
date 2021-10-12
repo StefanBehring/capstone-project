@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
         --color-lila-light: #a12568;
         --color-yellow: #fec260;
         --color-green: #4caf50;
-        --color-red: #f44336;
+        --color-red: #AC140C;
         --color-blue: #008cba;
 
         --font-family: 'Roboto', sans-serif;
