@@ -29,8 +29,8 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 50px auto 50px;
   height: 100vh;
-  margin: 0;
-  width: 375px;
+  margin: 0 auto;
+  max-width: 500px;
 `
 
 const Main = styled.main`
