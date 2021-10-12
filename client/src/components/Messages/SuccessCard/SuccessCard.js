@@ -12,7 +12,7 @@ const SuccessCard = ({ title, message }) => {
 const Wrapper = styled.div`
   background-color: var(--color-green);
   border-radius: 10px;
-  color: #000;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
