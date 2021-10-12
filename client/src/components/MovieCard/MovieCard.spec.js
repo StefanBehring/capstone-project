@@ -15,7 +15,7 @@ describe('MovieCard', () => {
       />
     )
 
-    const h2Element = screen.getByRole('heading')
+    const h2Element = screen.getByRole('heading', { level: 2 })
     expect(h2Element).toBeInTheDocument()
 
     const imgElement = screen.getByAltText(title)
