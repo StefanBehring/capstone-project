@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const Home = () => {
   return (
     <Wrapper>
-      <h3>Welcome to rate the movie</h3>
+      <h2>Welcome to rate the movie</h2>
       <p>
         On this app you will have the option to rate movies in a more accurate
         way then on other rating forms.
