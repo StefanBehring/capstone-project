@@ -11,5 +11,5 @@ const Template = args => <ErrorCard {...args} />
 export const ErrorCardComplete = Template.bind({})
 ErrorCardComplete.args = {
   title: 'Title!',
-  message: 'This is a message',
+  message: 'This is an error message',
 }
