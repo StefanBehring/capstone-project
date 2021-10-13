@@ -19,7 +19,6 @@ const AddMovieForm = () => {
   */
   const addMovieHandler = async event => {
     event.preventDefault()
-    event.target.reset()
 
     const newMovie = {
       tmdb_id: tmdbId,
@@ -45,16 +44,16 @@ const AddMovieForm = () => {
 
     if (allowPostMovie) {
       axios
-        .post(`http://localhost:4000/api/movies`, newMovie)
+        .post(`/api/movies`, newMovie)
         .then(res => {
-          console.log(res.data)
           setSuccessMessage('Movie was added!')
           setErrorMessage('')
+          event.target.reset()
         })
         .catch(error => {
           console.error(error.message)
           setSuccessMessage('')
-          setErrorMessage('Could not add the movie!')
+          setErrorMessage(`Could not add the movie: ${error.message}`)
         })
     }
 
