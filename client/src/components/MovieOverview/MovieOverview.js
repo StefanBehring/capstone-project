@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
+import axios from 'axios'
 import MovieCard from '../MovieCard/MovieCard'
 
 const MovieOverview = () => {
-  const [movies] = useState([
+  const [movies, setMovies] = useState([
     {
       id: 0,
       imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
@@ -26,6 +27,50 @@ const MovieOverview = () => {
       genre: 'Drama',
     },
   ])
+
+  useEffect(() => {
+    async function fetchOwnData() {
+      try {
+        const response = await axios.get('/api/movies/all')
+        console.log(response)
+        const dataOwnApi = response.data
+
+        setMovies(
+          dataOwnApi.map(item => {
+            return {
+              id: item._id,
+              imgUrl:
+                'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
+              title: item._id,
+              year: '1999',
+              genre: 'Drama',
+            }
+          })
+        )
+
+        for (const el of dataOwnApi) {
+          const resTmdb = await axios.get('/api/movies/all')
+
+          setMovies(
+            dataOwnApi.map(ele => {
+              return {
+                id: ele._id,
+                imgUrl:
+                  'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
+                title: el._id === ele._id ? 'Prcoessed' : ele._id,
+                year: '1999',
+                genre: 'Drama',
+              }
+            })
+          )
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchOwnData()
+  }, [])
 
   return (
     <Wrapper>
