@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import MovieOverview from './components/MovieOverview/MovieOverview'
