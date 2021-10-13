@@ -10,52 +10,25 @@ const AddMovieForm = () => {
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  // Comments will be deleted later on
-  /*
-    The function has to be async, because it has to wait for the response of the tmdb api in the try catch block.
-    Once it has an response, the response can be positive or negative.
-    If the response is positive we allow (allowPostMovie) the movie to be posted to our database.
-    If the response is negative we set an error message.
-  */
-  const addMovieHandler = async event => {
+  const addMovieHandler = event => {
     event.preventDefault()
 
     const newMovie = {
       tmdb_id: tmdbId,
     }
 
-    let allowPostMovie = false
-
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${tmdbId}?api_key=7a72c13d262ed45c671611991b0f6086`
-      )
-      if (response.status === 200) {
-        allowPostMovie = true
-      } else {
+    axios
+      .post(`/api/movies`, newMovie)
+      .then(res => {
+        setSuccessMessage('Movie was added!')
+        setErrorMessage('')
+        event.target.reset()
+      })
+      .catch(error => {
+        console.error(error.message)
         setSuccessMessage('')
-        setErrorMessage('Unknown error connecting to tmdb')
-      }
-    } catch (error) {
-      console.error(error)
-      setSuccessMessage('')
-      setErrorMessage('Movie does not exist on tmdb!')
-    }
-
-    if (allowPostMovie) {
-      axios
-        .post(`/api/movies`, newMovie)
-        .then(res => {
-          setSuccessMessage('Movie was added!')
-          setErrorMessage('')
-          event.target.reset()
-        })
-        .catch(error => {
-          console.error(error.message)
-          setSuccessMessage('')
-          setErrorMessage(`Could not add the movie: ${error.message}`)
-        })
-    }
+        setErrorMessage(`Could not add the movie: ${error.message}`)
+      })
 
     setTmdbId('')
   }
