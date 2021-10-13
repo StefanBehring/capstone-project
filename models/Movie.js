@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    tmdb_id: {
+    tmdbId: {
       type: String,
       required: true,
     },
