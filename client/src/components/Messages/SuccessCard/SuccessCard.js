@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-const ErrorCard = ({ title, message }) => {
+const SuccessCard = ({ title, message }) => {
   return (
     <Wrapper>
       <h3>{title}</h3>
@@ -10,9 +10,9 @@ const ErrorCard = ({ title, message }) => {
 }
 
 const Wrapper = styled.div`
-  background-color: var(--color-red);
-  border: 2px solid var(--color-lila-dark);
+  background-color: var(--color-green);
   border-radius: 10px;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,4 +30,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default ErrorCard
+export default SuccessCard

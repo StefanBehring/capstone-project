@@ -1,23 +1,14 @@
 import styled from 'styled-components/macro'
-import ErrorCard from './components/ErrorCard/ErrorCard'
+import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import Home from './components/Home/Home'
-import MovieCard from './components/MovieCard/MovieCard'
 
 function App() {
   return (
     <Wrapper>
       <Header />
       <Main>
-        <Home />
-        <ErrorCard title="Error" message="message" />
-        <MovieCard
-          title="Fight Club"
-          year="1999"
-          genre="Drama"
-          imgUrl="https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg"
-        />
+        <AddMovieForm />
       </Main>
       <Footer />
     </Wrapper>

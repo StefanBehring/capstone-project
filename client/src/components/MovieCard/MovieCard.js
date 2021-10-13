@@ -14,7 +14,6 @@ const MovieCard = ({ imgUrl, title, year, genre }) => {
 
 const Wrapper = styled.section`
   background-color: var(--color-yellow);
-  border: 2px solid var(--color-lila);
   border-radius: 10px;
   color: #000;
   display: flex;

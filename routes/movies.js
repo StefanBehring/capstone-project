@@ -1,14 +1,39 @@
 const express = require('express')
+const axios = require('axios')
 const Movie = require('../models/Movie')
 
 const router = express.Router()
 
-router.post('/', (request, response, next) => {
+const { TMDB_API_KEY } = process.env
+
+// Comments will be deleted later on
+/*
+  The function has to be async, because it has to wait for the response of the tmdb api in the try catch block.
+  Once it has an response, the response can be positive or negative.
+  If the response is positive we allow (allowPostMovie) the movie to be posted to our database.
+  If the response is negative we set an error message.
+*/
+router.post('/', async (request, response, next) => {
   const { tmdb_id } = request.body
 
   if (tmdb_id === '') {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
+  }
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${tmdb_id}?api_key=${TMDB_API_KEY}`
+    )
+
+    if (response.status !== 200) {
+      const error = { message: 'Unknown error connecting to tmdb.' }
+      return next({ status: 400, message: error.message })
+    }
+  } catch (err) {
+    console.error(err)
+    const error = { message: 'Movie does not exist on tmdb!' }
+    return next({ status: 404, message: error.message })
   }
 
   const newMovie = { tmdb_id, rating: 1400 }

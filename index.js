@@ -1,4 +1,6 @@
 const express = require('express')
+const morgan = require('morgan')
+const helmet = require('helmet')
 const connectDatabase = require('./connectDatabase')
 const errorHandler = require('./errorHandler')
 require('dotenv').config()
@@ -10,6 +12,8 @@ const { PORT, MONGODB_URI } = process.env
 connectDatabase(MONGODB_URI)
 
 app.use(express.json())
+app.use(morgan('common'))
+app.use(helmet())
 
 app.use('/api/users', require('./routes/users'))
 app.use('/api/movies', require('./routes/movies'))
