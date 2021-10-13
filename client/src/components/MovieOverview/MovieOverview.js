@@ -10,7 +10,6 @@ const MovieOverview = () => {
     async function fetchOwnData() {
       try {
         const response = await axios.get('/api/movies/all')
-        console.log(response.data)
         setMovies([...response.data])
       } catch (error) {
         console.error(error)
