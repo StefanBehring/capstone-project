@@ -16,6 +16,7 @@ app.use(morgan('common'))
 app.use(helmet())
 
 app.use('/api/users', require('./routes/users'))
+app.use('/api/tmdb', require('./routes/tmdb'))
 app.use('/api/movies', require('./routes/movies'))
 app.use('/api/votings', require('./routes/votings'))
 
