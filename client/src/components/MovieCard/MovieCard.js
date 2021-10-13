@@ -1,12 +1,35 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components/macro'
 
-const MovieCard = ({ imgUrl, title, year, genre }) => {
+const MovieCard = ({ tmdbId }) => {
+  const [movie, setMovie] = useState({
+    tmdbId: '550',
+    imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
+    title: 'Fight Club',
+    year: '1999',
+    genre: 'Drama',
+  })
+
+  useEffect(() => {
+    const fetchMovie = async id => {
+      try {
+        const response = await axios.get(`/api/tmdb/${id}`)
+        setMovie(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchMovie(tmdbId)
+  })
+
   return (
     <Wrapper>
-      <img src={imgUrl} alt={title} height="562" width="375" />
-      <h3>{title}</h3>
+      <img src={movie.imgUrl} alt="" height="562" width="375" />
+      <h3>{movie.title}</h3>
       <p>
-        {year} - {genre}
+        {movie.year} - {movie.genre}
       </p>
     </Wrapper>
   )
