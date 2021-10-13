@@ -43,6 +43,16 @@ router.post('/', async (request, response, next) => {
     .catch(next)
 })
 
+router.get('/all', (request, response, next) => {
+  Movie.find()
+    .then(data => {
+      response.status(200).json(data)
+    })
+    .catch(error =>
+      next({ status: 404, message: error.message || 'No documents found' })
+    )
+})
+
 router.get('/:id', (request, response, next) => {
   const { id } = request.params
 
