@@ -4,7 +4,7 @@ const MovieCard = ({ imgUrl, title, year, genre }) => {
   return (
     <Wrapper>
       <img src={imgUrl} alt={title} height="562" width="375" />
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <p>
         {year} - {genre}
       </p>
@@ -29,7 +29,7 @@ const Wrapper = styled.section`
     width: 133px;
   }
 
-  h2 {
+  h3 {
     margin: 0;
   }
 
