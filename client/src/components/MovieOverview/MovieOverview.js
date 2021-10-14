@@ -27,7 +27,7 @@ const MovieOverview = () => {
       }
     }
     if (movies.length === 0) fetchOwnData()
-  }, [])
+  }, [movies])
 
   return (
     <Wrapper>
