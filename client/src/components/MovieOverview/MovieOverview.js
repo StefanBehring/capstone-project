@@ -26,8 +26,7 @@ const MovieOverview = () => {
         ])
       }
     }
-
-    fetchOwnData()
+    if (movies.length === 0) fetchOwnData()
   }, [])
 
   return (

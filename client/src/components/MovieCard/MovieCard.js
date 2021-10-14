@@ -21,7 +21,7 @@ const MovieCard = ({ tmdbId }) => {
       }
     }
 
-    fetchMovie(tmdbId)
+    if (movie.title === 'Currently loading data') fetchMovie(tmdbId)
   })
 
   return (
