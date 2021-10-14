@@ -11,7 +11,7 @@ describe('MovieCard', () => {
     const imgElement = screen.getByAltText('')
     expect(imgElement).toBeInTheDocument()
 
-    const textTitle = screen.getByText('Fight Club')
+    const textTitle = screen.getByText('Currently loading data')
     expect(textTitle).toBeInTheDocument()
 
     const textParagraph = screen.getByText('1999 - Drama')

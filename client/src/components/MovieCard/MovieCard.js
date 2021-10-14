@@ -6,7 +6,7 @@ const MovieCard = ({ tmdbId }) => {
   const [movie, setMovie] = useState({
     tmdbId: '550',
     imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
-    title: 'Fight Club',
+    title: 'Currently loading data',
     year: '1999',
     genre: 'Drama',
   })
