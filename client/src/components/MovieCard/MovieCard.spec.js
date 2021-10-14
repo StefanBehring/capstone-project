@@ -3,28 +3,18 @@ import MovieCard from './MovieCard'
 
 describe('MovieCard', () => {
   it('renders', () => {
-    const title = 'Fight Club'
-    const year = '1999'
-    const genre = 'Drama'
-    render(
-      <MovieCard
-        title={title}
-        year={year}
-        genre={genre}
-        imgUrl="https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg"
-      />
-    )
+    render(<MovieCard tmdbId="550" />)
 
-    const h2Element = screen.getByRole('heading', { level: 2 })
-    expect(h2Element).toBeInTheDocument()
+    const h3Element = screen.getByRole('heading', { level: 3 })
+    expect(h3Element).toBeInTheDocument()
 
-    const imgElement = screen.getByAltText(title)
+    const imgElement = screen.getByAltText('')
     expect(imgElement).toBeInTheDocument()
 
-    const textTitle = screen.getByText(title)
+    const textTitle = screen.getByText('Currently loading data')
     expect(textTitle).toBeInTheDocument()
 
-    const textParagraph = screen.getByText(`${year} - ${genre}`)
+    const textParagraph = screen.getByText('1999 - Drama')
     expect(textParagraph).toBeInTheDocument()
   })
 })
