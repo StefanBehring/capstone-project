@@ -15,7 +15,6 @@ const Button = styled.button`
 
   &:hover {
     background-color: var(--color-red-hover);
-    color: #000;
     font-family: var(--font-family);
   }
 `

@@ -25,7 +25,6 @@ const Wrapper = styled.div`
 `
 
 const Main = styled.main`
-  background-color: var(--color-lila-light);
   display: flex;
   flex-direction: column;
   justify-content: first baseline;

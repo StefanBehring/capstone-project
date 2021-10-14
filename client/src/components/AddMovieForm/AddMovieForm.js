@@ -57,9 +57,10 @@ const AddMovieForm = () => {
 }
 
 const Form = styled.form`
-  background-color: var(--color-yellow);
+  background-color: var(--color-white-light);
   border-radius: 10px;
-  color: #000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--color-black);
   display: flex;
   align-items: center;
   flex-direction: column;

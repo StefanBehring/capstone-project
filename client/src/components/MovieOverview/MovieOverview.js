@@ -41,6 +41,7 @@ const MovieOverview = () => {
 }
 
 const Wrapper = styled.div`
+  color: var(--color-black);
   display: flex;
   flex-direction: column;
 
