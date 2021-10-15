@@ -22,7 +22,7 @@ const MovieCard = ({ tmdbId }) => {
     }
 
     if (movie.title === 'Currently loading data') fetchMovie(tmdbId)
-  }, [movie])
+  }, [movie, tmdbId])
 
   return (
     <Wrapper>
