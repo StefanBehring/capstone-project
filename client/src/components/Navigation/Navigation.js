@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro'
-import ButtonHome from './Buttons/ButtonHome/ButtonHome'
-import ButtonVoting from './Buttons/ButtonVoting/ButtonVoting'
+import NavBarLinkHome from './NavBarLinks/NavBarLinkHome/NavBarLinkHome'
+import NavBarLinkVoting from './NavBarLinks/NavBarLinkVoting/NavBarLinkVoting'
 
 const Navigation = () => {
   return (
     <Nav>
-      <ButtonHome />
-      <ButtonVoting />
+      <NavBarLinkHome />
+      <NavBarLinkVoting />
     </Nav>
   )
 }

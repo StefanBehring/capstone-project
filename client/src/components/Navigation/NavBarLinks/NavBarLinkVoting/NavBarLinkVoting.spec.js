@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import ButtonVoting from './ButtonVoting'
+import NavBarLinkVoting from './NavBarLinkVoting'
 
-describe('ButtonVoting', () => {
+describe('NavBarLinkVoting', () => {
   it('renders', () => {
-    render(<ButtonVoting />)
+    render(<NavBarLinkVoting />)
 
     const text = screen.getByText('Voting')
     expect(text).toBeInTheDocument()

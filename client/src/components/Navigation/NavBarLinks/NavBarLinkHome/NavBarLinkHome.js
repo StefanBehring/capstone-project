@@ -2,15 +2,15 @@ import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 
-import { IoStar } from 'react-icons/io5'
+import { IoHomeSharp } from 'react-icons/io5'
 
-const ButtonVoting = () => {
+const NavBarLinkHome = () => {
   return (
-    <NavBarLink to="/voting" activeClassName="is-active">
+    <NavBarLink to="/">
       <IconContext.Provider value={{ size: '30px' }}>
-        <IoStar />
+        <IoHomeSharp />
       </IconContext.Provider>
-      <span>Voting</span>
+      <span>Home</span>
     </NavBarLink>
   )
 }
@@ -21,6 +21,7 @@ const NavBarLink = styled(NavLink)`
   align-items: center;
   height: 50;
   width: 80;
+
   color: var(--color-black);
   text-decoration: none;
 
@@ -29,4 +30,4 @@ const NavBarLink = styled(NavLink)`
   }
 `
 
-export default ButtonVoting
+export default NavBarLinkHome
