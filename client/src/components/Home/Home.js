@@ -6,7 +6,7 @@ const Home = () => {
       <h2>Welcome to rate the movie</h2>
       <p>
         On this app you will have the option to rate movies in a more accurate
-        way then on other rating forms.
+        way than on other rating forms.
       </p>
       <p>Have fun!</p>
     </Wrapper>
