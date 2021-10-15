@@ -4,16 +4,19 @@ const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
     :root {
-        --color-lila-dark: #2a0944;
-        --color-lila: #3b185f;
-        --color-lila-light: #a12568;
-        --color-yellow: #fec260;
-        --color-green: #4caf50;
-        --color-green-hover: #69EE6E;
-        --color-red: #AC140C;
-        --color-red-hover: #F1574F;
-        --color-blue: #008cba;
-        --color-blue-hover: #40C2ED;
+        --color-primary-dark: #0D4432;
+        --color-primary-light: #2BB885;
+        --color-grey-dark: #848484;
+        --color-grey-light: #CFCDCD;
+        --color-green: #1E891E;
+        --color-green-hover: #296520;
+        --color-red: #C34C4C;
+        --color-red-hover: #9A3C3C;
+        --color-blue: #008099;
+        --color-blue-hover: #2B7687;
+        --color-white-light: #F4F9F9;
+        --color-white-default: #ffffff;
+        --color-black: #000000;
 
         --font-family: 'Montserrat', sans-serif;
     }
@@ -23,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: var(--color-lila-dark);
+        background-color: var(--color-white-default);
         color: #fff;
         font-family: var(--font-family);
         margin: 0;

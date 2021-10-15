@@ -9,6 +9,8 @@ const Header = () => {
 }
 
 const Wrapper = styled.header`
+  background-color: var(--color-primary-light);
+  color: var(--color-black);
   display: flex;
   justify-content: center;
   align-items: center;

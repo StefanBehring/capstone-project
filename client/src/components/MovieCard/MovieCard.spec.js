@@ -14,7 +14,10 @@ describe('MovieCard', () => {
     const textTitle = screen.getByText('Currently loading data')
     expect(textTitle).toBeInTheDocument()
 
-    const textParagraph = screen.getByText('1999 - Drama')
-    expect(textParagraph).toBeInTheDocument()
+    const textParagraph1 = screen.getByText('1999')
+    expect(textParagraph1).toBeInTheDocument()
+
+    const textParagraph2 = screen.getByText('Drama')
+    expect(textParagraph2).toBeInTheDocument()
   })
 })

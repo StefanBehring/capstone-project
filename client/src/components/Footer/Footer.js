@@ -5,6 +5,8 @@ const Footer = () => {
 }
 
 const Wrapper = styled.footer`
+  background-color: var(--color-grey-light);
+  color: var(--color-black);
   display: flex;
   justify-content: center;
   align-items: center;
