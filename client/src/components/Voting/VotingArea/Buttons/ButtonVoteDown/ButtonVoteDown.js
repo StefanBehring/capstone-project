@@ -1,13 +1,10 @@
 import styled from 'styled-components/macro'
-import { IconContext } from 'react-icons'
 import { IoCaretDownCircle } from 'react-icons/io5'
 
 const ButtonVoteDown = () => {
   return (
     <ButtonGreen>
-      <IconContext.Provider value={{ size: '48px' }}>
-        <IoCaretDownCircle />
-      </IconContext.Provider>
+      <IoCaretDownCircle />
     </ButtonGreen>
   )
 }

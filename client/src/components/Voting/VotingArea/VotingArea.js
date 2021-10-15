@@ -1,12 +1,15 @@
 import styled from 'styled-components/macro'
+import { IconContext } from 'react-icons'
 import IdkArea from './IdkArea/IdkArea'
 import RatingArea from './RatingArea/RatingArea'
 
 const VotingArea = () => {
   return (
     <AreaVoting>
-      <IdkArea />
-      <RatingArea />
+      <IconContext.Provider value={{ size: '48px' }}>
+        <IdkArea />
+        <RatingArea />
+      </IconContext.Provider>
     </AreaVoting>
   )
 }

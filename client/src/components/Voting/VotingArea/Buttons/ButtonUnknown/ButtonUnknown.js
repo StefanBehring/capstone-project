@@ -1,13 +1,10 @@
 import styled from 'styled-components/macro'
-import { IconContext } from 'react-icons'
 import { IoHelpCircle } from 'react-icons/io5'
 
 const ButtonUnknown = () => {
   return (
     <ButtonRed>
-      <IconContext.Provider value={{ size: '48px' }}>
-        <IoHelpCircle />
-      </IconContext.Provider>
+      <IoHelpCircle />
     </ButtonRed>
   )
 }
