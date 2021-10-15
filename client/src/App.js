@@ -1,14 +1,14 @@
 import styled from 'styled-components/macro'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import MovieOverview from './components/MovieOverview/MovieOverview'
+import Voting from './components/Voting/Voting'
 
 function App() {
   return (
     <Wrapper>
       <Header />
       <Main>
-        <MovieOverview />
+        <Voting />
       </Main>
       <Footer />
     </Wrapper>
