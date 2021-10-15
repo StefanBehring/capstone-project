@@ -1,17 +1,29 @@
 import styled from 'styled-components/macro'
-import Footer from './components/Footer/Footer'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
 
 function App() {
   return (
-    <Wrapper>
-      <Header />
-      <Main>
-        <Voting />
-      </Main>
-      <Footer />
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Header />
+        <Main>
+          <Switch>
+            <Route exact path="/voting">
+              <Voting />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Main>
+        <Footer />
+      </Wrapper>
+    </Router>
   )
 }
 
