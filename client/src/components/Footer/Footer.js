@@ -1,7 +1,12 @@
 import styled from 'styled-components/macro'
+import Navigation from '../Navigation/Navigation'
 
 const Footer = () => {
-  return <Wrapper>FOOTER</Wrapper>
+  return (
+    <Wrapper>
+      <Navigation />
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.footer`

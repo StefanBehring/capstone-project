@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter as Router } from 'react-router'
-import Footer from './Footer'
+import Navigation from './Navigation'
 
-describe('Footer', () => {
+describe('Navigation', () => {
   it('renders', () => {
     render(
       <Router>
-        <Footer />
+        <Navigation />
       </Router>
     )
 
