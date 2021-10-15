@@ -1,5 +1,4 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
-import nock from 'nock'
+import { render, screen } from '@testing-library/react'
 
 import MovieCard from './MovieCard'
 
@@ -22,7 +21,7 @@ describe('MovieCard', () => {
     const textParagraph2 = screen.getByText('Drama')
     expect(textParagraph2).toBeInTheDocument()
   })
-
+  /*
   it('loads and renders', async () => {
     // TODO:
     // https://www.anthonygonzales.dev/blog/how-to-test-data-fetching-components.html
@@ -51,4 +50,5 @@ describe('MovieCard', () => {
       'Currently loading data'
     )
   })
+  */
 })
