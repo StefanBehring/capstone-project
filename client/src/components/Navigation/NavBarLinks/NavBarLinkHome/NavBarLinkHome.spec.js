@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import ButtonHome from './ButtonHome'
+import NavBarLinkHome from './NavBarLinkHome'
 
-describe('ButtonHome', () => {
+describe('NavBarLinkHome', () => {
   it('renders', () => {
-    render(<ButtonHome />)
+    render(<NavBarLinkHome />)
 
     const text = screen.getByText('Home')
     expect(text).toBeInTheDocument()
