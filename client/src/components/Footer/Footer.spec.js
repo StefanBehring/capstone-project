@@ -1,11 +1,19 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter as Router } from 'react-router'
 import Footer from './Footer'
 
 describe('Footer', () => {
   it('renders', () => {
-    render(<Footer />)
+    render(
+      <Router>
+        <Footer />
+      </Router>
+    )
 
-    const text = screen.getByText('FOOTER')
-    expect(text).toBeInTheDocument()
+    const textHome = screen.getByText('Home')
+    expect(textHome).toBeInTheDocument()
+
+    const textVoting = screen.getByText('Voting')
+    expect(textVoting).toBeInTheDocument()
   })
 })
