@@ -2,16 +2,16 @@ import styled from 'styled-components/macro'
 import ButtonVoteDown from '../Buttons/ButtonVoteDown/ButtonVoteDown'
 import ButtonVoteUp from '../Buttons/ButtonVoteUp/ButtonVoteUp'
 
-const RatingArea = () => {
+const RatingArea = ({ onVoteClick }) => {
   return (
     <AreaRating>
       <AreaVoteUp>
-        <ButtonVoteUp />
+        <ButtonVoteUp onVoteClick={onVoteClick} />
         <p>Vote Up</p>
       </AreaVoteUp>
       <AreaVoteDown>
         <p>Vote Down</p>
-        <ButtonVoteDown />
+        <ButtonVoteDown onVoteClick={onVoteClick} />
       </AreaVoteDown>
     </AreaRating>
   )

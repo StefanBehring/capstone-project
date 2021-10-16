@@ -1,14 +1,47 @@
 import styled from 'styled-components/macro'
+import { useEffect, useState } from 'react'
 import { IconContext } from 'react-icons'
+import axios from 'axios'
 import IdkArea from './IdkArea/IdkArea'
 import RatingArea from './RatingArea/RatingArea'
+import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 
-const VotingArea = () => {
+const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
+  const [movies, setMovies] = useState([])
+  const [componentError, setComponentError] = useState('')
+
+  useEffect(() => {
+    const fetchMovies = async (firstTmdbId, secondTmdbId) => {
+      try {
+        const responseMovieOne = await axios.get(`/api/tmdb/${firstTmdbId}`)
+        const responseMovieTwo = await axios.get(`/api/tmdb/${secondTmdbId}`)
+
+        setMovies([responseMovieOne.data, responseMovieTwo.data])
+      } catch (error) {
+        console.error(error)
+        setComponentError({ message: error.message })
+      }
+    }
+
+    if (movies.length < 2) fetchMovies(firstMovieTmdbId, secondMovieTmdbId)
+  }, [movies, firstMovieTmdbId, secondMovieTmdbId])
+
+  if (componentError !== '') {
+    return <ErrorCard title="Error" message={componentError.message} />
+  }
+
+  if (movies.length < 2) {
+    return <AreaVoting>Loading</AreaVoting>
+  }
+
   return (
     <AreaVoting>
       <IconContext.Provider value={{ size: '48px' }}>
-        <IdkArea />
-        <RatingArea />
+        <IdkArea
+          firstMovieTitle={movies[0].title}
+          secondMovieTitle={movies[1].title}
+        />
+        <RatingArea onVoteClick={onVoteClick} />
       </IconContext.Provider>
     </AreaVoting>
   )

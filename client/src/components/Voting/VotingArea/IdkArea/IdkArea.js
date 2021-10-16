@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import ButtonUnknown from '../Buttons/ButtonUnknown/ButtonUnknown'
 import ButtonBothUnknown from '../Buttons/ButtonBothUnknown/ButtonBothUnknown'
 
-const IdkArea = () => {
+const IdkArea = ({ firstMovieTitle, secondMovieTitle }) => {
   return (
     <AreaIdk>
       <AreaVoteIdk>
@@ -10,7 +10,7 @@ const IdkArea = () => {
         <p>
           Haven't Watched
           <br />
-          Fight Club
+          {firstMovieTitle}
         </p>
       </AreaVoteIdk>
       <AreaVoteIdk>
@@ -22,7 +22,7 @@ const IdkArea = () => {
         <p>
           Haven't Watched
           <br />
-          Full Metal Jacket
+          {secondMovieTitle}
         </p>
       </AreaVoteIdk>
     </AreaIdk>

@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import { IoCaretUpCircle } from 'react-icons/io5'
 
-const ButtonVoteUp = () => {
+const ButtonVoteUp = ({ onVoteClick }) => {
   return (
-    <ButtonGreen>
+    <ButtonGreen onClick={() => onVoteClick('UP')}>
       <IoCaretUpCircle />
     </ButtonGreen>
   )
