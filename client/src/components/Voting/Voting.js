@@ -49,12 +49,12 @@ const Voting = () => {
     if (movies.length < 2) fetchMovies()
   }, [movies])
 
-  if (movies.length < 2) {
-    return <Wrapper>Loading</Wrapper>
-  }
-
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
+  }
+
+  if (movies.length < 2) {
+    return <Wrapper>Loading</Wrapper>
   }
 
   return (
