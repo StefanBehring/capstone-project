@@ -42,7 +42,7 @@ router.patch('/:id', (request, response, next) => {
   const { id } = request.params
   const { isCanceled, first_movie_won } = request.body
 
-  if (!first_movie_won || !isCanceled) {
+  if (first_movie_won === undefined || isCanceled === undefined) {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
