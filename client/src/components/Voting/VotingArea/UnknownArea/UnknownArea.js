@@ -2,40 +2,40 @@ import styled from 'styled-components/macro'
 import ButtonUnknown from '../Buttons/ButtonUnknown/ButtonUnknown'
 import ButtonBothUnknown from '../Buttons/ButtonBothUnknown/ButtonBothUnknown'
 
-const IdkArea = ({ firstMovieTitle, secondMovieTitle }) => {
+const UnknownArea = ({ firstMovieTitle, secondMovieTitle }) => {
   return (
-    <AreaIdk>
-      <AreaVoteIdk>
+    <Wrapper>
+      <AreaVoteUnknown>
         <ButtonUnknown />
         <p>
           Haven't Watched
           <br />
           {firstMovieTitle}
         </p>
-      </AreaVoteIdk>
-      <AreaVoteIdk>
+      </AreaVoteUnknown>
+      <AreaVoteUnknown>
         <ButtonBothUnknown />
         <p>Both Not Watched</p>
-      </AreaVoteIdk>
-      <AreaVoteIdk>
+      </AreaVoteUnknown>
+      <AreaVoteUnknown>
         <ButtonUnknown />
         <p>
           Haven't Watched
           <br />
           {secondMovieTitle}
         </p>
-      </AreaVoteIdk>
-    </AreaIdk>
+      </AreaVoteUnknown>
+    </Wrapper>
   )
 }
 
-const AreaIdk = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `
 
-const AreaVoteIdk = styled.div`
+const AreaVoteUnknown = styled.div`
   display: flex;
   align-items: center;
 
@@ -45,4 +45,4 @@ const AreaVoteIdk = styled.div`
   }
 `
 
-export default IdkArea
+export default UnknownArea

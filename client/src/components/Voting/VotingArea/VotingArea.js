@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import { useEffect, useState } from 'react'
 import { IconContext } from 'react-icons'
 import axios from 'axios'
-import IdkArea from './IdkArea/IdkArea'
+import UnknownArea from './UnknownArea/UnknownArea'
 import RatingArea from './RatingArea/RatingArea'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 
@@ -37,7 +37,7 @@ const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
   return (
     <AreaVoting>
       <IconContext.Provider value={{ size: '48px' }}>
-        <IdkArea
+        <UnknownArea
           firstMovieTitle={movies[0].title}
           secondMovieTitle={movies[1].title}
         />
