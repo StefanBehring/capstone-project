@@ -3,7 +3,7 @@ POST http://localhost:4000/api/movies
 Content-Type: application/json
 
 {
-    "tmdb_id": "62140"
+    "tmdbId": "550"
 }
 
 ### GET id
@@ -11,6 +11,9 @@ GET http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
 
 ### GET all movies
 GET http://localhost:4000/api/movies/all
+
+### GET movies for voting
+GET http://localhost:4000/api/movies/voting
 
 ### PATCH
 PATCH http://localhost:4000/api/movies/6164051ad61ea5d4d5514641

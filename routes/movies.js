@@ -14,16 +14,16 @@ const { TMDB_API_KEY } = process.env
   If the response is negative we set an error message.
 */
 router.post('/', async (request, response, next) => {
-  const { tmdb_id } = request.body
+  const { tmdbId } = request.body
 
-  if (tmdb_id === '') {
+  if (tmdbId === '') {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
 
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${tmdb_id}?api_key=${TMDB_API_KEY}`
+      `https://api.themoviedb.org/3/movie/${tmdbId}?api_key=${TMDB_API_KEY}`
     )
 
     if (response.status !== 200) {
@@ -36,7 +36,7 @@ router.post('/', async (request, response, next) => {
     return next({ status: 404, message: error.message })
   }
 
-  const newMovie = { tmdb_id, rating: 1400 }
+  const newMovie = { tmdbId, rating: 1400 }
 
   Movie.create(newMovie)
     .then(movie => response.status(201).json(movie))
@@ -47,6 +47,41 @@ router.get('/all', (request, response, next) => {
   Movie.find()
     .then(data => {
       response.status(200).json(data)
+    })
+    .catch(error =>
+      next({ status: 404, message: error.message || 'No documents found' })
+    )
+})
+
+router.get('/voting', (request, response, next) => {
+  Movie.find()
+    .then(data => {
+      /*
+        get an random index from the data array
+        add it to firstMovieIndex
+        do this for the second movie
+        repeat until firstMovieIndex and secondMovieIndex arent equal
+        return new array with both movies
+      */
+      if (data.length < 2) {
+        const error = { message: 'Not enough movies in the database.' }
+        return next({ status: 404, message: error.message })
+      }
+
+      const firstMovieIndex = Math.floor(Math.random() * data.length)
+      let secondMovieIndex = firstMovieIndex
+      let gotSecondMovie = false
+
+      do {
+        secondMovieIndex = Math.floor(Math.random() * data.length)
+        if (firstMovieIndex !== secondMovieIndex) {
+          gotSecondMovie = true
+        }
+      } while (!gotSecondMovie)
+
+      const dataVoting = [data[firstMovieIndex], data[secondMovieIndex]]
+
+      response.status(200).json(dataVoting)
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'No documents found' })
