@@ -3,9 +3,9 @@ POST http://localhost:4000/api/votings
 Content-Type: application/json
 
 {
-    "user_id": "616404cfd61ea5d4d551463a",
-    "first_movie_id": "6164051ad61ea5d4d5514641",
-    "second_movie_id": "6164051ad61ea5d4d5514641"
+    "user_id": "616af3051daf09784aaa3d08",
+    "first_movie_id": "616ab7d37e37d660eaf06978",
+    "second_movie_id": "616718501868bdbd7b3a27f1"
 }
 
 ### GET id
