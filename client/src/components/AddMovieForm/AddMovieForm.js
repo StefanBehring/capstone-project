@@ -14,7 +14,7 @@ const AddMovieForm = () => {
     event.preventDefault()
 
     const newMovie = {
-      tmdb_id: tmdbId,
+      tmdbId: tmdbId,
     }
 
     axios

@@ -14,16 +14,16 @@ const { TMDB_API_KEY } = process.env
   If the response is negative we set an error message.
 */
 router.post('/', async (request, response, next) => {
-  const { tmdb_id } = request.body
+  const { tmdbId } = request.body
 
-  if (tmdb_id === '') {
+  if (tmdbId === '') {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
 
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${tmdb_id}?api_key=${TMDB_API_KEY}`
+      `https://api.themoviedb.org/3/movie/${tmdbId}?api_key=${TMDB_API_KEY}`
     )
 
     if (response.status !== 200) {
@@ -36,7 +36,7 @@ router.post('/', async (request, response, next) => {
     return next({ status: 404, message: error.message })
   }
 
-  const newMovie = { tmdb_id, rating: 1400 }
+  const newMovie = { tmdbId, rating: 1400 }
 
   Movie.create(newMovie)
     .then(movie => response.status(201).json(movie))
@@ -44,6 +44,16 @@ router.post('/', async (request, response, next) => {
 })
 
 router.get('/all', (request, response, next) => {
+  Movie.find()
+    .then(data => {
+      response.status(200).json(data)
+    })
+    .catch(error =>
+      next({ status: 404, message: error.message || 'No documents found' })
+    )
+})
+
+router.get('/voting', (request, response, next) => {
   Movie.find()
     .then(data => {
       response.status(200).json(data)
