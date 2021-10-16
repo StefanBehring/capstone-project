@@ -21,7 +21,6 @@ const Voting = () => {
             tmdbId: '600',
           },
         ])
-        alert(error)
         console.error(error)
       }
     }
