@@ -9,7 +9,7 @@ describe('Home', () => {
     expect(text1).toBeInTheDocument()
 
     const text2 = screen.getByText(
-      'On this app you will have the option to rate movies in a more accurate way then on other rating forms.'
+      'On this app you will have the option to rate movies in a more accurate way than on other rating forms.'
     )
     expect(text2).toBeInTheDocument()
 
