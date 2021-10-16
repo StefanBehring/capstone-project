@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import IdkArea from './IdkArea'
+import UnknownArea from './UnknownArea'
 
 describe('IdkArea', () => {
   it('renders texts', () => {
-    render(<IdkArea />)
+    render(<UnknownArea />)
 
     const unknownMovieTexts = screen.getAllByText(/Haven't Watched/)
     expect(unknownMovieTexts).toHaveLength(2)
@@ -13,7 +13,7 @@ describe('IdkArea', () => {
   })
 
   it('renders 3 buttons', () => {
-    render(<IdkArea />)
+    render(<UnknownArea />)
 
     const buttonElements = screen.getAllByRole('button')
     expect(buttonElements).toHaveLength(3)

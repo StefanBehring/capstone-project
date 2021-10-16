@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
-import { IoHelpCircle } from 'react-icons/io5'
+import { IoHelpCircle as IconHelp } from 'react-icons/io5'
 
 const ButtonUnknown = () => {
   return (
     <ButtonRed>
-      <IoHelpCircle />
+      <IconHelp />
     </ButtonRed>
   )
 }

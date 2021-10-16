@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
-import { IoReloadCircle } from 'react-icons/io5'
+import { IoReloadCircle as IconReload } from 'react-icons/io5'
 
 const ButtonBothUnknown = () => {
   return (
     <ButtonRed>
-      <IoReloadCircle />
+      <IconReload />
     </ButtonRed>
   )
 }
