@@ -56,7 +56,32 @@ router.get('/all', (request, response, next) => {
 router.get('/voting', (request, response, next) => {
   Movie.find()
     .then(data => {
-      response.status(200).json(data)
+      /*
+        get an random index from the data array
+        add it to firstMovieIndex
+        do this for the second movie
+        repeat until firstMovieIndex and secondMovieIndex arent equal
+        return new array with both movies
+      */
+      if (data.length < 2) {
+        const error = { message: 'Not enough movies in the database.' }
+        return next({ status: 404, message: error.message })
+      }
+
+      const firstMovieIndex = Math.floor(Math.random() * data.length)
+      let secondMovieIndex = firstMovieIndex
+      let gotSecondMovie = false
+
+      do {
+        secondMovieIndex = Math.floor(Math.random() * data.length)
+        if (firstMovieIndex !== secondMovieIndex) {
+          gotSecondMovie = true
+        }
+      } while (!gotSecondMovie)
+
+      const dataVoting = [data[firstMovieIndex], data[secondMovieIndex]]
+
+      response.status(200).json(dataVoting)
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'No documents found' })
