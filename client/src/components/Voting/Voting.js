@@ -1,13 +1,43 @@
-import MovieCard from '../MovieCard/MovieCard'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components/macro'
+import MovieCard from '../MovieCard/MovieCard'
 import VotingArea from './VotingArea/VotingArea'
 
 const Voting = () => {
+  const [movies, setMovies] = useState([])
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get(`/api/movies/voting`)
+        setMovies(response.data)
+      } catch (error) {
+        setMovies([
+          {
+            tmdbId: '550',
+          },
+          {
+            tmdbId: '600',
+          },
+        ])
+        alert(error)
+        console.error(error)
+      }
+    }
+
+    if (movies.length < 2) fetchMovies()
+  }, [movies])
+
+  if (movies.length < 2) {
+    return <Wrapper>Loading</Wrapper>
+  }
+
   return (
     <Wrapper>
-      <MovieCard tmdbId="550" />
+      <MovieCard tmdbId={movies[0].tmdbId} />
       <VotingArea />
-      <MovieCard tmdbId="600" />
+      <MovieCard tmdbId={movies[1].tmdbId} />
     </Wrapper>
   )
 }
