@@ -5,10 +5,12 @@ import axios from 'axios'
 import UnknownArea from './UnknownArea/UnknownArea'
 import RatingArea from './RatingArea/RatingArea'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
+import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
 const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
   const [movies, setMovies] = useState([])
   const [componentError, setComponentError] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchMovies = async (firstTmdbId, secondTmdbId) => {
@@ -17,21 +19,23 @@ const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
         const responseMovieTwo = await axios.get(`/api/tmdb/${secondTmdbId}`)
 
         setMovies([responseMovieOne.data, responseMovieTwo.data])
+        setIsLoading(false)
       } catch (error) {
         console.error(error)
         setComponentError({ message: error.message })
+        setIsLoading(false)
       }
     }
 
-    if (movies.length < 2) fetchMovies(firstMovieTmdbId, secondMovieTmdbId)
-  }, [movies, firstMovieTmdbId, secondMovieTmdbId])
+    if (isLoading) fetchMovies(firstMovieTmdbId, secondMovieTmdbId)
+  }, [isLoading, firstMovieTmdbId, secondMovieTmdbId])
 
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
   }
 
-  if (movies.length < 2) {
-    return <AreaVoting>Loading</AreaVoting>
+  if (isLoading) {
+    return <LoadingSpinner />
   }
 
   return (

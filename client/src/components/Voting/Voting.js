@@ -4,10 +4,12 @@ import styled from 'styled-components/macro'
 import MovieCard from '../MovieCard/MovieCard'
 import VotingArea from './VotingArea/VotingArea'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
+import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
 const Voting = () => {
   const [movies, setMovies] = useState([])
   const [voting, setVoting] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [componentError, setComponentError] = useState('')
 
   const votingHandler = async direction => {
@@ -19,6 +21,7 @@ const Voting = () => {
         isCanceled,
       })
       setMovies([])
+      setIsLoading(true)
     } catch (error) {
       console.error(error)
       setComponentError({ message: error.message })
@@ -40,21 +43,23 @@ const Voting = () => {
 
         setMovies(responseMovies.data)
         setVoting(responseVotings.data)
+        setIsLoading(false)
       } catch (error) {
         console.error(error)
         setComponentError({ message: error.message })
+        setIsLoading(false)
       }
     }
 
-    if (movies.length < 2) fetchMovies()
-  }, [movies])
+    if (isLoading) fetchMovies()
+  }, [isLoading])
 
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
   }
 
-  if (movies.length < 2) {
-    return <Wrapper>Loading</Wrapper>
+  if (isLoading) {
+    return <LoadingSpinner />
   }
 
   return (

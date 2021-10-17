@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import MovieCard from '../MovieCard/MovieCard'
+import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
 const MovieOverview = () => {
   const [movies, setMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function fetchOwnData() {
       try {
         const response = await axios.get('/api/movies/all')
         setMovies([...response.data])
+        setIsLoading(false)
       } catch (error) {
         console.error(error)
         setMovies([
@@ -24,10 +27,15 @@ const MovieOverview = () => {
             tmdbId: 600,
           },
         ])
+        setIsLoading(false)
       }
     }
-    if (movies.length === 0) fetchOwnData()
-  }, [movies])
+    if (isLoading) fetchOwnData()
+  }, [isLoading])
+
+  if (isLoading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <Wrapper>

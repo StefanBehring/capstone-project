@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
+import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
 const MovieCard = ({ tmdbId }) => {
   const [movie, setMovie] = useState({
@@ -10,12 +11,14 @@ const MovieCard = ({ tmdbId }) => {
     year: '1999',
     genre: 'Drama',
   })
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchMovie = async id => {
       try {
         const response = await axios.get(`/api/tmdb/${id}`)
         setMovie(response.data)
+        setIsLoading(false)
       } catch (error) {
         setMovie({
           tmdbId: '550',
@@ -26,11 +29,16 @@ const MovieCard = ({ tmdbId }) => {
           genre: 'Drama',
         })
         console.error(error)
+        setIsLoading(false)
       }
     }
 
-    if (movie.title === 'Currently loading data') fetchMovie(tmdbId)
-  }, [movie, tmdbId])
+    if (isLoading) fetchMovie(tmdbId)
+  }, [isLoading, tmdbId])
+
+  if (isLoading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <Wrapper>
