@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
+import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Voting />
             </Route>
             <Route path="/">
+              <LoadingSpinner />
               <Home />
             </Route>
           </Switch>
