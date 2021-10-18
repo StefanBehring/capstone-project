@@ -1,9 +1,10 @@
 const express = require('express')
+const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 
 const router = express.Router()
 
-router.post('/', (request, response, next) => {
+router.post('/', async (request, response, next) => {
   const { username, email, password } = request.body
 
   if (username === '' || email === '' || password === '') {
@@ -11,10 +12,35 @@ router.post('/', (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
+  try {
+    let userTest = await User.findOne({ username })
+    if (userTest) {
+      const errorUser = { message: 'Username already exists' }
+      return next({ status: 400, message: errorUser.message })
+    }
+
+    let emailTest = await User.findOne({ email })
+    if (emailTest) {
+      const errorEmail = { message: 'E-Mail already exists' }
+      return next({ status: 400, message: errorEmail.message })
+    }
+  } catch (err) {
+    console.error(err)
+    const error = { message: 'Movie does not exist on tmdb!' }
+    return next({ status: 404, message: error.message })
+  }
+
   const newUser = { username, email, password }
 
+  const salt = await bcrypt.genSalt(10)
+  newUser.password = await bcrypt.hash(password, salt)
+
   User.create(newUser)
-    .then(user => response.status(201).json(user))
+    .then(user =>
+      response
+        .status(201)
+        .json({ username: user.username, email: user.email, _id: user._id })
+    )
     .catch(next)
 })
 
