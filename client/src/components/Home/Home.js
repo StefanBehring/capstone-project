@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import ButtonBlue from '../Buttons/ButtonBlue/ButtonBlue'
+import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 
 const Home = () => {
   return (
@@ -12,9 +11,7 @@ const Home = () => {
       </p>
       <p>Have fun!</p>
       <p>Don't have an account yet?</p>
-      <Link to="/register">
-        <ButtonBlue message="Register now!" />
-      </Link>
+      <LinkButtonBlue message="Register now!" direction="/register" />
     </Wrapper>
   )
 }
