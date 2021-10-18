@@ -42,8 +42,8 @@ const Toplist = () => {
       <h2>Toplist</h2>
       {movies.map((movie, index) => {
         return (
-          <div>
-            <Ranking>#{index + 1}</Ranking>
+          <div key={index}>
+            <Ranking key={index}>#{index + 1}</Ranking>
             <MovieCard key={movie._id} tmdbId={movie.tmdbId} />
           </div>
         )
