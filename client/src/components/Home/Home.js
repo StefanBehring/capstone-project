@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import ButtonBlue from '../Buttons/ButtonBlue/ButtonBlue'
 
 const Home = () => {
   return (
@@ -9,6 +11,10 @@ const Home = () => {
         way than on other rating forms.
       </p>
       <p>Have fun!</p>
+      <p>Don't have an account yet?</p>
+      <Link to="/register">
+        <ButtonBlue message="Register now!" />
+      </Link>
     </Wrapper>
   )
 }
