@@ -49,8 +49,9 @@ const RegisterAccountForm = () => {
   }
 
   return (
-    <Form onSubmit={event => handleSubmit(event)}>
+    <Form onSubmit={handleSubmit}>
       <h2>Register Account</h2>
+      {errorRegister && <ErrorCard title="Error" message={errorRegister} />}
       <label htmlFor="username">Username</label>
       <input
         type="text"
@@ -58,7 +59,7 @@ const RegisterAccountForm = () => {
         name="username"
         placeholder="your username"
         required
-        onChange={event => handleChangeUsername(event)}
+        onChange={handleChangeUsername}
       />
       <label htmlFor="email">E-Mail</label>
       <input
@@ -67,7 +68,7 @@ const RegisterAccountForm = () => {
         name="email"
         placeholder="your email"
         required
-        onChange={event => handleChangeEmail(event)}
+        onChange={handleChangeEmail}
       />
       <label htmlFor="password">Password</label>
       <input
@@ -76,7 +77,7 @@ const RegisterAccountForm = () => {
         name="password"
         minLength="8"
         required
-        onChange={event => handleChangePassword(event)}
+        onChange={handleChangePassword}
       />
       <label htmlFor="passwordReType">Re-Type</label>
       <input
@@ -85,14 +86,9 @@ const RegisterAccountForm = () => {
         name="passwordReType"
         minLength="8"
         required
-        onChange={event => handleChangePasswordReType(event)}
+        onChange={handleChangePasswordReType}
       />
       <ButtonGreen message="Register" />
-      {errorRegister !== '' ? (
-        <ErrorCard title="Error" message={errorRegister} />
-      ) : (
-        ''
-      )}
     </Form>
   )
 }
