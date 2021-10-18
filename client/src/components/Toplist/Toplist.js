@@ -14,12 +14,12 @@ const Toplist = () => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(`/api/movies/top`)
+        setIsLoading(false)
         setMovies(response.data)
       } catch (error) {
         console.error(error)
-        setComponentError({ message: error.message })
-      } finally {
         setIsLoading(false)
+        setComponentError({ message: error.message })
       }
     }
 
