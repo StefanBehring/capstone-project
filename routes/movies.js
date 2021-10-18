@@ -53,6 +53,22 @@ router.get('/all', (request, response, next) => {
     )
 })
 
+router.get('/top', (request, response, next) => {
+  Movie.find()
+    .then(data => {
+      /*
+        sort data by rating
+        return the data with max 100 entries
+      */
+      data.sort((a, b) => b.rating - a.rating).slice(0, 100)
+
+      response.status(200).json(data)
+    })
+    .catch(error =>
+      next({ status: 404, message: error.message || 'No documents found' })
+    )
+})
+
 router.get('/voting', (request, response, next) => {
   Movie.find()
     .then(data => {
