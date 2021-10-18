@@ -26,12 +26,12 @@ const Toplist = () => {
     if (isLoading) fetchMovies()
   }, [isLoading])
 
-  if (isLoading) {
-    return <LoadingSpinner />
-  }
-
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />
   }
 
   return (
