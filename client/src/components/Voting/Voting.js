@@ -34,7 +34,7 @@ const Voting = () => {
         const responseMovies = await axios.get(`/api/movies/voting`)
 
         const newVoting = {
-          user_id: '616af3051daf09784aaa3d08',
+          user_id: '616d7853560568b10ce8d06f',
           first_movie_id: responseMovies.data[0]._id,
           second_movie_id: responseMovies.data[1]._id,
         }
@@ -58,7 +58,7 @@ const Voting = () => {
     return <ErrorCard title="Error" message={componentError.message} />
   }
 
-  if (isLoading) {
+  if (isLoading || movies.length < 2) {
     return <LoadingSpinner />
   }
 
