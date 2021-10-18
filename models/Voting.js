@@ -13,17 +13,17 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema(
   {
-    user_id: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    first_movie_id: {
+    firstMovieId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Movie',
       required: true,
     },
-    second_movie_id: {
+    secondMovieId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Movie',
       required: true,
@@ -35,7 +35,7 @@ const schema = new mongoose.Schema(
     isCanceled: {
       type: mongoose.Schema.Types.Boolean,
     },
-    first_movie_won: {
+    firstMovieWon: {
       type: mongoose.Schema.Types.Boolean,
     },
   },

@@ -4,17 +4,17 @@ const Voting = require('../models/Voting')
 const router = express.Router()
 
 router.post('/', (request, response, next) => {
-  const { user_id, first_movie_id, second_movie_id } = request.body
+  const { userId, firstMovieId, secondMovieId } = request.body
 
-  if (user_id === '' || first_movie_id === '' || second_movie_id === '') {
+  if (userId === '' || firstMovieId === '' || secondMovieId === '') {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
 
   const newVote = {
-    user_id,
-    first_movie_id,
-    second_movie_id,
+    userId,
+    firstMovieId,
+    secondMovieId,
     isVoted: false,
   }
 
@@ -40,16 +40,16 @@ router.get('/:id', (request, response, next) => {
 
 router.patch('/:id', (request, response, next) => {
   const { id } = request.params
-  const { isCanceled, first_movie_won } = request.body
+  const { isCanceled, firstMovieWon } = request.body
 
-  if (first_movie_won === undefined || isCanceled === undefined) {
+  if (firstMovieWon === undefined || isCanceled === undefined) {
     const error = { message: 'Information missing.' }
     return next({ status: 400, message: error.message })
   }
 
   Voting.findByIdAndUpdate(
     id,
-    { isVoted: true, isCanceled, first_movie_won },
+    { isVoted: true, isCanceled, firstMovieWon },
     { new: true }
   )
     .then(user => {
