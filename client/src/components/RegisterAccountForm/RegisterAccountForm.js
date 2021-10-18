@@ -1,14 +1,17 @@
 import { useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
+import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 
 const RegisterAccountForm = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordReType, setPasswordReType] = useState('')
-  const [errorRegister, setErrorRegister] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   const handleChangeUsername = event => {
     setUsername(event.target.value)
@@ -27,31 +30,37 @@ const RegisterAccountForm = () => {
   }
 
   const handleSubmit = event => {
-    /*
-    The alerts (and this comment) will be removed; they are just here for testing and giving some feedback
-    */
     event.preventDefault()
-    alert(
-      `SUBMIT WAS INITIATED\n${username}\n${email}\n${password}\n${passwordReType}`
-    )
     let isErrorInRegistration = false
     if (password !== passwordReType) {
       isErrorInRegistration = true
-      setErrorRegister('Passwords do not match!')
-      alert('Passwords do not match')
+      if (successMessage !== '') setSuccessMessage('')
+      setErrorMessage('Passwords do not match!')
     }
 
     if (!isErrorInRegistration) {
-      alert('SUCCESS!')
-      event.target.reset()
-      if (errorRegister !== '') setErrorRegister('')
+      axios
+        .post(`/api/users`, { username, email, password })
+        .then(res => {
+          setSuccessMessage('User was added!')
+          if (errorMessage !== '') setErrorMessage('')
+          event.target.reset()
+        })
+        .catch(error => {
+          console.error(error.message)
+          if (successMessage !== '') setSuccessMessage('')
+          setErrorMessage(`Could not add user: ${error.message}`)
+        })
     }
   }
 
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Register Account</h2>
-      {errorRegister && <ErrorCard title="Error" message={errorRegister} />}
+      {successMessage && (
+        <SuccessCard title="Success" message={successMessage} />
+      )}
+      {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
       <label htmlFor="username">Username</label>
       <input
         type="text"
