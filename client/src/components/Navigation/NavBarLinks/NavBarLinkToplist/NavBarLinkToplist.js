@@ -2,15 +2,15 @@ import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 
-import { IoHomeSharp } from 'react-icons/io5'
+import { IoStatsChartSharp as IconToplist } from 'react-icons/io5'
 
-const NavBarLinkHome = () => {
+const NavBarLinkToplist = () => {
   return (
-    <NavBarLink to="/home" activeClassName="is-active">
+    <NavBarLink to="/toplist" activeClassName="is-active">
       <IconContext.Provider value={{ size: '30px' }}>
-        <IoHomeSharp />
+        <IconToplist />
       </IconContext.Provider>
-      <span>Home</span>
+      <span>Toplist</span>
     </NavBarLink>
   )
 }
@@ -21,7 +21,6 @@ const NavBarLink = styled(NavLink)`
   align-items: center;
   height: 50;
   width: 80;
-
   color: var(--color-black);
   text-decoration: none;
 
@@ -30,4 +29,4 @@ const NavBarLink = styled(NavLink)`
   }
 `
 
-export default NavBarLinkHome
+export default NavBarLinkToplist

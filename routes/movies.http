@@ -12,6 +12,9 @@ GET http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
 ### GET all movies
 GET http://localhost:4000/api/movies/all
 
+### GET TOPLIST 
+GET http://localhost:4000/api/movies/top
+
 ### GET movies for voting
 GET http://localhost:4000/api/movies/voting
 

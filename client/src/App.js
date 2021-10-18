@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
 import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
+import Toplist from './components/Toplist/Toplist'
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
             <Route exact path="/voting">
               <Voting />
             </Route>
-            <Route path="/">
+            <Route exact path="/toplist">
+              <Toplist />
+            </Route>
+            <Route path={['/home', '/']}>
               <LoadingSpinner />
               <Home />
             </Route>
