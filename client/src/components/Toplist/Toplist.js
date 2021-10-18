@@ -14,8 +14,9 @@ const Toplist = () => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(`/api/movies/top`)
-        // Console.log fuer vercel test
-        console.log('DATA: ' + response.data)
+        if (!Array.isArray(response.data)) {
+          throw new Error({ message: 'Invalid data' })
+        }
         setIsLoading(false)
         setMovies(response.data)
       } catch (error) {
