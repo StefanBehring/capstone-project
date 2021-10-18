@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 
 const Home = () => {
   return (
@@ -9,6 +10,8 @@ const Home = () => {
         way than on other rating forms.
       </p>
       <p>Have fun!</p>
+      <p>Don't have an account yet?</p>
+      <LinkButtonBlue message="Register now!" direction="/register" />
     </Wrapper>
   )
 }

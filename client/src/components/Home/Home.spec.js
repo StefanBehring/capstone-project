@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter as Router } from 'react-router'
 import Home from './Home'
 
 describe('Home', () => {
   it('renders', () => {
-    render(<Home />)
+    render(
+      <Router>
+        <Home />
+      </Router>
+    )
 
     const text1 = screen.getByText('Welcome to rate the movie')
     expect(text1).toBeInTheDocument()
@@ -15,5 +20,8 @@ describe('Home', () => {
 
     const text3 = screen.getByText('Have fun!')
     expect(text3).toBeInTheDocument()
+
+    const linkElement = screen.getAllByRole('link')
+    expect(linkElement).toHaveLength(1)
   })
 })
