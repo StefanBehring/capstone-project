@@ -6,7 +6,7 @@ import { IoHomeSharp } from 'react-icons/io5'
 
 const NavBarLinkHome = () => {
   return (
-    <NavBarLink to="/">
+    <NavBarLink to="/home" activeClassName="is-active">
       <IconContext.Provider value={{ size: '30px' }}>
         <IoHomeSharp />
       </IconContext.Provider>
