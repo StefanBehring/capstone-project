@@ -7,6 +7,7 @@ import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
 import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import Toplist from './components/Toplist/Toplist'
+import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <Header />
         <Main>
           <Switch>
+            <Route exact path="/register">
+              <RegisterAccountForm />
+            </Route>
             <Route exact path="/voting">
               <Voting />
             </Route>
