@@ -15,7 +15,7 @@ const Toplist = () => {
       try {
         const response = await axios.get(`/api/movies/top`)
         if (!Array.isArray(response.data)) {
-          throw new Error({ message: 'Invalid data' })
+          throw new Error('Invalid data')
         }
         setIsLoading(false)
         setMovies(response.data)
