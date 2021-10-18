@@ -30,7 +30,7 @@ const Toplist = () => {
     return <LoadingSpinner />
   }
 
-  if (componentError) {
+  if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
   }
 
