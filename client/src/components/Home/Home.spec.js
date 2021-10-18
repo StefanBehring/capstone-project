@@ -20,5 +20,8 @@ describe('Home', () => {
 
     const text3 = screen.getByText('Have fun!')
     expect(text3).toBeInTheDocument()
+
+    const linkElement = screen.getAllByRole('link')
+    expect(linkElement).toHaveLength(1)
   })
 })
