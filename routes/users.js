@@ -26,8 +26,8 @@ router.post('/', async (request, response, next) => {
     }
   } catch (err) {
     console.error(err)
-    const error = { message: 'Movie does not exist on tmdb!' }
-    return next({ status: 404, message: error.message })
+    const error = { message: 'Unknown error!' }
+    return next({ status: 400, message: error.message })
   }
 
   const newUser = { username, email, password }
