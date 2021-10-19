@@ -8,7 +8,7 @@ import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
 const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState({ firstMovie: '', secondMovie: '' })
   const [componentError, setComponentError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
@@ -18,7 +18,10 @@ const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
         const responseMovieOne = await axios.get(`/api/tmdb/${firstTmdbId}`)
         const responseMovieTwo = await axios.get(`/api/tmdb/${secondTmdbId}`)
 
-        setMovies([responseMovieOne.data, responseMovieTwo.data])
+        setMovies({
+          firstMovie: responseMovieOne.data,
+          secondMovie: responseMovieTwo.data,
+        })
         setIsLoading(false)
       } catch (error) {
         console.error(error)
@@ -42,8 +45,8 @@ const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
     <AreaVoting>
       <IconContext.Provider value={{ size: '48px' }}>
         <UnknownArea
-          firstMovieTitle={movies[0].title}
-          secondMovieTitle={movies[1].title}
+          firstMovieTitle={movies.firstMovie.title}
+          secondMovieTitle={movies.secondMovie.title}
         />
         <RatingArea onVoteClick={onVoteClick} />
       </IconContext.Provider>

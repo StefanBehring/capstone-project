@@ -13,11 +13,11 @@ const Voting = () => {
   const [componentError, setComponentError] = useState('')
 
   const votingHandler = async direction => {
-    const first_movie_won = direction === 'UP'
+    const firstMovieWon = direction === 'UP'
     const isCanceled = false
     try {
       await axios.patch(`/api/votings/${voting._id}`, {
-        first_movie_won,
+        firstMovieWon,
         isCanceled,
       })
       setMovies([])
@@ -34,9 +34,9 @@ const Voting = () => {
         const responseMovies = await axios.get(`/api/movies/voting`)
 
         const newVoting = {
-          user_id: '616d7853560568b10ce8d06f',
-          first_movie_id: responseMovies.data[0]._id,
-          second_movie_id: responseMovies.data[1]._id,
+          userId: '616d7853560568b10ce8d06f',
+          firstMovieId: responseMovies.data[0]._id,
+          secondMovieId: responseMovies.data[1]._id,
         }
 
         const responseVotings = await axios.post(`/api/votings`, newVoting)
