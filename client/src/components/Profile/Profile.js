@@ -41,7 +41,7 @@ const Profile = ({ onLogout }) => {
     if (isLoading) {
       fetchUser()
     }
-  }, [isLoading])
+  }, [isLoading, onLogout])
 
   if (isLoading) {
     return <LoadingSpinner />
