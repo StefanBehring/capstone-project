@@ -34,7 +34,9 @@ const RegisterAccountForm = () => {
     let isErrorInRegistration = false
     if (password !== passwordReType) {
       isErrorInRegistration = true
-      if (successMessage !== '') setSuccessMessage('')
+      if (successMessage !== '') {
+        setSuccessMessage('')
+      }
       setErrorMessage('Passwords do not match!')
     }
 
@@ -43,12 +45,16 @@ const RegisterAccountForm = () => {
         .post(`/api/users`, { username, email, password })
         .then(res => {
           setSuccessMessage('User was added!')
-          if (errorMessage !== '') setErrorMessage('')
+          if (errorMessage !== '') {
+            setErrorMessage('')
+          }
           event.target.reset()
         })
         .catch(error => {
           console.error(error.message)
-          if (successMessage !== '') setSuccessMessage('')
+          if (successMessage !== '') {
+            setSuccessMessage('')
+          }
           setErrorMessage(`Could not add user: ${error.message}`)
         })
     }

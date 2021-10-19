@@ -12,17 +12,22 @@ router.post('/', async (request, response, next) => {
   const { username, password } = request.body
 
   try {
-    let user = await User.findOne({ username })
+    const user = await User.findOne({ username })
 
     if (!user) {
-      const error = { message: 'Username does not exist!' }
+      const error = {
+        message: 'Incorrect data! Either username or password are wrong.',
+      }
       return next({ status: 400, message: error.message })
     }
 
     bcrypt.compare(password, user.password, (errCompare, resCompare) => {
       if (errCompare) {
         console.error(errCompare)
-        return next({ status: 400, message: errCompare.message })
+        return next({
+          status: 400,
+          message: 'Incorrect data! Either username or password are wrong.',
+        })
       }
       if (resCompare) {
         const payload = {
@@ -45,7 +50,9 @@ router.post('/', async (request, response, next) => {
           }
         )
       } else {
-        const error = { message: 'Passwords do not match!' }
+        const error = {
+          message: 'Incorrect data! Either username or password are wrong.',
+        }
         console.error(error.message)
         return next({ status: 400, message: error.message })
       }
@@ -53,7 +60,7 @@ router.post('/', async (request, response, next) => {
   } catch (err) {
     console.error(err)
     const error = { message: 'Unknown error!' }
-    return next({ status: 400, message: error.message })
+    return next({ status: 500, message: error.message })
   }
 })
 

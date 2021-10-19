@@ -25,12 +25,16 @@ const LoginForm = () => {
       .post(`/api/auth`, { username, password })
       .then(res => {
         setSuccessMessage('User logged in!')
-        if (errorMessage !== '') setErrorMessage('')
+        if (errorMessage !== '') {
+          setErrorMessage('')
+        }
         event.target.reset()
       })
       .catch(error => {
         console.error(error.message)
-        if (successMessage !== '') setSuccessMessage('')
+        if (successMessage !== '') {
+          setSuccessMessage('')
+        }
         setErrorMessage(`Could not login user: ${error.message}`)
       })
   }
