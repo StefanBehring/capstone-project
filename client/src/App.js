@@ -8,6 +8,7 @@ import Voting from './components/Voting/Voting'
 import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
+import LoginForm from './components/LoginForm/LoginForm'
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <Switch>
             <Route exact path="/register">
               <RegisterAccountForm />
+            </Route>
+            <Route exact path="/login">
+              <LoginForm />
             </Route>
             <Route exact path="/voting">
               <Voting />
