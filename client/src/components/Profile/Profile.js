@@ -1,17 +1,68 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
-import LinkButtonGreen from '../Buttons/LinkButtonGreen/LinkButtonGreen'
+import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import LinkButtonRed from '../Buttons/LinkButtonRed/LinkButtonRed'
+import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
+import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
-const Profile = () => {
+const Profile = ({ onLogout }) => {
+  const [userData, setUserData] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem('authToken'))
+
+        if (token === '') {
+          throw new Error({ message: 'Not logged in' })
+        }
+
+        const config = {
+          headers: {
+            'x-auth-token': token,
+          },
+        }
+
+        const user = await axios.get('/api/auth', config)
+        setUserData(user.data)
+        setIsLoading(false)
+      } catch (error) {
+        console.error(error)
+        setErrorMessage({ message: error.message })
+        setIsLoading(false)
+        onLogout()
+      }
+    }
+
+    if (isLoading) {
+      fetchUser()
+    }
+  }, [isLoading])
+
+  if (isLoading) {
+    return <LoadingSpinner />
+  }
+
+  if (errorMessage !== '') {
+    return <ErrorCard title="Error" message={errorMessage} />
+  }
+
+  for (const [key, value] of Object.entries(userData)) {
+    console.log(`${key}: ${value}`)
+  }
+
   return (
     <Wrapper>
       <h2>Profile</h2>
-      <p>JohnDoe</p>
-      <p>johndoe@mail.com</p>
+      <p>{userData.username}</p>
+      <p>{userData.email}</p>
       <Links>
         <LinkButtonBlue direction="/" message="Change Password" />
-        <LinkButtonGreen direction="/" message="Logout" />
+        <ButtonGreen message="Logout" onClickFunction={onLogout} />
         <LinkButtonRed direction="/" message="Delete Account" />
       </Links>
     </Wrapper>
