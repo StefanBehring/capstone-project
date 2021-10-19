@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import NavBarLinkHome from './NavBarLinks/NavBarLinkHome/NavBarLinkHome'
+import NavBarLinkProfile from './NavBarLinks/NavBarLinkProfile/NavBarLinkProfile'
 import NavBarLinkToplist from './NavBarLinks/NavBarLinkToplist/NavBarLinkToplist'
 import NavBarLinkVoting from './NavBarLinks/NavBarLinkVoting/NavBarLinkVoting'
 
@@ -9,6 +10,7 @@ const Navigation = () => {
       <NavBarLinkHome />
       <NavBarLinkVoting />
       <NavBarLinkToplist />
+      <NavBarLinkProfile />
     </Nav>
   )
 }

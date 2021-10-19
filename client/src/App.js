@@ -9,6 +9,7 @@ import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 import LoginForm from './components/LoginForm/LoginForm'
+import Profile from './components/Profile/Profile'
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route exact path="/toplist">
               <Toplist />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
             <Route path={['/home', '/']}>
               <LoadingSpinner />
