@@ -51,10 +51,6 @@ const Profile = ({ onLogout }) => {
     return <ErrorCard title="Error" message={errorMessage} />
   }
 
-  for (const [key, value] of Object.entries(userData)) {
-    console.log(`${key}: ${value}`)
-  }
-
   return (
     <Wrapper>
       <h2>Profile</h2>
