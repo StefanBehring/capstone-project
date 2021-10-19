@@ -1,0 +1,12 @@
+### POST login
+POST http://localhost:4000/api/auth
+Content-Type: application/json
+
+{
+    "username": "JohnDoe2",
+    "password": "notencrypted"
+}
+
+### GET login
+GET http://localhost:4000/api/auth
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2ZDc5MmVkNGMxZGYyNGY1ZWE5NzYxIn0sImlhdCI6MTYzNDYzNTIyNCwiZXhwIjoxNjM0OTk1MjI0fQ.kzzjVH1nXNh4qXd4A_ZrskwyJfo0cAwPu7PR9GQ2nJw
