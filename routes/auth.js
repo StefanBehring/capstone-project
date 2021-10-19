@@ -31,8 +31,9 @@ router.post('/', async (request, response, next) => {
       }
       if (resCompare) {
         const payload = {
-          userId: user._id,
-          isAdmin: true,
+          user: {
+            id: user._id,
+          },
         }
 
         // TODO: expiration to 3600
@@ -63,8 +64,15 @@ router.post('/', async (request, response, next) => {
   }
 })
 
-router.get('/', auth, (request, response, next) => {
-  response.status(200).json({ message: 'success' })
+router.get('/', auth, async (request, response, next) => {
+  try {
+    const user = await User.findById(request.user.id).select('-password')
+    response.status(200).json(user)
+  } catch (err) {
+    console.error(err)
+    const error = { message: 'Unknown error!' }
+    return next({ status: 500, message: error.message })
+  }
 })
 
 module.exports = router

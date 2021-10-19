@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ### GET login
 GET http://localhost:4000/api/auth
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2ZDc5MmVkNGMxZGYyNGY1ZWE5NzYxIn0sImlhdCI6MTYzNDYzNTIyNCwiZXhwIjoxNjM0OTk1MjI0fQ.kzzjVH1nXNh4qXd4A_ZrskwyJfo0cAwPu7PR9GQ2nJw
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2ZDc5MmVkNGMxZGYyNGY1ZWE5NzYxIn0sImlhdCI6MTYzNDY2MjM3MSwiZXhwIjoxNjM1MDIyMzcxfQ.LQcDBl7JznepqG-qFrMKMn4gJQx-NpaKskW-RC9eKY8
