@@ -1,5 +1,11 @@
 import styled from 'styled-components/macro'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -10,8 +16,23 @@ import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
+import LocalStorageInit from './LocalStorage/LocalStorageInit'
 
 function App() {
+  LocalStorageInit()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleLogin = token => {
+    localStorage.setItem('authToken', JSON.stringify(token))
+    setIsLoggedIn(true)
+  }
+
+  const handleLogout = () => {
+    localStorage.setItem('authToken', JSON.stringify(''))
+    setIsLoggedIn(false)
+  }
+
   return (
     <Router>
       <Wrapper>
@@ -19,19 +40,27 @@ function App() {
         <Main>
           <Switch>
             <Route exact path="/register">
-              <RegisterAccountForm />
+              {isLoggedIn ? <Redirect to="/" /> : <RegisterAccountForm />}
             </Route>
             <Route exact path="/login">
-              <LoginForm />
+              {isLoggedIn ? (
+                <Redirect to="/" />
+              ) : (
+                <LoginForm onLogin={handleLogin} />
+              )}
             </Route>
             <Route exact path="/voting">
-              <Voting />
+              {isLoggedIn ? <Voting /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/toplist">
               <Toplist />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              {isLoggedIn ? (
+                <Profile onLogout={handleLogout} />
+              ) : (
+                <Redirect to="/" />
+              )}
             </Route>
             <Route path={['/home', '/']}>
               <LoadingSpinner />
