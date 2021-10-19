@@ -22,6 +22,6 @@ describe('Home', () => {
     expect(text3).toBeInTheDocument()
 
     const linkElement = screen.getAllByRole('link')
-    expect(linkElement).toHaveLength(1)
+    expect(linkElement).toHaveLength(2)
   })
 })
