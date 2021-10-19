@@ -8,7 +8,7 @@ import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
 const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
-  const [movies, setMovies] = useState({})
+  const [movies, setMovies] = useState({ firstMovie: '', secondMovie: '' })
   const [componentError, setComponentError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
