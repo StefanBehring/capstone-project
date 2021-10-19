@@ -20,8 +20,6 @@ const LoginForm = () => {
   }
 
   const handleSubmit = event => {
-    alert(`Form submit initiated\n${username}\n${password}`)
-
     event.preventDefault()
     axios
       .post(`/api/auth`, { username, password })
