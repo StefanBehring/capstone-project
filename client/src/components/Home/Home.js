@@ -10,6 +10,7 @@ const Home = () => {
         way than on other rating forms.
       </p>
       <p>Have fun!</p>
+      <LinkButtonBlue message="Login" direction="/login" />
       <p>Don't have an account yet?</p>
       <LinkButtonBlue message="Register now!" direction="/register" />
     </Wrapper>
