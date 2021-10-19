@@ -55,7 +55,7 @@ const RegisterAccountForm = () => {
           if (successMessage !== '') {
             setSuccessMessage('')
           }
-          setErrorMessage(`Could not add user: ${error.message}`)
+          setErrorMessage(`Could not add user.`)
         })
     }
   }

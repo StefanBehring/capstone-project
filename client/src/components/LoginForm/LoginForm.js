@@ -35,7 +35,7 @@ const LoginForm = () => {
         if (successMessage !== '') {
           setSuccessMessage('')
         }
-        setErrorMessage(`Could not login user: ${error.message}`)
+        setErrorMessage(`Could not login user.`)
       })
   }
 
