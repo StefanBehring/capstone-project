@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -28,6 +29,7 @@ const LoginForm = () => {
         if (errorMessage !== '') {
           setErrorMessage('')
         }
+        onLogin(res.data)
         event.target.reset()
       })
       .catch(error => {
@@ -37,6 +39,10 @@ const LoginForm = () => {
         }
         setErrorMessage(`Could not login user.`)
       })
+  }
+
+  if (successMessage === 'User logged in!') {
+    return <Redirect to="/profile" />
   }
 
   return (
