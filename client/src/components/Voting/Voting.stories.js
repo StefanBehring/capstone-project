@@ -1,4 +1,3 @@
-import React from 'react'
 import Voting from './Voting'
 
 export default {

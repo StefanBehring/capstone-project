@@ -1,8 +1,7 @@
-import React from 'react'
 import RegisterAccountForm from './RegisterAccountForm'
 
 export default {
-  title: 'Component/RegisterAccountForm',
+  title: 'Component/Formular/RegisterAccountForm',
   component: RegisterAccountForm,
 }
 

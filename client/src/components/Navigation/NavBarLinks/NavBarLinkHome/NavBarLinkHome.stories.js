@@ -1,4 +1,3 @@
-import React from 'react'
 import NavBarLinkHome from './NavBarLinkHome'
 
 export default {

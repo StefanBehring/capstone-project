@@ -1,4 +1,3 @@
-import React from 'react'
 import LinkButtonBlue from './LinkButtonBlue'
 
 export default {

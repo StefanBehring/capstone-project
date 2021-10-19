@@ -1,4 +1,3 @@
-import React from 'react'
 import ButtonRed from './ButtonRed'
 
 export default {

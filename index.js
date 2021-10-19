@@ -15,6 +15,7 @@ app.use(express.json())
 app.use(morgan('common'))
 app.use(helmet())
 
+app.use('/api/auth', require('./routes/auth'))
 app.use('/api/users', require('./routes/users'))
 app.use('/api/tmdb', require('./routes/tmdb'))
 app.use('/api/movies', require('./routes/movies'))

@@ -5,11 +5,9 @@ import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 
-const RegisterAccountForm = () => {
+const LoginForm = () => {
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordReType, setPasswordReType] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
 
@@ -17,52 +15,33 @@ const RegisterAccountForm = () => {
     setUsername(event.target.value)
   }
 
-  const handleChangeEmail = event => {
-    setEmail(event.target.value)
-  }
-
   const handleChangePassword = event => {
     setPassword(event.target.value)
   }
 
-  const handleChangePasswordReType = event => {
-    setPasswordReType(event.target.value)
-  }
-
   const handleSubmit = event => {
     event.preventDefault()
-    let isErrorInRegistration = false
-    if (password !== passwordReType) {
-      isErrorInRegistration = true
-      if (successMessage !== '') {
-        setSuccessMessage('')
-      }
-      setErrorMessage('Passwords do not match!')
-    }
-
-    if (!isErrorInRegistration) {
-      axios
-        .post(`/api/users`, { username, email, password })
-        .then(res => {
-          setSuccessMessage('User was added!')
-          if (errorMessage !== '') {
-            setErrorMessage('')
-          }
-          event.target.reset()
-        })
-        .catch(error => {
-          console.error(error.message)
-          if (successMessage !== '') {
-            setSuccessMessage('')
-          }
-          setErrorMessage(`Could not add user.`)
-        })
-    }
+    axios
+      .post(`/api/auth`, { username, password })
+      .then(res => {
+        setSuccessMessage('User logged in!')
+        if (errorMessage !== '') {
+          setErrorMessage('')
+        }
+        event.target.reset()
+      })
+      .catch(error => {
+        console.error(error.message)
+        if (successMessage !== '') {
+          setSuccessMessage('')
+        }
+        setErrorMessage(`Could not login user.`)
+      })
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Register Account</h2>
+      <h2>Login</h2>
       {successMessage && (
         <SuccessCard title="Success" message={successMessage} />
       )}
@@ -76,15 +55,6 @@ const RegisterAccountForm = () => {
         required
         onChange={handleChangeUsername}
       />
-      <label htmlFor="email">E-Mail</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="your email"
-        required
-        onChange={handleChangeEmail}
-      />
       <label htmlFor="password">Password</label>
       <input
         type="password"
@@ -94,16 +64,7 @@ const RegisterAccountForm = () => {
         required
         onChange={handleChangePassword}
       />
-      <label htmlFor="passwordReType">Re-Type</label>
-      <input
-        type="password"
-        id="passwordReType"
-        name="passwordReType"
-        minLength="8"
-        required
-        onChange={handleChangePasswordReType}
-      />
-      <ButtonGreen message="Register" />
+      <ButtonGreen message="Login" />
     </Form>
   )
 }
@@ -128,4 +89,4 @@ const Form = styled.form`
   }
 `
 
-export default RegisterAccountForm
+export default LoginForm

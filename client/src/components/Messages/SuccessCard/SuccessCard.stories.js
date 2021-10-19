@@ -1,4 +1,3 @@
-import React from 'react'
 import SuccessCard from './SuccessCard'
 
 export default {

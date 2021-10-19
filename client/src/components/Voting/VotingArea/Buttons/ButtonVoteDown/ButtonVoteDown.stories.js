@@ -1,4 +1,3 @@
-import React from 'react'
 import ButtonVoteDown from './ButtonVoteDown'
 
 export default {
