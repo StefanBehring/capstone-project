@@ -1,4 +1,3 @@
-import React from 'react'
 import UnknownArea from './UnknownArea'
 
 export default {

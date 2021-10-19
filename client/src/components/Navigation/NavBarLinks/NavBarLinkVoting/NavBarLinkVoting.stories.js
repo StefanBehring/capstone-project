@@ -1,4 +1,3 @@
-import React from 'react'
 import NavBarLinkVoting from './NavBarLinkVoting'
 
 export default {

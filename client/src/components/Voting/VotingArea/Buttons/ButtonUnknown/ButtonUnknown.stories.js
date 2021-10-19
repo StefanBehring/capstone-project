@@ -1,4 +1,3 @@
-import React from 'react'
 import ButtonUnknown from './ButtonUnknown'
 
 export default {

@@ -1,4 +1,3 @@
-import React from 'react'
 import NavBarLinkToplist from './NavBarLinkToplist'
 
 export default {

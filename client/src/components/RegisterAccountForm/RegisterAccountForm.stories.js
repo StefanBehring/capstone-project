@@ -1,4 +1,3 @@
-import React from 'react'
 import RegisterAccountForm from './RegisterAccountForm'
 
 export default {

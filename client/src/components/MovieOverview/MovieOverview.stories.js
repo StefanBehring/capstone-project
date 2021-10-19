@@ -1,4 +1,3 @@
-import React from 'react'
 import MovieOverview from './MovieOverview'
 
 export default {
