@@ -31,9 +31,8 @@ router.post('/', async (request, response, next) => {
       }
       if (resCompare) {
         const payload = {
-          user: {
-            id: user._id,
-          },
+          userId: user._id,
+          isAdmin: true,
         }
 
         // TODO: expiration to 3600
