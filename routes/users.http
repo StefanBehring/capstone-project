@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### GET id
-GET http://localhost:4000/api/users/616af3051daf09784aaa3d08
+GET http://localhost:4000/api/users/616d792ed4c1df24f5ea9761
 
 ### PATCH
 PATCH http://localhost:4000/api/users/616af3051daf09784aaa3d08
