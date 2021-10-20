@@ -92,17 +92,17 @@ router.patch('/unknownmovies/:id', async (request, response, next) => {
       }
     }
 
-    await User.findByIdAndUpdate(
+    const newUser = await User.findByIdAndUpdate(
       id,
       { unwatchedMovies: newUnwatchedMovies },
       { new: true }
     )
 
     response.status(200).json({
-      id: user._id,
-      username: user.username,
-      email: user.email,
-      unwatchedMovies: user.unwatchedMovies,
+      id: newUser._id,
+      username: newUser.username,
+      email: newUser.email,
+      unwatchedMovies: newUser.unwatchedMovies,
     })
   } catch (error) {
     console.error(error)
