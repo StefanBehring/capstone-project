@@ -16,7 +16,7 @@ GET http://localhost:4000/api/movies/all
 GET http://localhost:4000/api/movies/top
 
 ### GET movies for voting
-GET http://localhost:4000/api/movies/voting
+GET http://localhost:4000/api/movies/voting/617025d509b2dcb45c4e9991
 
 ### PATCH
 PATCH http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
