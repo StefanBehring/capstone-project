@@ -16,6 +16,7 @@ import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
+import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
 import LocalStorageInit from './LocalStorage/LocalStorageInit'
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
               )}
             </Route>
             <Route exact path="/voting">
-              {isLoggedIn ? <Voting /> : <Redirect to="/" />}
+              {isLoggedIn ? <Voting /> : <Redirect to="/NotLoggedIn" />}
             </Route>
             <Route exact path="/toplist">
               <Toplist />
@@ -59,8 +60,11 @@ function App() {
               {isLoggedIn ? (
                 <Profile onLogout={handleLogout} />
               ) : (
-                <Redirect to="/" />
+                <Redirect to="/NotLoggedIn" />
               )}
+            </Route>
+            <Route exact path="/NotLoggedIn">
+              <NotLoggedIn />
             </Route>
             <Route path={['/home', '/']}>
               <LoadingSpinner />
