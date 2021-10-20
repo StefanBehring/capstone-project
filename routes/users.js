@@ -55,18 +55,59 @@ router.get('/:id', (request, response, next) => {
       if (!data) {
         throw new Error('The user does not exist!')
       }
-      response
-        .status(200)
-        .json({
-          id: data._id,
-          username: data.username,
-          email: data.email,
-          unwatchedMovies: data.unwatchedMovies,
-        })
+      response.status(200).json({
+        id: data._id,
+        username: data.username,
+        email: data.email,
+        unwatchedMovies: data.unwatchedMovies,
+      })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
     )
+})
+
+router.patch('/unknownmovies/:id', async (request, response, next) => {
+  const { id } = request.params
+  const { firstMovie, secondMovie } = request.body
+
+  if (firstMovie === '') {
+    const error = { message: 'Information missing.' }
+    return next({ status: 400, message: error.message })
+  }
+
+  try {
+    const user = await User.findById(id)
+    if (!user) {
+      return response.status(404).json({ message: 'User does not exist' })
+    }
+
+    const newUnwatchedMovies = user.unwatchedMovies
+    if (!newUnwatchedMovies.includes(firstMovie)) {
+      newUnwatchedMovies.push(firstMovie)
+    }
+    if (secondMovie !== '') {
+      if (!newUnwatchedMovies.includes(secondMovie)) {
+        newUnwatchedMovies.push(secondMovie)
+      }
+    }
+
+    await User.findByIdAndUpdate(
+      id,
+      { unwatchedMovies: newUnwatchedMovies },
+      { new: true }
+    )
+
+    response.status(200).json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      unwatchedMovies: user.unwatchedMovies,
+    })
+  } catch (error) {
+    console.error(error)
+    return response.status(500).json({ message: 'Server error' })
+  }
 })
 
 router.patch('/:id', async (request, response, next) => {
@@ -81,19 +122,17 @@ router.patch('/:id', async (request, response, next) => {
   const salt = await bcrypt.genSalt(10)
   newPassword = await bcrypt.hash(password, salt)
 
-  User.findByIdAndUpdate(id, { newPassword }, { new: true })
+  User.findByIdAndUpdate(id, { password: newPassword }, { new: true })
     .then(user => {
       if (!user) {
         throw new Error('Could not change the password')
       }
-      response
-        .status(200)
-        .json({
-          id: user._id,
-          username: user.username,
-          email: user.email,
-          unwatchedMovies: user.unwatchedMovies,
-        })
+      response.status(200).json({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        unwatchedMovies: user.unwatchedMovies,
+      })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
