@@ -3,7 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
-import LinkButtonRed from '../Buttons/LinkButtonRed/LinkButtonRed'
+import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
@@ -11,6 +11,18 @@ const Profile = ({ onLogout }) => {
   const [userData, setUserData] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/users/${userData._id}`)
+      setUserData('')
+      onLogout()
+    } catch (error) {
+      console.error(error)
+      setErrorMessage({ message: error.message })
+      onLogout()
+    }
+  }
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -59,7 +71,7 @@ const Profile = ({ onLogout }) => {
       <Links>
         <LinkButtonBlue direction="/" message="Change Password" />
         <ButtonGreen message="Logout" onClickFunction={onLogout} />
-        <LinkButtonRed direction="/" message="Delete Account" />
+        <ButtonRed message="Delete Account" onClickFunction={handleDelete} />
       </Links>
     </Wrapper>
   )
