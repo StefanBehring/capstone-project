@@ -2,11 +2,18 @@ import styled from 'styled-components/macro'
 import ButtonUnknown from '../Buttons/ButtonUnknown/ButtonUnknown'
 import ButtonBothUnknown from '../Buttons/ButtonBothUnknown/ButtonBothUnknown'
 
-const UnknownArea = ({ firstMovieTitle, secondMovieTitle }) => {
+const UnknownArea = ({
+  onUnknownMovieClick,
+  firstMovieTitle,
+  secondMovieTitle,
+}) => {
   return (
     <Wrapper>
       <AreaVoteUnknown>
-        <ButtonUnknown />
+        <ButtonUnknown
+          onUnknownMovieClick={onUnknownMovieClick}
+          direction="UP"
+        />
         <p>
           Haven't Watched
           <br />
@@ -14,11 +21,17 @@ const UnknownArea = ({ firstMovieTitle, secondMovieTitle }) => {
         </p>
       </AreaVoteUnknown>
       <AreaVoteUnknown>
-        <ButtonBothUnknown />
+        <ButtonBothUnknown
+          onUnknownMovieClick={onUnknownMovieClick}
+          direction="MIDDLE"
+        />
         <p>Both Not Watched</p>
       </AreaVoteUnknown>
       <AreaVoteUnknown>
-        <ButtonUnknown />
+        <ButtonUnknown
+          onUnknownMovieClick={onUnknownMovieClick}
+          direction="DOWN"
+        />
         <p>
           Haven't Watched
           <br />
