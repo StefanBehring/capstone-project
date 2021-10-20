@@ -23,6 +23,7 @@ const Voting = ({ onLogout }) => {
         isCanceled,
       })
       setMovies([])
+      setVoting([])
       setIsLoadingUser(true)
       setIsLoading(true)
     } catch (error) {
@@ -57,6 +58,7 @@ const Voting = ({ onLogout }) => {
         isCanceled: true,
       })
       setMovies([])
+      setVoting([])
       setIsLoadingUser(true)
       setIsLoading(true)
     } catch (error) {
