@@ -5,6 +5,9 @@ export default {
   component: EditPasswordForm,
 }
 
-const Template = () => <EditPasswordForm />
+const Template = args => <EditPasswordForm {...args} />
 
 export const EditPasswordFormComplete = Template.bind({})
+EditPasswordFormComplete.argTypes = {
+  onLogout: { action: 'logout' },
+}
