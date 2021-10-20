@@ -18,6 +18,7 @@ import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
 import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
 import LocalStorageInit from './LocalStorage/LocalStorageInit'
+import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
 
 function App() {
   LocalStorageInit()
@@ -59,6 +60,13 @@ function App() {
             <Route exact path="/profile">
               {isLoggedIn ? (
                 <Profile onLogout={handleLogout} />
+              ) : (
+                <Redirect to="/NotLoggedIn" />
+              )}
+            </Route>
+            <Route exact path="/editPassword">
+              {isLoggedIn ? (
+                <EditPasswordForm onLogout={handleLogout} />
               ) : (
                 <Redirect to="/NotLoggedIn" />
               )}
