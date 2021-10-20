@@ -52,7 +52,11 @@ function App() {
               )}
             </Route>
             <Route exact path="/voting">
-              {isLoggedIn ? <Voting /> : <Redirect to="/NotLoggedIn" />}
+              {isLoggedIn ? (
+                <Voting onLogout={handleLogout} />
+              ) : (
+                <Redirect to="/NotLoggedIn" />
+              )}
             </Route>
             <Route exact path="/toplist">
               <Toplist />
