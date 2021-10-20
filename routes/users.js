@@ -79,7 +79,7 @@ router.patch('/unknownmovies/:id', async (request, response, next) => {
   try {
     const user = await User.findById(id)
     if (!user) {
-      return response.status(404).json({ message: 'User does not exist' })
+      return next({ status: 404, message: 'User does not exist' })
     }
 
     const newUnwatchedMovies = user.unwatchedMovies
@@ -106,7 +106,7 @@ router.patch('/unknownmovies/:id', async (request, response, next) => {
     })
   } catch (error) {
     console.error(error)
-    return response.status(500).json({ message: 'Server error' })
+    return next({ status: 500, message: 'Server error' })
   }
 })
 
