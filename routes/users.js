@@ -61,7 +61,7 @@ router.get('/:id', (request, response, next) => {
     )
 })
 
-router.patch('/:id', (request, response, next) => {
+router.patch('/:id', async (request, response, next) => {
   const { id } = request.params
   const { password } = request.body
 
@@ -70,12 +70,17 @@ router.patch('/:id', (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  User.findByIdAndUpdate(id, { password }, { new: true })
+  const salt = await bcrypt.genSalt(10)
+  newPassword = await bcrypt.hash(password, salt)
+
+  User.findByIdAndUpdate(id, { newPassword }, { new: true })
     .then(user => {
       if (!user) {
-        throw new Error('The user does not exist')
+        throw new Error('Could not change the password')
       }
-      response.status(200).json(user)
+      response
+        .status(200)
+        .json({ id: user._id, username: user.username, email: user.email })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
