@@ -52,7 +52,9 @@ router.get('/:id', (request, response, next) => {
       if (!data) {
         throw new Error('The user does not exist!')
       }
-      response.status(200).json(data)
+      response
+        .status(200)
+        .json({ id: data._id, username: data.username, email: data.email })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
