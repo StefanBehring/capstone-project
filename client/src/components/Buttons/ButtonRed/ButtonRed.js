@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 
-const ButtonRed = ({ message }) => {
-  return <Button>{message}</Button>
+const ButtonRed = ({ message, onClickFunction }) => {
+  return <Button onClick={onClickFunction}>{message}</Button>
 }
 
 const Button = styled.button`
