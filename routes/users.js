@@ -30,16 +30,19 @@ router.post('/', async (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  const newUser = { username, email, password }
+  const newUser = { username, email, password, unwatchedMovies: [] }
 
   const salt = await bcrypt.genSalt(10)
   newUser.password = await bcrypt.hash(password, salt)
 
   User.create(newUser)
     .then(user =>
-      response
-        .status(201)
-        .json({ username: user.username, email: user.email, _id: user._id })
+      response.status(201).json({
+        username: user.username,
+        email: user.email,
+        _id: user._id,
+        unwatchedMovies: user.unwatchedMovies,
+      })
     )
     .catch(next)
 })
@@ -54,7 +57,12 @@ router.get('/:id', (request, response, next) => {
       }
       response
         .status(200)
-        .json({ id: data._id, username: data.username, email: data.email })
+        .json({
+          id: data._id,
+          username: data.username,
+          email: data.email,
+          unwatchedMovies: data.unwatchedMovies,
+        })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
@@ -80,7 +88,12 @@ router.patch('/:id', async (request, response, next) => {
       }
       response
         .status(200)
-        .json({ id: user._id, username: user.username, email: user.email })
+        .json({
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          unwatchedMovies: user.unwatchedMovies,
+        })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })

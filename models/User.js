@@ -14,6 +14,10 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    unwatchedMovies: {
+      type: Array,
+      required: true,
+    },
   },
   { versionKey: false }
 )
