@@ -69,7 +69,7 @@ const Profile = ({ onLogout }) => {
       <p>{userData.username}</p>
       <p>{userData.email}</p>
       <Links>
-        <LinkButtonBlue direction="/" message="Change Password" />
+        <LinkButtonBlue direction="/editPassword" message="Change Password" />
         <ButtonGreen message="Logout" onClickFunction={onLogout} />
         <ButtonRed message="Delete Account" onClickFunction={handleDelete} />
       </Links>
