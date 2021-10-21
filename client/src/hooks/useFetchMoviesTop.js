@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const useLoadMoviesTop = () => {
+const useFetchMoviesTop = () => {
   const [movieData, setMovieData] = useState({
     movies: [],
     isLoading: true,
@@ -38,4 +38,4 @@ const useLoadMoviesTop = () => {
   return movieData
 }
 
-export default useLoadMoviesTop
+export default useFetchMoviesTop

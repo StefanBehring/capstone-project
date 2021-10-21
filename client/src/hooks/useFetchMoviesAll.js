@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const useLoadMoviesAll = () => {
+const useFetchMoviesAll = () => {
   const [moviesData, setMoviesData] = useState({ movies: [], isLoading: true })
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const useLoadMoviesAll = () => {
   return moviesData
 }
 
-export default useLoadMoviesAll
+export default useFetchMoviesAll

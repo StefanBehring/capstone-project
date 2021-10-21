@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const useLoadMovieFromTmdb = tmdbId => {
+const useFetchMovieFromTmdb = tmdbId => {
   const [movie, setMovie] = useState({
     tmdbId: '550',
     imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
@@ -38,4 +38,4 @@ const useLoadMovieFromTmdb = tmdbId => {
   return movie
 }
 
-export default useLoadMovieFromTmdb
+export default useFetchMovieFromTmdb

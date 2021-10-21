@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import MovieCard from '../MovieCard/MovieCard'
-import useLoadMoviesTop from '../../hooks/useLoadMoviesTop'
+import useFetchMoviesTop from '../../hooks/useFetchMoviesTop'
 
 const Toplist = () => {
-  const moviesData = useLoadMoviesTop()
+  const moviesData = useFetchMoviesTop()
 
   if (moviesData.errorMessage !== '') {
     return <ErrorCard title="Error" message={moviesData.errorMessage} />

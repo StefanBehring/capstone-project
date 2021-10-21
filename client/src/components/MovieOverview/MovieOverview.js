@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
 import MovieCard from '../MovieCard/MovieCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useLoadMoviesAll from '../../hooks/useLoadMoviesAll'
+import useFetchMoviesAll from '../../hooks/useFetchMoviesAll'
 
 const MovieOverview = () => {
-  const moviesData = useLoadMoviesAll()
+  const moviesData = useFetchMoviesAll()
 
   if (moviesData.isLoading) {
     return <LoadingSpinner />

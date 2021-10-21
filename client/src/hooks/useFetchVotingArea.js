@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const useLoadVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
+const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   const [movieData, setMovieData] = useState({
     firstMovie: '',
     secondMovie: '',
@@ -40,4 +40,4 @@ const useLoadVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   return movieData
 }
 
-export default useLoadVotingArea
+export default useFetchVotingArea
