@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import MovieOverview from './MovieOverview'
 
-describe('MovieOverview', () => {
+xdescribe('MovieOverview', () => {
   it('renders', () => {
     render(<MovieOverview />)
 
