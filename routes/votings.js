@@ -24,19 +24,19 @@ router.post('/', (request, response, next) => {
     .catch(next)
 })
 
-router.get('/:id', (request, response, next) => {
+router.get('/:id', async (request, response, next) => {
   const { id } = request.params
 
-  Voting.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The vote does not exist!')
-      }
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const vote = await Voting.findById(id)
+    if (!vote) {
+      throw new Error('The vote does not exist!')
+    }
+    response.status(200).json(vote)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.patch('/:id', async (request, response, next) => {
