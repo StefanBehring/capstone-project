@@ -8,4 +8,11 @@ describe('ButtonGreen', () => {
     const buttonElement = screen.getByRole('button')
     expect(buttonElement).toBeInTheDocument()
   })
+
+  it('renders only 1 button', () => {
+    render(<ButtonGreen message="Register now" />)
+
+    const buttonElements = screen.getAllByRole('button')
+    expect(buttonElements).toHaveLength(1)
+  })
 })

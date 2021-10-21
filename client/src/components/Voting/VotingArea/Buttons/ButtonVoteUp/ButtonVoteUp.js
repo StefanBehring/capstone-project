@@ -3,13 +3,13 @@ import { IoCaretUpCircle as IconUp } from 'react-icons/io5'
 
 const ButtonVoteUp = ({ onVoteClick }) => {
   return (
-    <ButtonGreen onClick={() => onVoteClick('UP')}>
+    <Button onClick={() => onVoteClick('UP')}>
       <IconUp />
-    </ButtonGreen>
+    </Button>
   )
 }
 
-const ButtonGreen = styled.button`
+const Button = styled.button`
   background-color: var(--color-green);
   color: var(--color-white-default);
   border: none;

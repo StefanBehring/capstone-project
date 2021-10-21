@@ -1,16 +1,13 @@
 import { useState } from 'react'
-import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
-import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
 
   const handleChangeUsername = event => {
     setUsername(event.target.value)
@@ -25,32 +22,21 @@ const LoginForm = ({ onLogin }) => {
     axios
       .post(`/api/auth`, { username, password })
       .then(res => {
-        setSuccessMessage('User logged in!')
+        onLogin(res.data)
         if (errorMessage !== '') {
           setErrorMessage('')
         }
-        onLogin(res.data)
         event.target.reset()
       })
       .catch(error => {
         console.error(error.message)
-        if (successMessage !== '') {
-          setSuccessMessage('')
-        }
         setErrorMessage(`Could not login user.`)
       })
-  }
-
-  if (successMessage === 'User logged in!') {
-    return <Redirect to="/profile" />
   }
 
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Login</h2>
-      {successMessage && (
-        <SuccessCard title="Success" message={successMessage} />
-      )}
       {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
       <label htmlFor="username">Username</label>
       <input

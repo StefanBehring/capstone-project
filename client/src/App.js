@@ -11,19 +11,23 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
-import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
+import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
 import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
+import MovieOverview from './components/MovieOverview/MovieOverview'
+import useFetchUser from './hooks/useFetchUser'
 
 function App() {
   LocalStorageInit()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const userData = useFetchUser()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(userData.isLoggedIn)
 
   const handleLogin = token => {
     localStorage.setItem('authToken', JSON.stringify(token))
@@ -35,12 +39,19 @@ function App() {
     setIsLoggedIn(false)
   }
 
+  if (userData.isLoading) {
+    return <LoadingSpinner />
+  }
+
   return (
     <Router>
       <Wrapper>
         <Header />
         <Main>
           <Switch>
+            <Route exact path="/movieOverview">
+              <MovieOverview />
+            </Route>
             <Route exact path="/register">
               {isLoggedIn ? <Redirect to="/" /> : <RegisterAccountForm />}
             </Route>
@@ -53,7 +64,7 @@ function App() {
             </Route>
             <Route exact path="/voting">
               {isLoggedIn ? (
-                <Voting onLogout={handleLogout} />
+                <Voting userData={userData.userData} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
@@ -63,14 +74,14 @@ function App() {
             </Route>
             <Route exact path="/profile">
               {isLoggedIn ? (
-                <Profile onLogout={handleLogout} />
+                <Profile userData={userData.userData} onLogout={handleLogout} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
             </Route>
             <Route exact path="/editPassword">
               {isLoggedIn ? (
-                <EditPasswordForm onLogout={handleLogout} />
+                <EditPasswordForm userData={userData.userData} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
@@ -79,7 +90,6 @@ function App() {
               <NotLoggedIn />
             </Route>
             <Route path={['/home', '/']}>
-              <LoadingSpinner />
               <Home />
             </Route>
           </Switch>

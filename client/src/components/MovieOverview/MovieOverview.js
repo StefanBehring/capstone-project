@@ -1,47 +1,20 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
-import axios from 'axios'
 import MovieCard from '../MovieCard/MovieCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
+import useFetchMoviesAll from '../../hooks/useFetchMoviesAll'
 
 const MovieOverview = () => {
-  const [movies, setMovies] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const moviesData = useFetchMoviesAll()
 
-  useEffect(() => {
-    async function fetchOwnData() {
-      try {
-        const response = await axios.get('/api/movies/all')
-        setMovies([...response.data])
-        setIsLoading(false)
-      } catch (error) {
-        console.error(error)
-        setMovies([
-          {
-            tmdbId: 550,
-          },
-          {
-            tmdbId: 580,
-          },
-          {
-            tmdbId: 600,
-          },
-        ])
-        setIsLoading(false)
-      }
-    }
-    if (isLoading) fetchOwnData()
-  }, [isLoading])
-
-  if (isLoading) {
+  if (moviesData.isLoading) {
     return <LoadingSpinner />
   }
 
   return (
     <Wrapper>
       <h2>Movie Overview</h2>
-      <MovieCount>Moviecount: {movies.length}</MovieCount>
-      {movies.map(movie => (
+      <MovieCount>Moviecount: {moviesData.movies.length}</MovieCount>
+      {moviesData.movies.map(movie => (
         <MovieCard key={movie.tmdbId} tmdbId={movie.tmdbId} />
       ))}
     </Wrapper>

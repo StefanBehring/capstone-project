@@ -3,13 +3,13 @@ import { IoReloadCircle as IconReload } from 'react-icons/io5'
 
 const ButtonBothUnknown = ({ onUnknownMovieClick, direction }) => {
   return (
-    <ButtonRed onClick={() => onUnknownMovieClick(direction)}>
+    <Button onClick={() => onUnknownMovieClick(direction)}>
       <IconReload />
-    </ButtonRed>
+    </Button>
   )
 }
 
-const ButtonRed = styled.button`
+const Button = styled.button`
   background-color: var(--color-red);
   color: var(--color-white-default);
   border: none;
