@@ -64,10 +64,21 @@ router.get('/voting/:id', async (request, response, next) => {
 
   try {
     const user = await User.findById(id)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
 
     const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
 
-    if (movies.length < 2) {
+    if (movies.length - user.unwatchedMovies.length < 2) {
       const error = { message: 'Not enough movies in the database.' }
       console.error(error.message)
       next({ status: 400, message: error.message || 'No documents found' })
