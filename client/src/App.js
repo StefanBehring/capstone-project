@@ -55,7 +55,7 @@ function App() {
               {isLoggedIn ? (
                 <Voting onLogout={handleLogout} />
               ) : (
-                <Redirect to="/NotLoggedIn" />
+                <Redirect to="/notLoggedIn" />
               )}
             </Route>
             <Route exact path="/toplist">
@@ -65,17 +65,17 @@ function App() {
               {isLoggedIn ? (
                 <Profile onLogout={handleLogout} />
               ) : (
-                <Redirect to="/NotLoggedIn" />
+                <Redirect to="/notLoggedIn" />
               )}
             </Route>
             <Route exact path="/editPassword">
               {isLoggedIn ? (
                 <EditPasswordForm onLogout={handleLogout} />
               ) : (
-                <Redirect to="/NotLoggedIn" />
+                <Redirect to="/notLoggedIn" />
               )}
             </Route>
-            <Route exact path="/NotLoggedIn">
+            <Route exact path="/notLoggedIn">
               <NotLoggedIn />
             </Route>
             <Route path={['/home', '/']}>
