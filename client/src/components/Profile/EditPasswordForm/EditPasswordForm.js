@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
-import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
-const EditPasswordForm = ({ onLogout }) => {
-  const [userData, setUserData] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
+const EditPasswordForm = ({ userData }) => {
   const [isSuccess, setIsSuccess] = useState(false)
   const [password, setPassword] = useState('')
   const [passwordReType, setPasswordReType] = useState('')
@@ -39,41 +36,6 @@ const EditPasswordForm = ({ onLogout }) => {
         setErrorMessage(`Could not edit the password.`)
       }
     }
-  }
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
-
-        if (token === '') {
-          throw new Error({ message: 'Not logged in' })
-        }
-
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-
-        const user = await axios.get('/api/auth', config)
-        setUserData(user.data)
-        setIsLoading(false)
-      } catch (error) {
-        console.error(error)
-        setErrorMessage({ message: error.message })
-        setIsLoading(false)
-        onLogout()
-      }
-    }
-
-    if (isLoading) {
-      fetchUser()
-    }
-  }, [isLoading, onLogout])
-
-  if (isLoading) {
-    return <LoadingSpinner />
   }
 
   if (isSuccess) {
