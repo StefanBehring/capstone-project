@@ -144,7 +144,7 @@ router.get('/:id', async (request, response, next) => {
   }
 })
 
-router.patch('/:id', (request, response, next) => {
+router.patch('/:id', async (request, response, next) => {
   const { id } = request.params
   const { rating } = request.body
 
@@ -153,16 +153,17 @@ router.patch('/:id', (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  Movie.findByIdAndUpdate(id, { rating }, { new: true })
-    .then(movie => {
-      if (!movie) {
-        throw new Error('The movie does not exist')
-      }
-      response.status(200).json(movie)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const movie = await Movie.findByIdAndUpdate(id, { rating }, { new: true })
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.delete('/:id', (request, response, next) => {
