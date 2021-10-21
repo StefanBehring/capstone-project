@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE  http://localhost:4000/api/users/617022a357f3a72a0f43192d
+DELETE  http://localhost:4000/api/users/616404cfd61ea5d4d551463a

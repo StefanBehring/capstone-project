@@ -141,19 +141,20 @@ router.patch('/:id', async (request, response, next) => {
     )
 })
 
-router.delete('/:id', (request, response, next) => {
+router.delete('/:id', async (request, response, next) => {
   const { id } = request.params
 
-  User.findByIdAndDelete(id)
-    .then(user => {
-      if (!user) {
-        throw new Error('The user does not exist')
-      }
-      response.status(200).json(user)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const user = await User.findByIdAndDelete(id)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
+    response.status(200).json(user)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 module.exports = router
