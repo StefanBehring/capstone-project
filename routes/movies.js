@@ -128,19 +128,20 @@ router.get('/voting/:id', async (request, response, next) => {
   }
 })
 
-router.get('/:id', (request, response, next) => {
+router.get('/:id', async (request, response, next) => {
   const { id } = request.params
 
-  Movie.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The movie does not exist!')
-      }
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const movie = await Movie.findById(id)
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.patch('/:id', (request, response, next) => {

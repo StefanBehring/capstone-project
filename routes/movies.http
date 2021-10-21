@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ### GET id
-GET http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
+GET http://localhost:4000/api/movies/61669c86242e85bee2082fe5
 
 ### GET all movies
 GET http://localhost:4000/api/movies/all
