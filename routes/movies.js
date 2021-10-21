@@ -54,16 +54,22 @@ router.get('/all', async (request, response, next) => {
   }
 })
 
-router.get('/top', (request, response, next) => {
-  Movie.find()
-    .then(data => {
-      data.sort((a, b) => b.rating - a.rating).slice(0, 100)
-
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'No documents found' })
-    )
+router.get('/top', async (request, response, next) => {
+  try {
+    const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
+    movies.sort((a, b) => b.rating - a.rating).slice(0, 100)
+    response.status(200).json(movies)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.get('/voting/:id', async (request, response, next) => {
