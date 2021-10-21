@@ -37,14 +37,21 @@ router.post('/', async (request, response, next) => {
     .catch(next)
 })
 
-router.get('/all', (request, response, next) => {
-  Movie.find()
-    .then(data => {
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'No documents found' })
-    )
+router.get('/all', async (request, response, next) => {
+  try {
+    const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
+    response.status(200).json(movies)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.get('/top', (request, response, next) => {
