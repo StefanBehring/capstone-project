@@ -24,11 +24,11 @@ router.post('/', (request, response, next) => {
     .catch(next)
 })
 
-router.get('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.get('/:votingId', async (request, response, next) => {
+  const { votingId } = request.params
 
   try {
-    const vote = await Voting.findById(id)
+    const vote = await Voting.findById(votingId)
     if (!vote) {
       throw new Error('The vote does not exist!')
     }
@@ -39,8 +39,8 @@ router.get('/:id', async (request, response, next) => {
   }
 })
 
-router.patch('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.patch('/:votingId', async (request, response, next) => {
+  const { votingId } = request.params
   const { isCanceled, firstMovieWon } = request.body
 
   if (firstMovieWon === undefined || isCanceled === undefined) {
@@ -50,7 +50,7 @@ router.patch('/:id', async (request, response, next) => {
 
   try {
     if (!isCanceled) {
-      const vote = await Voting.findById(id)
+      const vote = await Voting.findById(votingId)
       if (!vote) {
         console.error('Vote does not exist')
         return next({ status: 404, message: 'Vote does not exist' })
@@ -86,7 +86,7 @@ router.patch('/:id', async (request, response, next) => {
     }
 
     const newVote = await Voting.findByIdAndUpdate(
-      id,
+      votingId,
       { isVoted: true, isCanceled, firstMovieWon },
       { new: true }
     )

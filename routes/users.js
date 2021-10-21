@@ -47,11 +47,11 @@ router.post('/', async (request, response, next) => {
     .catch(next)
 })
 
-router.get('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.get('/:userId', async (request, response, next) => {
+  const { userId } = request.params
 
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(userId)
     if (!user) {
       console.error('User does not exist')
       return next({ status: 404, message: 'User does not exist' })
@@ -69,8 +69,8 @@ router.get('/:id', async (request, response, next) => {
   }
 })
 
-router.patch('/unknownmovies/:id', async (request, response, next) => {
-  const { id } = request.params
+router.patch('/unknownmovies/:userId', async (request, response, next) => {
+  const { userId } = request.params
   const { firstMovie, secondMovie } = request.body
 
   if (firstMovie === '') {
@@ -79,7 +79,7 @@ router.patch('/unknownmovies/:id', async (request, response, next) => {
   }
 
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(userId)
     if (!user) {
       return next({ status: 404, message: 'User does not exist' })
     }
@@ -112,8 +112,8 @@ router.patch('/unknownmovies/:id', async (request, response, next) => {
   }
 })
 
-router.patch('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.patch('/:userId', async (request, response, next) => {
+  const { userId } = request.params
   const { password } = request.body
 
   if (!password) {
@@ -124,7 +124,7 @@ router.patch('/:id', async (request, response, next) => {
   const salt = await bcrypt.genSalt(10)
   newPassword = await bcrypt.hash(password, salt)
 
-  User.findByIdAndUpdate(id, { password: newPassword }, { new: true })
+  User.findByIdAndUpdate(userId, { password: newPassword }, { new: true })
     .then(user => {
       if (!user) {
         throw new Error('Could not change the password')
@@ -141,11 +141,11 @@ router.patch('/:id', async (request, response, next) => {
     )
 })
 
-router.delete('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.delete('/:userId', async (request, response, next) => {
+  const { userId } = request.params
 
   try {
-    const user = await User.findByIdAndDelete(id)
+    const user = await User.findByIdAndDelete(userId)
     if (!user) {
       console.error('User does not exist')
       return next({ status: 404, message: 'User does not exist' })

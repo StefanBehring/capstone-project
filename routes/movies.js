@@ -72,11 +72,11 @@ router.get('/top', async (request, response, next) => {
   }
 })
 
-router.get('/voting/:id', async (request, response, next) => {
-  const { id } = request.params
+router.get('/voting/:userId', async (request, response, next) => {
+  const { userId } = request.params
 
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(userId)
     if (!user) {
       console.error('User does not exist')
       return next({ status: 404, message: 'User does not exist' })
@@ -91,7 +91,8 @@ router.get('/voting/:id', async (request, response, next) => {
       })
     }
 
-    if (movies.length - user.unwatchedMovies.length < 2) {
+    const moviesAvailable = movies.length - user.unwatchedMovies.length
+    if (moviesAvailable < 2) {
       const error = { message: 'Not enough movies in the database.' }
       console.error(error.message)
       next({ status: 400, message: error.message || 'No documents found' })
@@ -128,11 +129,11 @@ router.get('/voting/:id', async (request, response, next) => {
   }
 })
 
-router.get('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.get('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
 
   try {
-    const movie = await Movie.findById(id)
+    const movie = await Movie.findById(movieId)
     if (!movie) {
       console.error('Movie does not exist')
       return next({ status: 404, message: 'Movie does not exist' })
@@ -144,8 +145,8 @@ router.get('/:id', async (request, response, next) => {
   }
 })
 
-router.patch('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.patch('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
   const { rating } = request.body
 
   if (!rating) {
@@ -154,7 +155,11 @@ router.patch('/:id', async (request, response, next) => {
   }
 
   try {
-    const movie = await Movie.findByIdAndUpdate(id, { rating }, { new: true })
+    const movie = await Movie.findByIdAndUpdate(
+      movieId,
+      { rating },
+      { new: true }
+    )
     if (!movie) {
       console.error('Movie does not exist')
       return next({ status: 404, message: 'Movie does not exist' })
@@ -166,11 +171,11 @@ router.patch('/:id', async (request, response, next) => {
   }
 })
 
-router.delete('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.delete('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
 
   try {
-    const movie = await Movie.findByIdAndDelete(id)
+    const movie = await Movie.findByIdAndDelete(movieId)
     if (!movie) {
       console.error('Movie does not exist')
       return next({ status: 404, message: 'Movie does not exist' })
