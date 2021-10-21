@@ -6,11 +6,9 @@ import VotingArea from './VotingArea/VotingArea'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
-const Voting = ({ onLogout }) => {
-  const [userData, setUserData] = useState('')
+const Voting = ({ userData }) => {
   const [movies, setMovies] = useState([])
   const [voting, setVoting] = useState([])
-  const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [componentError, setComponentError] = useState('')
 
@@ -24,7 +22,6 @@ const Voting = ({ onLogout }) => {
       })
       setMovies([])
       setVoting([])
-      setIsLoadingUser(true)
       setIsLoading(true)
     } catch (error) {
       console.error(error)
@@ -59,44 +56,12 @@ const Voting = ({ onLogout }) => {
       })
       setMovies([])
       setVoting([])
-      setIsLoadingUser(true)
       setIsLoading(true)
     } catch (error) {
       console.error(error)
       setComponentError({ message: error.message })
     }
   }
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
-
-        if (token === '') {
-          throw new Error({ message: 'Not logged in' })
-        }
-
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-
-        const user = await axios.get('/api/auth', config)
-        setUserData(user.data)
-        setIsLoadingUser(false)
-      } catch (error) {
-        console.error(error)
-        setComponentError({ message: error.message })
-        setIsLoadingUser(false)
-        onLogout()
-      }
-    }
-
-    if (isLoadingUser) {
-      fetchUser()
-    }
-  }, [isLoadingUser, onLogout])
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -123,10 +88,10 @@ const Voting = ({ onLogout }) => {
       }
     }
 
-    if (isLoading && !isLoadingUser) {
+    if (isLoading) {
       fetchMovies()
     }
-  }, [isLoading, isLoadingUser, userData])
+  }, [isLoading, userData])
 
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />

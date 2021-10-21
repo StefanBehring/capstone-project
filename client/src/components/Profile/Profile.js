@@ -1,66 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
-import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
-const Profile = ({ onLogout }) => {
-  const [userData, setUserData] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('')
+const Profile = ({ userData, onLogout }) => {
+  const [errorComponent, setErrorComponent] = useState('')
 
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/users/${userData._id}`)
-      setUserData('')
       onLogout()
     } catch (error) {
       console.error(error)
-      setErrorMessage({ message: error.message })
+      setErrorComponent(error.message)
       onLogout()
     }
   }
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
-
-        if (token === '') {
-          throw new Error({ message: 'Not logged in' })
-        }
-
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-
-        const user = await axios.get('/api/auth', config)
-        setUserData(user.data)
-        setIsLoading(false)
-      } catch (error) {
-        console.error(error)
-        setErrorMessage({ message: error.message })
-        setIsLoading(false)
-        onLogout()
-      }
-    }
-
-    if (isLoading) {
-      fetchUser()
-    }
-  }, [isLoading, onLogout])
-
-  if (isLoading) {
-    return <LoadingSpinner />
-  }
-
-  if (errorMessage !== '') {
-    return <ErrorCard title="Error" message={errorMessage} />
+  if (errorComponent !== '') {
+    onLogout()
+    return <ErrorCard title="Error" message={errorComponent} />
   }
 
   return (

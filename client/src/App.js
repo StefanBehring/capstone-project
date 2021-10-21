@@ -15,15 +15,19 @@ import Toplist from './components/Toplist/Toplist'
 import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccountForm'
 import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
+import LoadingSpinner from './components/Messages/LoadingSpinner/LoadingSpinner'
 import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
 import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
 import MovieOverview from './components/MovieOverview/MovieOverview'
+import useFetchUser from './hooks/useFetchUser'
 
 function App() {
   LocalStorageInit()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const userData = useFetchUser()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(userData.isLoggedIn)
 
   const handleLogin = token => {
     localStorage.setItem('authToken', JSON.stringify(token))
@@ -33,6 +37,10 @@ function App() {
   const handleLogout = () => {
     localStorage.setItem('authToken', JSON.stringify(''))
     setIsLoggedIn(false)
+  }
+
+  if (userData.isLoading) {
+    return <LoadingSpinner />
   }
 
   return (
@@ -56,7 +64,7 @@ function App() {
             </Route>
             <Route exact path="/voting">
               {isLoggedIn ? (
-                <Voting onLogout={handleLogout} />
+                <Voting userData={userData.userData} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
@@ -66,7 +74,7 @@ function App() {
             </Route>
             <Route exact path="/profile">
               {isLoggedIn ? (
-                <Profile onLogout={handleLogout} />
+                <Profile userData={userData.userData} onLogout={handleLogout} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
