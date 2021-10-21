@@ -1,11 +1,10 @@
 import styled from 'styled-components/macro'
-import { useEffect, useState } from 'react'
 import { IconContext } from 'react-icons'
-import axios from 'axios'
 import UnknownArea from './UnknownArea/UnknownArea'
 import RatingArea from './RatingArea/RatingArea'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
+import useLoadVotingArea from '../../../hooks/useLoadVotingArea'
 
 const VotingArea = ({
   onVoteClick,
@@ -13,36 +12,13 @@ const VotingArea = ({
   firstMovieTmdbId,
   secondMovieTmdbId,
 }) => {
-  const [movies, setMovies] = useState({ firstMovie: '', secondMovie: '' })
-  const [componentError, setComponentError] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
+  const moviesData = useLoadVotingArea(firstMovieTmdbId, secondMovieTmdbId)
 
-  useEffect(() => {
-    const fetchMovies = async (firstTmdbId, secondTmdbId) => {
-      try {
-        const responseMovieOne = await axios.get(`/api/tmdb/${firstTmdbId}`)
-        const responseMovieTwo = await axios.get(`/api/tmdb/${secondTmdbId}`)
-
-        setMovies({
-          firstMovie: responseMovieOne.data,
-          secondMovie: responseMovieTwo.data,
-        })
-        setIsLoading(false)
-      } catch (error) {
-        console.error(error)
-        setComponentError({ message: error.message })
-        setIsLoading(false)
-      }
-    }
-
-    if (isLoading) fetchMovies(firstMovieTmdbId, secondMovieTmdbId)
-  }, [isLoading, firstMovieTmdbId, secondMovieTmdbId])
-
-  if (componentError !== '') {
-    return <ErrorCard title="Error" message={componentError.message} />
+  if (moviesData.errorMessage !== '') {
+    return <ErrorCard title="Error" message={moviesData.errorMessage} />
   }
 
-  if (isLoading) {
+  if (moviesData.isLoading) {
     return <LoadingSpinner />
   }
 
@@ -51,8 +27,8 @@ const VotingArea = ({
       <IconContext.Provider value={{ size: '48px' }}>
         <UnknownArea
           onUnknownMovieClick={onUnknownMovieClick}
-          firstMovieTitle={movies.firstMovie.title}
-          secondMovieTitle={movies.secondMovie.title}
+          firstMovieTitle={moviesData.firstMovie.title}
+          secondMovieTitle={moviesData.secondMovie.title}
         />
         <RatingArea onVoteClick={onVoteClick} />
       </IconContext.Provider>
