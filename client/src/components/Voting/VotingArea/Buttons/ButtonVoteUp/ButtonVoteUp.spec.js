@@ -11,6 +11,14 @@ describe('ButtonVoteUp', () => {
     expect(buttonElement).toBeInTheDocument()
   })
 
+  it('renders only 1 button', () => {
+    const mockOnClick = jest.fn()
+    render(<ButtonVoteUp onVoteClick={mockOnClick} />)
+
+    const buttonElements = screen.getAllByRole('button')
+    expect(buttonElements).toHaveLength(1)
+  })
+
   it('has onClick functionality', () => {
     const mockOnClick = jest.fn()
     render(<ButtonVoteUp onVoteClick={mockOnClick} />)
