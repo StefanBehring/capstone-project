@@ -18,6 +18,7 @@ import Profile from './components/Profile/Profile'
 import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
 import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
+import MovieOverview from './components/MovieOverview/MovieOverview'
 
 function App() {
   LocalStorageInit()
@@ -40,6 +41,9 @@ function App() {
         <Header />
         <Main>
           <Switch>
+            <Route exact path="/movieOverview">
+              <MovieOverview />
+            </Route>
             <Route exact path="/register">
               {isLoggedIn ? <Redirect to="/" /> : <RegisterAccountForm />}
             </Route>
