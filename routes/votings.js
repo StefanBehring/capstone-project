@@ -1,5 +1,6 @@
 const express = require('express')
 const Voting = require('../models/Voting')
+const Movie = require('../models/Movie')
 
 const router = express.Router()
 
@@ -23,23 +24,23 @@ router.post('/', (request, response, next) => {
     .catch(next)
 })
 
-router.get('/:id', (request, response, next) => {
-  const { id } = request.params
+router.get('/:votingId', async (request, response, next) => {
+  const { votingId } = request.params
 
-  Voting.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The vote does not exist!')
-      }
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const vote = await Voting.findById(votingId)
+    if (!vote) {
+      throw new Error('The vote does not exist!')
+    }
+    response.status(200).json(vote)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.patch('/:id', (request, response, next) => {
-  const { id } = request.params
+router.patch('/:votingId', async (request, response, next) => {
+  const { votingId } = request.params
   const { isCanceled, firstMovieWon } = request.body
 
   if (firstMovieWon === undefined || isCanceled === undefined) {
@@ -47,20 +48,53 @@ router.patch('/:id', (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  Voting.findByIdAndUpdate(
-    id,
-    { isVoted: true, isCanceled, firstMovieWon },
-    { new: true }
-  )
-    .then(user => {
-      if (!user) {
-        throw new Error('The voting does not exist')
+  try {
+    if (!isCanceled) {
+      const vote = await Voting.findById(votingId)
+      if (!vote) {
+        console.error('Vote does not exist')
+        return next({ status: 404, message: 'Vote does not exist' })
       }
-      response.status(200).json(user)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
+
+      const firstMovie = await Movie.findById(vote.firstMovieId)
+      if (!firstMovie) {
+        console.error('Movie does not exist')
+        return next({ status: 404, message: 'Movie does not exist' })
+      }
+
+      const secondMovie = await Movie.findById(vote.secondMovieId)
+      if (!secondMovie) {
+        console.error('Movie does not exist')
+        return next({ status: 404, message: 'Movie does not exist' })
+      }
+
+      const eloNumber =
+        1 / (1 + Math.pow(10, (firstMovie.rating - secondMovie.rating) / 400))
+      const eloRatingFirstMovie = Math.round(
+        firstMovie.rating + 10 * (firstMovieWon - eloNumber)
+      )
+      const eloRatingSecondMovie = Math.round(
+        secondMovie.rating + 10 * (!firstMovieWon - (1 - eloNumber))
+      )
+
+      await Movie.findByIdAndUpdate(firstMovie._id, {
+        rating: eloRatingFirstMovie,
+      })
+      await Movie.findByIdAndUpdate(secondMovie._id, {
+        rating: eloRatingSecondMovie,
+      })
+    }
+
+    const newVote = await Voting.findByIdAndUpdate(
+      votingId,
+      { isVoted: true, isCanceled, firstMovieWon },
+      { new: true }
     )
+    response.status(200).json(newVote)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 module.exports = router

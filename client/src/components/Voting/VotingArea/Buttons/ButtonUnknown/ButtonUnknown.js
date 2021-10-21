@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import { IoHelpCircle as IconHelp } from 'react-icons/io5'
 
-const ButtonUnknown = () => {
+const ButtonUnknown = ({ onUnknownMovieClick, direction }) => {
   return (
-    <ButtonRed>
+    <ButtonRed onClick={() => onUnknownMovieClick(direction)}>
       <IconHelp />
     </ButtonRed>
   )

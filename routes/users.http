@@ -3,21 +3,30 @@ POST http://localhost:4000/api/users
 Content-Type: application/json
 
 {
-    "username": "JohnDoe2",
-    "email": "johndoe@mail.com",
+    "username": "JohnDoe4",
+    "email": "johndoe4@mail.com",
     "password": "notencrypted"
 }
 
 ### GET id
-GET http://localhost:4000/api/users/616d792ed4c1df24f5ea9761
+GET http://localhost:4000/api/users/6170461087ebc68671e0058e
 
-### PATCH
-PATCH http://localhost:4000/api/users/616af3051daf09784aaa3d08
+### PATCH password
+PATCH http://localhost:4000/api/users/617022a357f3a72a0f43192d
 Content-Type: application/json
 
 {
     "password": "stillnotencrypted"
 }
 
+### PATCH unknownmovies
+PATCH http://localhost:4000/api/users/unknownmovies/617025d509b2dcb45c4e9991
+Content-Type: application/json
+
+{
+    "firstMovie": "",
+    "secondMovie": ""
+}
+
 ### DELETE
-DELETE  http://localhost:4000/api/users/616af3051daf09784aaa3d08
+DELETE  http://localhost:4000/api/users/616404cfd61ea5d4d551463a

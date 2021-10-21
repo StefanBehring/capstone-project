@@ -6,9 +6,11 @@ import VotingArea from './VotingArea/VotingArea'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
-const Voting = () => {
+const Voting = ({ onLogout }) => {
+  const [userData, setUserData] = useState('')
   const [movies, setMovies] = useState([])
   const [voting, setVoting] = useState([])
+  const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [componentError, setComponentError] = useState('')
 
@@ -21,6 +23,43 @@ const Voting = () => {
         isCanceled,
       })
       setMovies([])
+      setVoting([])
+      setIsLoadingUser(true)
+      setIsLoading(true)
+    } catch (error) {
+      console.error(error)
+      setComponentError({ message: error.message })
+    }
+  }
+
+  const unknownMovieHandler = async direction => {
+    let unknownMovies = {}
+    switch (direction) {
+      case 'UP':
+        unknownMovies = { firstMovie: movies[0]._id, secondMovie: '' }
+        break
+      case 'DOWN':
+        unknownMovies = { firstMovie: movies[1]._id, secondMovie: '' }
+        break
+      default:
+        unknownMovies = {
+          firstMovie: movies[0]._id,
+          secondMovie: movies[1]._id,
+        }
+    }
+
+    try {
+      await axios.patch(`/api/users/unknownmovies/${userData._id}`, {
+        firstMovie: unknownMovies.firstMovie,
+        secondMovie: unknownMovies.secondMovie,
+      })
+      await axios.patch(`/api/votings/${voting._id}`, {
+        firstMovieWon: false,
+        isCanceled: true,
+      })
+      setMovies([])
+      setVoting([])
+      setIsLoadingUser(true)
       setIsLoading(true)
     } catch (error) {
       console.error(error)
@@ -29,12 +68,45 @@ const Voting = () => {
   }
 
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem('authToken'))
+
+        if (token === '') {
+          throw new Error({ message: 'Not logged in' })
+        }
+
+        const config = {
+          headers: {
+            'x-auth-token': token,
+          },
+        }
+
+        const user = await axios.get('/api/auth', config)
+        setUserData(user.data)
+        setIsLoadingUser(false)
+      } catch (error) {
+        console.error(error)
+        setComponentError({ message: error.message })
+        setIsLoadingUser(false)
+        onLogout()
+      }
+    }
+
+    if (isLoadingUser) {
+      fetchUser()
+    }
+  }, [isLoadingUser, onLogout])
+
+  useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const responseMovies = await axios.get(`/api/movies/voting`)
+        const responseMovies = await axios.get(
+          `/api/movies/voting/${userData._id}`
+        )
 
         const newVoting = {
-          userId: '616d7853560568b10ce8d06f',
+          userId: userData._id,
           firstMovieId: responseMovies.data[0]._id,
           secondMovieId: responseMovies.data[1]._id,
         }
@@ -51,8 +123,10 @@ const Voting = () => {
       }
     }
 
-    if (isLoading) fetchMovies()
-  }, [isLoading])
+    if (isLoading && !isLoadingUser) {
+      fetchMovies()
+    }
+  }, [isLoading, isLoadingUser, userData])
 
   if (componentError !== '') {
     return <ErrorCard title="Error" message={componentError.message} />
@@ -68,6 +142,7 @@ const Voting = () => {
       <VotingArea
         firstMovieTmdbId={movies[0].tmdbId}
         secondMovieTmdbId={movies[1].tmdbId}
+        onUnknownMovieClick={unknownMovieHandler}
         onVoteClick={votingHandler}
       />
       <MovieCard tmdbId={movies[1].tmdbId} />

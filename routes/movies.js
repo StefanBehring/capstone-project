@@ -1,18 +1,12 @@
 const express = require('express')
 const axios = require('axios')
 const Movie = require('../models/Movie')
+const User = require('../models/User')
 
 const router = express.Router()
 
 const { TMDB_API_KEY } = process.env
 
-// Comments will be deleted later on
-/*
-  The function has to be async, because it has to wait for the response of the tmdb api in the try catch block.
-  Once it has an response, the response can be positive or negative.
-  If the response is positive we allow (allowPostMovie) the movie to be posted to our database.
-  If the response is negative we set an error message.
-*/
 router.post('/', async (request, response, next) => {
   const { tmdbId } = request.body
 
@@ -43,84 +37,116 @@ router.post('/', async (request, response, next) => {
     .catch(next)
 })
 
-router.get('/all', (request, response, next) => {
-  Movie.find()
-    .then(data => {
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'No documents found' })
-    )
+router.get('/all', async (request, response, next) => {
+  try {
+    const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
+    response.status(200).json(movies)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.get('/top', (request, response, next) => {
-  Movie.find()
-    .then(data => {
-      /*
-        sort data by rating
-        return the data with max 100 entries
-      */
-      data.sort((a, b) => b.rating - a.rating).slice(0, 100)
-
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'No documents found' })
-    )
+router.get('/top', async (request, response, next) => {
+  try {
+    const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
+    movies.sort((a, b) => b.rating - a.rating).slice(0, 100)
+    response.status(200).json(movies)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.get('/voting', (request, response, next) => {
-  Movie.find()
-    .then(data => {
-      /*
-        get an random index from the data array
-        add it to firstMovieIndex
-        do this for the second movie
-        repeat until firstMovieIndex and secondMovieIndex arent equal
-        return new array with both movies
-      */
-      if (data.length < 2) {
-        const error = { message: 'Not enough movies in the database.' }
-        return next({ status: 404, message: error.message })
+router.get('/voting/:userId', async (request, response, next) => {
+  const { userId } = request.params
+
+  try {
+    const user = await User.findById(userId)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
+
+    const movies = await Movie.find()
+    if (!movies) {
+      console.error('Error receiving movies from database')
+      return next({
+        status: 404,
+        message: 'Error receiving movies from database',
+      })
+    }
+
+    const moviesAvailable = movies.length - user.unwatchedMovies.length
+    if (moviesAvailable < 2) {
+      const error = { message: 'Not enough movies in the database.' }
+      console.error(error.message)
+      next({ status: 400, message: error.message || 'No documents found' })
+    }
+
+    let firstMovieIndex
+    let gotFirstMovie = false
+    do {
+      firstMovieIndex = Math.floor(Math.random() * movies.length)
+      if (!user.unwatchedMovies.includes(movies[firstMovieIndex]._id)) {
+        gotFirstMovie = true
       }
+    } while (!gotFirstMovie)
 
-      const firstMovieIndex = Math.floor(Math.random() * data.length)
-      let secondMovieIndex = firstMovieIndex
-      let gotSecondMovie = false
+    let secondMovieIndex = firstMovieIndex
+    let gotSecondMovie = false
 
-      do {
-        secondMovieIndex = Math.floor(Math.random() * data.length)
-        if (firstMovieIndex !== secondMovieIndex) {
-          gotSecondMovie = true
-        }
-      } while (!gotSecondMovie)
-
-      const dataVoting = [data[firstMovieIndex], data[secondMovieIndex]]
-
-      response.status(200).json(dataVoting)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'No documents found' })
-    )
-})
-
-router.get('/:id', (request, response, next) => {
-  const { id } = request.params
-
-  Movie.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The movie does not exist!')
+    do {
+      secondMovieIndex = Math.floor(Math.random() * movies.length)
+      if (
+        firstMovieIndex !== secondMovieIndex &&
+        !user.unwatchedMovies.includes(movies[secondMovieIndex]._id)
+      ) {
+        gotSecondMovie = true
       }
-      response.status(200).json(data)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+    } while (!gotSecondMovie)
+
+    const dataVoting = [movies[firstMovieIndex], movies[secondMovieIndex]]
+
+    response.status(200).json(dataVoting)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.patch('/:id', (request, response, next) => {
-  const { id } = request.params
+router.get('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
+
+  try {
+    const movie = await Movie.findById(movieId)
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
+})
+
+router.patch('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
   const { rating } = request.body
 
   if (!rating) {
@@ -128,31 +154,37 @@ router.patch('/:id', (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  Movie.findByIdAndUpdate(id, { rating }, { new: true })
-    .then(movie => {
-      if (!movie) {
-        throw new Error('The movie does not exist')
-      }
-      response.status(200).json(movie)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
+  try {
+    const movie = await Movie.findByIdAndUpdate(
+      movieId,
+      { rating },
+      { new: true }
     )
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.delete('/:id', (request, response, next) => {
-  const { id } = request.params
+router.delete('/:movieId', async (request, response, next) => {
+  const { movieId } = request.params
 
-  Movie.findByIdAndDelete(id)
-    .then(movie => {
-      if (!movie) {
-        throw new Error('The movie does not exist')
-      }
-      response.status(200).json(movie)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const movie = await Movie.findByIdAndDelete(movieId)
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 module.exports = router

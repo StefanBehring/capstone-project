@@ -7,7 +7,12 @@ import RatingArea from './RatingArea/RatingArea'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
-const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
+const VotingArea = ({
+  onVoteClick,
+  onUnknownMovieClick,
+  firstMovieTmdbId,
+  secondMovieTmdbId,
+}) => {
   const [movies, setMovies] = useState({ firstMovie: '', secondMovie: '' })
   const [componentError, setComponentError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -45,6 +50,7 @@ const VotingArea = ({ onVoteClick, firstMovieTmdbId, secondMovieTmdbId }) => {
     <AreaVoting>
       <IconContext.Provider value={{ size: '48px' }}>
         <UnknownArea
+          onUnknownMovieClick={onUnknownMovieClick}
           firstMovieTitle={movies.firstMovie.title}
           secondMovieTitle={movies.secondMovie.title}
         />

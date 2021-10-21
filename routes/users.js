@@ -30,39 +30,90 @@ router.post('/', async (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  const newUser = { username, email, password }
+  const newUser = { username, email, password, unwatchedMovies: [] }
 
   const salt = await bcrypt.genSalt(10)
   newUser.password = await bcrypt.hash(password, salt)
 
   User.create(newUser)
     .then(user =>
-      response
-        .status(201)
-        .json({ username: user.username, email: user.email, _id: user._id })
+      response.status(201).json({
+        username: user.username,
+        email: user.email,
+        _id: user._id,
+        unwatchedMovies: user.unwatchedMovies,
+      })
     )
     .catch(next)
 })
 
-router.get('/:id', (request, response, next) => {
-  const { id } = request.params
+router.get('/:userId', async (request, response, next) => {
+  const { userId } = request.params
 
-  User.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The user does not exist!')
-      }
-      response
-        .status(200)
-        .json({ id: data._id, username: data.username, email: data.email })
+  try {
+    const user = await User.findById(userId)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
+
+    response.status(200).json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      unwatchedMovies: user.unwatchedMovies,
     })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
-router.patch('/:id', async (request, response, next) => {
-  const { id } = request.params
+router.patch('/unknownmovies/:userId', async (request, response, next) => {
+  const { userId } = request.params
+  const { firstMovie, secondMovie } = request.body
+
+  if (firstMovie === '') {
+    const error = { message: 'Information missing.' }
+    return next({ status: 400, message: error.message })
+  }
+
+  try {
+    const user = await User.findById(userId)
+    if (!user) {
+      return next({ status: 404, message: 'User does not exist' })
+    }
+
+    const newUnwatchedMovies = user.unwatchedMovies
+    if (!newUnwatchedMovies.includes(firstMovie)) {
+      newUnwatchedMovies.push(firstMovie)
+    }
+    if (secondMovie !== '') {
+      if (!newUnwatchedMovies.includes(secondMovie)) {
+        newUnwatchedMovies.push(secondMovie)
+      }
+    }
+
+    const newUser = await User.findByIdAndUpdate(
+      id,
+      { unwatchedMovies: newUnwatchedMovies },
+      { new: true }
+    )
+
+    response.status(200).json({
+      id: newUser._id,
+      username: newUser.username,
+      email: newUser.email,
+      unwatchedMovies: newUser.unwatchedMovies,
+    })
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
+})
+
+router.patch('/:userId', async (request, response, next) => {
+  const { userId } = request.params
   const { password } = request.body
 
   if (!password) {
@@ -73,33 +124,37 @@ router.patch('/:id', async (request, response, next) => {
   const salt = await bcrypt.genSalt(10)
   newPassword = await bcrypt.hash(password, salt)
 
-  User.findByIdAndUpdate(id, { newPassword }, { new: true })
+  User.findByIdAndUpdate(userId, { password: newPassword }, { new: true })
     .then(user => {
       if (!user) {
         throw new Error('Could not change the password')
       }
-      response
-        .status(200)
-        .json({ id: user._id, username: user.username, email: user.email })
+      response.status(200).json({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        unwatchedMovies: user.unwatchedMovies,
+      })
     })
     .catch(error =>
       next({ status: 404, message: error.message || 'Document not found' })
     )
 })
 
-router.delete('/:id', (request, response, next) => {
-  const { id } = request.params
+router.delete('/:userId', async (request, response, next) => {
+  const { userId } = request.params
 
-  User.findByIdAndDelete(id)
-    .then(user => {
-      if (!user) {
-        throw new Error('The user does not exist')
-      }
-      response.status(200).json(user)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const user = await User.findByIdAndDelete(userId)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
+    response.status(200).json(user)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 module.exports = router

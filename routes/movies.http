@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ### GET id
-GET http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
+GET http://localhost:4000/api/movies/61669c86242e85bee2082fe5
 
 ### GET all movies
 GET http://localhost:4000/api/movies/all
@@ -16,14 +16,14 @@ GET http://localhost:4000/api/movies/all
 GET http://localhost:4000/api/movies/top
 
 ### GET movies for voting
-GET http://localhost:4000/api/movies/voting
+GET http://localhost:4000/api/movies/voting/617025d509b2dcb45c4e9991
 
 ### PATCH
-PATCH http://localhost:4000/api/movies/6164051ad61ea5d4d5514641
+PATCH http://localhost:4000/api/movies/61669c86242e85bee2082fe5
 Content-Type: application/json
 
 {
-    "rating": 1500
+    "rating": 1418
 }
 
 ### DELETE
