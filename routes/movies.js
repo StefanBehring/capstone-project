@@ -166,19 +166,20 @@ router.patch('/:id', async (request, response, next) => {
   }
 })
 
-router.delete('/:id', (request, response, next) => {
+router.delete('/:id', async (request, response, next) => {
   const { id } = request.params
 
-  Movie.findByIdAndDelete(id)
-    .then(movie => {
-      if (!movie) {
-        throw new Error('The movie does not exist')
-      }
-      response.status(200).json(movie)
-    })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  try {
+    const movie = await Movie.findByIdAndDelete(id)
+    if (!movie) {
+      console.error('Movie does not exist')
+      return next({ status: 404, message: 'Movie does not exist' })
+    }
+    response.status(200).json(movie)
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 module.exports = router
