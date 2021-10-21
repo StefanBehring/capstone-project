@@ -47,24 +47,26 @@ router.post('/', async (request, response, next) => {
     .catch(next)
 })
 
-router.get('/:id', (request, response, next) => {
+router.get('/:id', async (request, response, next) => {
   const { id } = request.params
 
-  User.findById(id)
-    .then(data => {
-      if (!data) {
-        throw new Error('The user does not exist!')
-      }
-      response.status(200).json({
-        id: data._id,
-        username: data.username,
-        email: data.email,
-        unwatchedMovies: data.unwatchedMovies,
-      })
+  try {
+    const user = await User.findById(id)
+    if (!user) {
+      console.error('User does not exist')
+      return next({ status: 404, message: 'User does not exist' })
+    }
+
+    response.status(200).json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      unwatchedMovies: user.unwatchedMovies,
     })
-    .catch(error =>
-      next({ status: 404, message: error.message || 'Document not found' })
-    )
+  } catch (error) {
+    console.error(error)
+    return next({ status: 500, message: 'Server error' })
+  }
 })
 
 router.patch('/unknownmovies/:id', async (request, response, next) => {
