@@ -3,13 +3,13 @@ import { IoHelpCircle as IconHelp } from 'react-icons/io5'
 
 const ButtonUnknown = ({ onUnknownMovieClick, direction }) => {
   return (
-    <ButtonRed onClick={() => onUnknownMovieClick(direction)}>
+    <Button onClick={() => onUnknownMovieClick(direction)}>
       <IconHelp />
-    </ButtonRed>
+    </Button>
   )
 }
 
-const ButtonRed = styled.button`
+const Button = styled.button`
   background-color: var(--color-red);
   color: var(--color-white-default);
   border: none;
