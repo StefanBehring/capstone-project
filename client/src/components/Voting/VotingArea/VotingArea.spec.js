@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import VotingArea from './VotingArea'
 
-xdescribe('VotingArea', () => {
-  it('renders 5 buttons', () => {
+describe('VotingArea', () => {
+  it('renders 5 buttons', async () => {
     const onVoteClick = jest.fn
     const onUnknownMovieClick = jest.fn
     const firstMovieTmdbId = 550
@@ -17,7 +17,7 @@ xdescribe('VotingArea', () => {
       />
     )
 
-    const buttonElements = screen.getAllByRole('button')
+    const buttonElements = await screen.findAllByRole('button')
     expect(buttonElements).toHaveLength(5)
   })
 })
