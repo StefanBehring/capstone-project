@@ -81,7 +81,7 @@ function App() {
             </Route>
             <Route exact path="/editPassword">
               {isLoggedIn ? (
-                <EditPasswordForm onLogout={handleLogout} />
+                <EditPasswordForm userData={userData.userData} />
               ) : (
                 <Redirect to="/notLoggedIn" />
               )}
