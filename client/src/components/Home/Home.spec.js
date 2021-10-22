@@ -35,7 +35,7 @@ describe('Home', () => {
       </Router>
     )
 
-    const headerElements = screen.getAllByRole('heading', { level: 2 })
+    const headerElements = screen.getAllByRole('heading')
     expect(headerElements).toHaveLength(1)
   })
 
