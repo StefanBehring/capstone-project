@@ -15,5 +15,11 @@ describe('Footer', () => {
 
     const textVoting = screen.getByText('Voting')
     expect(textVoting).toBeInTheDocument()
+
+    const textToplist = screen.getByText('Toplist')
+    expect(textToplist).toBeInTheDocument()
+
+    const textProfile = screen.getByText('Profile')
+    expect(textProfile).toBeInTheDocument()
   })
 })
