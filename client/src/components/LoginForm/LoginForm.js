@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
 import styled from 'styled-components/macro'
+import postAuthForLogin from '../../requests/postAuthForLogin'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
@@ -19,8 +19,7 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    axios
-      .post(`/api/auth`, { username, password })
+    postAuthForLogin(username, password)
       .then(res => {
         onLogin(res.data)
         if (errorMessage !== '') {
