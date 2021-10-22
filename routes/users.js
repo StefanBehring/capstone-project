@@ -48,6 +48,7 @@ router.post('/', async (request, response, next) => {
         email: user.email,
         _id: user._id,
         unwatchedMovies: user.unwatchedMovies,
+        isAdmin: user.isAdmin,
       })
     )
     .catch(next)
@@ -68,6 +69,7 @@ router.get('/:userId', async (request, response, next) => {
       username: user.username,
       email: user.email,
       unwatchedMovies: user.unwatchedMovies,
+      isAdmin: user.isAdmin,
     })
   } catch (error) {
     console.error(error)
@@ -111,6 +113,7 @@ router.patch('/unknownmovies/:userId', async (request, response, next) => {
       username: newUser.username,
       email: newUser.email,
       unwatchedMovies: newUser.unwatchedMovies,
+      isAdmin: newUser.isAdmin,
     })
   } catch (error) {
     console.error(error)
@@ -140,6 +143,7 @@ router.patch('/:userId', async (request, response, next) => {
         username: user.username,
         email: user.email,
         unwatchedMovies: user.unwatchedMovies,
+        isAdmin: user.isAdmin,
       })
     })
     .catch(error =>
