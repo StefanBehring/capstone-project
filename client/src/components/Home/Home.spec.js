@@ -10,8 +10,8 @@ describe('Home', () => {
       </Router>
     )
 
-    const text1 = screen.getByText('Welcome to rate the movie')
-    expect(text1).toBeInTheDocument()
+    const headerElement = screen.getByRole('heading', { level: 2 })
+    expect(headerElement).toBeInTheDocument()
 
     const text2 = screen.getByText(
       'On this app you will have the option to rate movies in a more accurate way than on other rating forms.'
@@ -21,7 +21,32 @@ describe('Home', () => {
     const text3 = screen.getByText('Have fun!')
     expect(text3).toBeInTheDocument()
 
-    const linkElement = screen.getAllByRole('link')
-    expect(linkElement).toHaveLength(2)
+    const linkLogin = screen.getByText('Login')
+    expect(linkLogin).toBeInTheDocument()
+
+    const linkRegister = screen.getByText('Register now!')
+    expect(linkRegister).toBeInTheDocument()
+  })
+
+  it('renders 1 header element', () => {
+    render(
+      <Router>
+        <Home />
+      </Router>
+    )
+
+    const headerElements = screen.getAllByRole('heading', { level: 2 })
+    expect(headerElements).toHaveLength(1)
+  })
+
+  it('renders 2 link elements', () => {
+    render(
+      <Router>
+        <Home />
+      </Router>
+    )
+
+    const linkElements = screen.getAllByRole('link')
+    expect(linkElements).toHaveLength(2)
   })
 })
