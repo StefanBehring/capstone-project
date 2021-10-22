@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import getMoviesAll from '../services/getMoviesAll'
 
 const useFetchMoviesAll = () => {
   const [moviesData, setMoviesData] = useState({ movies: [], isLoading: true })
@@ -7,7 +7,7 @@ const useFetchMoviesAll = () => {
   useEffect(() => {
     async function fetchOwnData() {
       try {
-        const response = await axios.get('/api/movies/all')
+        const response = await getMoviesAll()
         const newMovies = { movies: [...response.data], isLoading: false }
         setMoviesData(newMovies)
       } catch (error) {
