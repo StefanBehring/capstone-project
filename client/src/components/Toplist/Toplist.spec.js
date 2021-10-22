@@ -10,7 +10,10 @@ describe('Toplist', () => {
       </Router>
     )
 
-    const h2elements = await screen.findAllByRole('heading', { level: 2 })
-    expect(h2elements).toHaveLength(1)
+    const h2element = await screen.findByRole('heading', { level: 2 })
+    expect(h2element).toBeInTheDocument()
+
+    const headerText = await screen.findByText('Toplist')
+    expect(headerText).toBeInTheDocument()
   })
 })
