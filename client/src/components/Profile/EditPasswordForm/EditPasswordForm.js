@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
+import patchUserPassword from '../../../requests/patchUserPassword'
 
 const EditPasswordForm = ({ userData }) => {
   const [isSuccess, setIsSuccess] = useState(false)
@@ -29,7 +29,7 @@ const EditPasswordForm = ({ userData }) => {
 
     if (!isErrorInEdit) {
       try {
-        await axios.patch(`/api/users/${userData._id}`, { password })
+        await patchUserPassword(userData._id, password)
         setIsSuccess(true)
       } catch (error) {
         console.error(error.message)
