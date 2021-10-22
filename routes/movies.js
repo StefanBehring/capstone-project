@@ -56,7 +56,7 @@ router.get('/all', async (request, response, next) => {
 
 router.get('/top', async (request, response, next) => {
   try {
-    const movies = await Movie.find()
+    const movies = await Movie.find().sort({ rating: -1 }).limit(100)
     if (!movies) {
       console.error('Error receiving movies from database')
       return next({
@@ -64,7 +64,6 @@ router.get('/top', async (request, response, next) => {
         message: 'Error receiving movies from database',
       })
     }
-    movies.sort((a, b) => b.rating - a.rating).slice(0, 100)
     response.status(200).json(movies)
   } catch (error) {
     console.error(error)
