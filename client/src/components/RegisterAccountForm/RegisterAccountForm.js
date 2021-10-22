@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
-import postNewUser from '../../requests/postNewUser'
+import postNewUser from '../../services/postNewUser'
 
 const RegisterAccountForm = () => {
   const [username, setUsername] = useState('')

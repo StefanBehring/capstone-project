@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import postAuthForLogin from '../../requests/postAuthForLogin'
+import postAuthForLogin from '../../services/postAuthForLogin'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
-import patchUserPassword from '../../../requests/patchUserPassword'
+import patchUserPassword from '../../../services/patchUserPassword'
 
 const EditPasswordForm = ({ userData }) => {
   const [isSuccess, setIsSuccess] = useState(false)

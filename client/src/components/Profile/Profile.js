@@ -4,7 +4,7 @@ import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
-import deleteUserById from '../../requests/deleteUserById'
+import deleteUserById from '../../services/deleteUserById'
 
 const Profile = ({ userData, onLogout }) => {
   const [errorComponent, setErrorComponent] = useState('')

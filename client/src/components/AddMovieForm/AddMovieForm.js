@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
-import postNewMovie from '../../requests/postNewMovie'
+import postNewMovie from '../../services/postNewMovie'
 
 const AddMovieForm = () => {
   const [tmdbId, setTmdbId] = useState('')

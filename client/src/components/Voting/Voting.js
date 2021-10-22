@@ -4,10 +4,10 @@ import MovieCard from '../MovieCard/MovieCard'
 import VotingArea from './VotingArea/VotingArea'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import patchVotingsByid from '../../requests/patchVotingsById'
-import postNewVoting from '../../requests/postNewVoting'
-import getMoviesForVotingByUserId from '../../requests/getMoviesForVotingByUserId'
-import patchUserUnknownMoviesByUserId from '../../requests/patchUserUnknownMoviesByUserId'
+import patchVotingsByid from '../../services/patchVotingsById'
+import postNewVoting from '../../services/postNewVoting'
+import getMoviesForVotingByUserId from '../../services/getMoviesForVotingByUserId'
+import patchUserUnknownMoviesByUserId from '../../services/patchUserUnknownMoviesByUserId'
 
 const Voting = ({ userData }) => {
   const [movies, setMovies] = useState([])
