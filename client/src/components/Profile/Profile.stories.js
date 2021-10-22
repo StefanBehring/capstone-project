@@ -5,6 +5,12 @@ export default {
   component: Profile,
 }
 
-const Template = () => <Profile />
+const Template = args => <Profile {...args} />
 
 export const ProfileComplete = Template.bind({})
+ProfileComplete.args = {
+  userData: {
+    username: 'John Doe',
+    email: 'johndoe@mail.com',
+  },
+}
