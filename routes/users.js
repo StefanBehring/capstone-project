@@ -15,13 +15,13 @@ router.post('/', async (request, response, next) => {
   try {
     let userTest = await User.findOne({ username })
     if (userTest) {
-      const errorUser = { message: 'Username already exists' }
+      const errorUser = { message: 'Username/E-Mail already exists' }
       return next({ status: 400, message: errorUser.message })
     }
 
     let emailTest = await User.findOne({ email })
     if (emailTest) {
-      const errorEmail = { message: 'E-Mail already exists' }
+      const errorEmail = { message: 'Username/E-Mail already exists' }
       return next({ status: 400, message: errorEmail.message })
     }
   } catch (err) {
@@ -30,7 +30,13 @@ router.post('/', async (request, response, next) => {
     return next({ status: 400, message: error.message })
   }
 
-  const newUser = { username, email, password, unwatchedMovies: [] }
+  const newUser = {
+    username,
+    email,
+    password,
+    unwatchedMovies: [],
+    isAdmin: false,
+  }
 
   const salt = await bcrypt.genSalt(10)
   newUser.password = await bcrypt.hash(password, salt)
