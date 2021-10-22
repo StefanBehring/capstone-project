@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import getMovieFromTmdbById from '../services/getMovieFromTmdbById'
 
 const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   const [movieData, setMovieData] = useState({
@@ -12,8 +12,8 @@ const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   useEffect(() => {
     const fetchMovies = async (firstTmdbId, secondTmdbId) => {
       try {
-        const responseMovieOne = await axios.get(`/api/tmdb/${firstTmdbId}`)
-        const responseMovieTwo = await axios.get(`/api/tmdb/${secondTmdbId}`)
+        const responseMovieOne = await getMovieFromTmdbById(firstTmdbId)
+        const responseMovieTwo = await getMovieFromTmdbById(secondTmdbId)
 
         const newMoviesData = {
           firstMovie: responseMovieOne.data,
