@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import getMovieFromTmdbById from '../services/getMovieFromTmdbById'
 
 const useFetchMovieFromTmdb = tmdbId => {
   const [movie, setMovie] = useState({
@@ -14,7 +14,7 @@ const useFetchMovieFromTmdb = tmdbId => {
   useEffect(() => {
     const fetchMovie = async id => {
       try {
-        const response = await axios.get(`/api/tmdb/${id}`)
+        const response = await getMovieFromTmdbById(id)
         let newMovie = response.data
         newMovie.isLoading = false
         setMovie(newMovie)
