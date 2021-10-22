@@ -10,7 +10,29 @@ describe('LinkButtonRed', () => {
       </Router>
     )
 
-    const linkElement = screen.getAllByRole('link')
-    expect(linkElement).toHaveLength(1)
+    const linkElement = screen.getByRole('link')
+    expect(linkElement).toBeInTheDocument()
+  })
+
+  it('renders only 1 link element', () => {
+    render(
+      <Router>
+        <LinkButtonRed message="Delete" direction="/delete" />
+      </Router>
+    )
+
+    const linkElements = screen.getAllByRole('link')
+    expect(linkElements).toHaveLength(1)
+  })
+
+  it('renders a link with text "Delete"', () => {
+    render(
+      <Router>
+        <LinkButtonRed message="Delete" direction="/delete" />
+      </Router>
+    )
+
+    const linkElement = screen.getByRole('link')
+    expect(linkElement).toHaveTextContent('Delete')
   })
 })

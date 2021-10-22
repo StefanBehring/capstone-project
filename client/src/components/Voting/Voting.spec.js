@@ -24,6 +24,7 @@ describe('Voting', () => {
       unwatchedMovies: ['6166a60b1652fb89412cf888', '6165d5b0a04769af7bdf9ec8'],
     }
     render(<Voting userData={userData} />)
+    screen.debug()
 
     const imageElements = await screen.findAllByRole('img')
     expect(imageElements).toHaveLength(2)

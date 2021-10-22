@@ -33,4 +33,15 @@ describe('ButtonUnknown', () => {
     userEvent.click(button)
     expect(mockOnClick).toHaveBeenCalled()
   })
+
+  it('calls mockOnClick with "direction"', () => {
+    const mockOnClick = jest.fn()
+    render(
+      <ButtonUnknown onUnknownMovieClick={mockOnClick} direction="direction" />
+    )
+
+    const button = screen.getByRole('button')
+    userEvent.click(button)
+    expect(mockOnClick).toHaveBeenCalledWith('direction')
+  })
 })

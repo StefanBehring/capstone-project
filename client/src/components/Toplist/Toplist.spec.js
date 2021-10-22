@@ -12,8 +12,27 @@ describe('Toplist', () => {
 
     const h2element = await screen.findByRole('heading', { level: 2 })
     expect(h2element).toBeInTheDocument()
+  })
 
-    const headerText = await screen.findByText('Toplist')
-    expect(headerText).toBeInTheDocument()
+  it('renders 1 header element', async () => {
+    render(
+      <Router>
+        <Toplist />
+      </Router>
+    )
+
+    const headerElements = await screen.findAllByRole('heading', { level: 2 })
+    expect(headerElements).toHaveLength(1)
+  })
+
+  it('renders "Toplist" in the header element', async () => {
+    render(
+      <Router>
+        <Toplist />
+      </Router>
+    )
+
+    const headerElement = await screen.findByRole('heading', { level: 2 })
+    expect(headerElement).toHaveTextContent('Toplist')
   })
 })

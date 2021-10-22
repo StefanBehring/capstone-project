@@ -11,4 +11,11 @@ describe('MovieOverview', () => {
     const movieCountText = await screen.findByText(/\Moviecount:/)
     expect(movieCountText).toBeInTheDocument()
   })
+
+  it('renders 1 h2 element', async () => {
+    render(<MovieOverview />)
+
+    const h2Elements = await screen.findAllByRole('heading', { level: 2 })
+    expect(h2Elements).toHaveLength(1)
+  })
 })

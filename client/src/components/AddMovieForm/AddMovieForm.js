@@ -46,6 +46,7 @@ const AddMovieForm = () => {
         id="tmdbId"
         placeholder="Please enter a valid id"
         onChange={event => changeTmdbIdHandler(event)}
+        required
       />
       <ButtonGreen message="Add Movie" />
       {successMessage && (
