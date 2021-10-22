@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import getUserByToken from '../services/getUserByToken'
 
 const useFetchUser = () => {
   const [userData, setUserData] = useState({
@@ -24,7 +24,7 @@ const useFetchUser = () => {
           },
         }
 
-        const user = await axios.get('/api/auth', config)
+        const user = await getUserByToken(config)
         const newUser = {
           userData: user.data,
           isLoggedIn: true,

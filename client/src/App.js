@@ -21,6 +21,7 @@ import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
 import MovieOverview from './components/MovieOverview/MovieOverview'
 import useFetchUser from './hooks/useFetchUser'
+import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 
 function App() {
   LocalStorageInit()
@@ -49,6 +50,9 @@ function App() {
         <Header />
         <Main>
           <Switch>
+            <Route exact path="/addNewMovie">
+              <AddMovieForm />
+            </Route>
             <Route exact path="/movieOverview">
               <MovieOverview />
             </Route>

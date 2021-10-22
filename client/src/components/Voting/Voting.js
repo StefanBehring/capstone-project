@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import styled from 'styled-components/macro'
 import MovieCard from '../MovieCard/MovieCard'
 import VotingArea from './VotingArea/VotingArea'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
+import patchVotingsByid from '../../services/patchVotingsById'
+import postNewVoting from '../../services/postNewVoting'
+import getMoviesForVotingByUserId from '../../services/getMoviesForVotingByUserId'
+import patchUserUnknownMoviesByUserId from '../../services/patchUserUnknownMoviesByUserId'
 
 const Voting = ({ userData }) => {
   const [movies, setMovies] = useState([])
@@ -16,10 +19,7 @@ const Voting = ({ userData }) => {
     const firstMovieWon = direction === 'UP'
     const isCanceled = false
     try {
-      await axios.patch(`/api/votings/${voting._id}`, {
-        firstMovieWon,
-        isCanceled,
-      })
+      await patchVotingsByid(voting._id, firstMovieWon, isCanceled)
       setMovies([])
       setVoting([])
       setIsLoading(true)
@@ -46,14 +46,12 @@ const Voting = ({ userData }) => {
     }
 
     try {
-      await axios.patch(`/api/users/unknownmovies/${userData._id}`, {
-        firstMovie: unknownMovies.firstMovie,
-        secondMovie: unknownMovies.secondMovie,
-      })
-      await axios.patch(`/api/votings/${voting._id}`, {
-        firstMovieWon: false,
-        isCanceled: true,
-      })
+      await patchUserUnknownMoviesByUserId(
+        userData._id,
+        unknownMovies.firstMovie,
+        unknownMovies.secondMovie
+      )
+      await patchVotingsByid(voting._id, false, true)
       setMovies([])
       setVoting([])
       setIsLoading(true)
@@ -66,9 +64,7 @@ const Voting = ({ userData }) => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const responseMovies = await axios.get(
-          `/api/movies/voting/${userData._id}`
-        )
+        const responseMovies = await getMoviesForVotingByUserId(userData._id)
 
         const newVoting = {
           userId: userData._id,
@@ -76,7 +72,7 @@ const Voting = ({ userData }) => {
           secondMovieId: responseMovies.data[1]._id,
         }
 
-        const responseVotings = await axios.post(`/api/votings`, newVoting)
+        const responseVotings = await postNewVoting(newVoting)
 
         setMovies(responseMovies.data)
         setVoting(responseVotings.data)

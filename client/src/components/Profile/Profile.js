@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import axios from 'axios'
 import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
+import deleteUserById from '../../services/deleteUserById'
 
 const Profile = ({ userData, onLogout }) => {
   const [errorComponent, setErrorComponent] = useState('')
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/users/${userData._id}`)
+      await deleteUserById(userData._id)
       onLogout()
     } catch (error) {
       console.error(error)

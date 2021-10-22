@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import getMoviesTop from '../services/getMoviesTop'
 
 const useFetchMoviesTop = () => {
   const [movieData, setMovieData] = useState({
@@ -11,7 +11,7 @@ const useFetchMoviesTop = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get(`/api/movies/top`)
+        const response = await getMoviesTop()
         if (!Array.isArray(response.data)) {
           throw new Error('Invalid data')
         }

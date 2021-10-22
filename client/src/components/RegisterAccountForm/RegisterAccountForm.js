@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import axios from 'axios'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
+import postNewUser from '../../services/postNewUser'
 
 const RegisterAccountForm = () => {
   const [username, setUsername] = useState('')
@@ -41,8 +41,7 @@ const RegisterAccountForm = () => {
     }
 
     if (!isErrorInRegistration) {
-      axios
-        .post(`/api/users`, { username, email, password })
+      postNewUser(username, email, password)
         .then(res => {
           setSuccessMessage('User was added!')
           if (errorMessage !== '') {
