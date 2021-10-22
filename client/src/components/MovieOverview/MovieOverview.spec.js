@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import MovieOverview from './MovieOverview'
 
-xdescribe('MovieOverview', () => {
-  it('renders', () => {
+describe('MovieOverview', () => {
+  it('renders', async () => {
     render(<MovieOverview />)
 
-    const h2Element = screen.getByRole('heading', { level: 2 })
+    const h2Element = await screen.findByRole('heading', { level: 2 })
     expect(h2Element).toBeInTheDocument()
 
-    const movieCountText = screen.getByText(/\Moviecount:/)
+    const movieCountText = await screen.findByText(/\Moviecount:/)
     expect(movieCountText).toBeInTheDocument()
   })
 })
