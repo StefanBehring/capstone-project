@@ -25,7 +25,7 @@ describe('AddMovieForm', () => {
   it('renders only 1 heading', () => {
     render(<AddMovieForm />)
 
-    const h2element = screen.getAllByRole('heading', { level: 2 })
+    const h2element = screen.getAllByRole('heading')
     expect(h2element).toHaveLength(1)
   })
 
