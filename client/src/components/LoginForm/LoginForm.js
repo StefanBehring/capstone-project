@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import postAuthForLogin from '../../services/postAuthForLogin'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
 const LoginForm = ({ onLogin }) => {
+  let history = useHistory()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -26,6 +29,7 @@ const LoginForm = ({ onLogin }) => {
           setErrorMessage('')
         }
         event.target.reset()
+        history.push('/profile')
       })
       .catch(error => {
         console.error(error.message)
