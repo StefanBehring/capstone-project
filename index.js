@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
+const path = require('path')
 const connectDatabase = require('./connectDatabase')
 const errorHandler = require('./errorHandler')
 require('dotenv').config()
@@ -22,6 +23,13 @@ app.use('/api/movies', require('./routes/movies'))
 app.use('/api/votings', require('./routes/votings'))
 
 app.use(errorHandler)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`)
