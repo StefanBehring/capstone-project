@@ -15,23 +15,30 @@ const useFetchUser = () => {
         const token = JSON.parse(localStorage.getItem('authToken'))
 
         if (token === '') {
-          throw new Error({ message: 'Not logged in' })
-        }
+          const newUser = {
+            userData: {},
+            isLoggedIn: false,
+            isLoading: false,
+            errorMessage: '',
+          }
+          setUserData(newUser)
+        } else {
+          const config = {
+            headers: {
+              'x-auth-token': token,
+            },
+          }
 
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
+          const user = await getUserByToken(config)
 
-        const user = await getUserByToken(config)
-        const newUser = {
-          userData: user.data,
-          isLoggedIn: true,
-          isLoading: false,
-          errorMessage: '',
+          const newUser = {
+            userData: user.data,
+            isLoggedIn: true,
+            isLoading: false,
+            errorMessage: '',
+          }
+          setUserData(newUser)
         }
-        setUserData(newUser)
       } catch (error) {
         console.error(error)
         const newUser = {
