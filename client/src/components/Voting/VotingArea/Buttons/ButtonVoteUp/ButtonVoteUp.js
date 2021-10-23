@@ -2,8 +2,12 @@ import styled from 'styled-components/macro'
 import { IoCaretUpCircle as IconUp } from 'react-icons/io5'
 
 const ButtonVoteUp = ({ onVoteClick }) => {
+  const voteClickHandler = () => {
+    onVoteClick('UP')
+  }
+
   return (
-    <Button onClick={() => onVoteClick('UP')}>
+    <Button onClick={voteClickHandler}>
       <IconUp />
     </Button>
   )
