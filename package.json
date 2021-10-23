@@ -9,6 +9,7 @@
     "dev:client": "cd client && npm start",
     "dev:client:test": "cd client && npm run test",
     "dev:client:storybook": "cd client && npm run storybook",
+    "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix && npm run build --prefix client"
   },
   "keywords": [],
