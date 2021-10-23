@@ -1,28 +1,46 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import deleteUserById from '../../services/deleteUserById'
+import useFetchUser from '../../hooks/useFetchUser'
+import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 
-const Profile = ({ userData, onLogout }) => {
+const Profile = ({ onLogout }) => {
+  let history = useHistory()
+  const user = useFetchUser()
+  const userData = user.userData
+
   const [errorComponent, setErrorComponent] = useState('')
+
+  const handleLogout = () => {
+    onLogout()
+    history.push('/')
+  }
 
   const handleDelete = async () => {
     try {
       await deleteUserById(userData._id)
       onLogout()
+      history.push('/')
     } catch (error) {
       console.error(error)
       setErrorComponent(error.message)
       onLogout()
+      history.push('/')
     }
   }
 
   if (errorComponent !== '') {
     onLogout()
     return <ErrorCard title="Error" message={errorComponent} />
+  }
+
+  if (user.isLoading) {
+    return <LoadingSpinner />
   }
 
   return (
@@ -32,7 +50,7 @@ const Profile = ({ userData, onLogout }) => {
       <p>{userData.email}</p>
       <Links>
         <LinkButtonBlue direction="/editPassword" message="Change Password" />
-        <ButtonGreen message="Logout" onClickFunction={onLogout} />
+        <ButtonGreen message="Logout" onClickFunction={handleLogout} />
         <ButtonRed message="Delete Account" onClickFunction={handleDelete} />
       </Links>
     </Wrapper>
