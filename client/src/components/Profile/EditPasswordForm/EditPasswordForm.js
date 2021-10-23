@@ -4,8 +4,13 @@ import styled from 'styled-components/macro'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import patchUserPassword from '../../../services/patchUserPassword'
+import useFetchUser from '../../../hooks/useFetchUser'
+import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 
-const EditPasswordForm = ({ userData }) => {
+const EditPasswordForm = () => {
+  const user = useFetchUser()
+  const userData = user.userData
+
   const [isSuccess, setIsSuccess] = useState(false)
   const [password, setPassword] = useState('')
   const [passwordReType, setPasswordReType] = useState('')
@@ -40,6 +45,10 @@ const EditPasswordForm = ({ userData }) => {
 
   if (isSuccess) {
     return <Redirect to="/profile" />
+  }
+
+  if (user.isLoading) {
+    return <LoadingSpinner />
   }
 
   return (
