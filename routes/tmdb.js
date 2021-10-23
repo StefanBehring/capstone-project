@@ -19,7 +19,6 @@ router.get('/:id', async (request, response, next) => {
       genre: responseTmdb.data.genres[0].name,
       imgUrl: `https://image.tmdb.org/t/p/w500${responseTmdb.data.poster_path}`,
     }
-    console.log(newMovie)
     return response.status(200).json(newMovie)
   } catch (error) {
     console.error(error)

@@ -18,6 +18,9 @@ const schema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+    isAdmin: {
+      type: Boolean,
+    },
   },
   { versionKey: false }
 )
