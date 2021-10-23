@@ -2,8 +2,12 @@ import styled from 'styled-components/macro'
 import { IoReloadCircle as IconReload } from 'react-icons/io5'
 
 const ButtonBothUnknown = ({ onUnknownMovieClick, direction }) => {
+  const unknownMovieClickHandler = () => {
+    onUnknownMovieClick(direction)
+  }
+
   return (
-    <Button onClick={() => onUnknownMovieClick(direction)}>
+    <Button onClick={unknownMovieClickHandler}>
       <IconReload />
     </Button>
   )

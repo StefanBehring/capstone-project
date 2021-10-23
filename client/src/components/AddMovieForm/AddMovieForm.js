@@ -37,14 +37,14 @@ const AddMovieForm = () => {
   }
 
   return (
-    <Form onSubmit={event => addMovieHandler(event)}>
+    <Form onSubmit={addMovieHandler}>
       <h2>Add Movie</h2>
       <label htmlFor="tmdbId">TMDB Id</label>
       <input
         type="text"
         id="tmdbId"
         placeholder="Please enter a valid id"
-        onChange={event => changeTmdbIdHandler(event)}
+        onChange={changeTmdbIdHandler}
         required
       />
       <ButtonGreen message="Add Movie" />

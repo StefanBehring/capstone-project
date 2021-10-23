@@ -2,8 +2,12 @@ import styled from 'styled-components/macro'
 import { IoHelpCircle as IconHelp } from 'react-icons/io5'
 
 const ButtonUnknown = ({ onUnknownMovieClick, direction }) => {
+  const unknownMovieClickHandler = () => {
+    onUnknownMovieClick(direction)
+  }
+
   return (
-    <Button onClick={() => onUnknownMovieClick(direction)}>
+    <Button onClick={unknownMovieClickHandler}>
       <IconHelp />
     </Button>
   )
