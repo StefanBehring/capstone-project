@@ -8,8 +8,12 @@ import patchVotingsByid from '../../services/patchVotingsById'
 import postNewVoting from '../../services/postNewVoting'
 import getMoviesForVotingByUserId from '../../services/getMoviesForVotingByUserId'
 import patchUserUnknownMoviesByUserId from '../../services/patchUserUnknownMoviesByUserId'
+import useFetchUser from '../../hooks/useFetchUser'
 
-const Voting = ({ userData }) => {
+const Voting = () => {
+  const user = useFetchUser()
+  const userData = user.userData
+
   const [movies, setMovies] = useState([])
   const [voting, setVoting] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -84,7 +88,7 @@ const Voting = ({ userData }) => {
       }
     }
 
-    if (isLoading) {
+    if (isLoading && userData._id !== undefined) {
       fetchMovies()
     }
   }, [isLoading, userData])
