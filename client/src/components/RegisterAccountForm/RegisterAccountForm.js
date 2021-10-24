@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
@@ -11,7 +12,7 @@ const RegisterAccountForm = () => {
   const [password, setPassword] = useState('')
   const [passwordReType, setPasswordReType] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState(false)
 
   const handleChangeUsername = event => {
     setUsername(event.target.value)
@@ -34,29 +35,27 @@ const RegisterAccountForm = () => {
     let isErrorInRegistration = false
     if (password !== passwordReType) {
       isErrorInRegistration = true
-      if (successMessage !== '') {
-        setSuccessMessage('')
-      }
       setErrorMessage('Passwords do not match!')
     }
 
     if (!isErrorInRegistration) {
       postNewUser(username, email, password)
         .then(res => {
-          setSuccessMessage('User was added!')
           if (errorMessage !== '') {
             setErrorMessage('')
           }
           event.target.reset()
+          setSuccessMessage(true)
         })
         .catch(error => {
           console.error(error.message)
-          if (successMessage !== '') {
-            setSuccessMessage('')
-          }
           setErrorMessage(`Could not add user.`)
         })
     }
+  }
+
+  if (successMessage) {
+    return <Redirect to="/register-success" />
   }
 
   return (
@@ -71,6 +70,7 @@ const RegisterAccountForm = () => {
         type="text"
         id="username"
         name="username"
+        minLength="6"
         placeholder="your username"
         required
         onChange={handleChangeUsername}
