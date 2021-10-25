@@ -1,11 +1,8 @@
 const express = require('express')
-const jwt = require('jsonwebtoken')
 const auth = require('../middleware/auth')
 const User = require('../models/User')
 
 const router = express.Router()
-
-const { JWT_SECRET } = process.env
 
 router.get('/', auth, async (request, response, next) => {
   const userId = request.user.id
