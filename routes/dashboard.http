@@ -1,0 +1,3 @@
+### GET id
+GET http://localhost:4000/api/dashboard
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3NDYxMTY3OGFhYjBmN2I4NjllNDkwIn0sImlhdCI6MTYzNTE1MDIxMiwiZXhwIjoxNjM1NTEwMjEyfQ.g1uzmkXfooC49m8Y_D1fJD0hhppC5Lw7AgIZYd8tLIc
