@@ -20,20 +20,25 @@ import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
 import MovieOverview from './components/MovieOverview/MovieOverview'
 import AddMovieForm from './components/AddMovieForm/AddMovieForm'
+import RegisterSuccess from './components/RegisterSuccess/RegisterSuccess'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   LocalStorageInit(isLoggedIn)
 
-  const handleLogin = token => {
+  const handleLogin = loginData => {
+    const { token, isUserAdmin } = loginData
     localStorage.setItem('authToken', JSON.stringify(token))
     setIsLoggedIn(true)
+    setIsAdmin(isUserAdmin)
   }
 
   const handleLogout = () => {
     localStorage.setItem('authToken', JSON.stringify(''))
     setIsLoggedIn(false)
+    setIsAdmin(false)
   }
 
   return (
@@ -43,10 +48,13 @@ function App() {
         <Main>
           <Switch>
             <Route exact path="/addNewMovie">
-              <AddMovieForm />
+              {isAdmin ? <AddMovieForm /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/movieOverview">
-              <MovieOverview />
+              {isAdmin ? <MovieOverview /> : <Redirect to="/" />}
+            </Route>
+            <Route exact path="/register-success">
+              {isLoggedIn ? <Redirect to="/" /> : <RegisterSuccess />}
             </Route>
             <Route exact path="/register">
               {isLoggedIn ? <Redirect to="/" /> : <RegisterAccountForm />}

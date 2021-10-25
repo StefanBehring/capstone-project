@@ -46,7 +46,7 @@ router.post('/', async (request, response, next) => {
               console.error(errJWT)
               return next({ status: 400, message: errJWT.message })
             }
-            response.status(200).json(token)
+            response.status(200).json({ token, isUserAdmin: user.isAdmin })
           }
         )
       } else {
