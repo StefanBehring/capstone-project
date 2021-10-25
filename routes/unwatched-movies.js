@@ -28,10 +28,6 @@ router.patch('/:unwatchedMovieId', auth, async (request, response, next) => {
   const userId = request.user.id
   const { unwatchedMovieId } = request.params
 
-  console.log(
-    '[patch] [/api/unwatched-movies/' + unwatchedMovieId + '] userId: ' + userId
-  )
-
   try {
     const user = await User.findById(userId)
     if (!user) {
@@ -46,20 +42,7 @@ router.patch('/:unwatchedMovieId', auth, async (request, response, next) => {
       unwatchedMovies: newUnwatchedMovies,
     })
 
-    const payload = {
-      user: {
-        id: user._id,
-      },
-    }
-
-    // TODO: expiration to 3600
-    jwt.sign(payload, JWT_SECRET, { expiresIn: 360000 }, (errJWT, token) => {
-      if (errJWT) {
-        console.error(errJWT)
-        return next({ status: 400, message: errJWT.message })
-      }
-      response.status(200).json({ token })
-    })
+    response.status(200).json({ newUnwatchedMovies })
   } catch (error) {
     console.error(error)
     return next({ status: 500, message: 'Server error' })
