@@ -12,7 +12,8 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
 
   const [isSuccess, setIsSuccess] = useState(false)
 
-  const handleSubmit = async () => {
+  const handleSubmit = async event => {
+    event.preventDefault()
     try {
       const token = JSON.parse(localStorage.getItem('authToken'))
 
@@ -24,19 +25,12 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
             'x-auth-token': token,
           },
         }
-
-        const patchResult = await patchUnwatchedMovieByToken(
-          unwatchedMovieId,
-          config
-        )
-
-        alert(patchResult.data.token)
-
+        await patchUnwatchedMovieByToken(unwatchedMovieId, config)
         setIsSuccess(true)
       }
     } catch (error) {
       console.error(error)
-      alert(error)
+      return <Redirect to="/notLoggedIn" />
     }
   }
 
@@ -49,7 +43,6 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
   }
 
   if (unwatchedMovieData.errorMessage !== '') {
-    alert('ERROR' + unwatchedMovieData.errorMessage)
     return <Redirect to="/notLoggedIn" />
   }
 
