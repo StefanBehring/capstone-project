@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter as Router } from 'react-router'
 import Dashboard from './Dashboard'
 
-describe('Dashboard user is not admin', () => {
+describe('Dashboard', () => {
   it('renders', async () => {
     const isAdmin = false
 
@@ -72,10 +72,8 @@ describe('Dashboard user is not admin', () => {
     const linkElements = await screen.findAllByRole('link')
     expect(linkElements).toHaveLength(1)
   })
-})
 
-describe('Dashboard user is admin', () => {
-  it('renders', async () => {
+  it('renders if user is admin', async () => {
     const isAdmin = true
 
     render(
@@ -112,20 +110,7 @@ describe('Dashboard user is admin', () => {
     expect(linkMovieOverview).toBeInTheDocument()
   })
 
-  it('renders 1 h2 element', async () => {
-    const isAdmin = true
-
-    render(
-      <Router>
-        <Dashboard isAdmin={isAdmin} />
-      </Router>
-    )
-
-    const headerElements = await screen.findAllByRole('heading', { level: 2 })
-    expect(headerElements).toHaveLength(1)
-  })
-
-  it('renders 2 h3 element', async () => {
+  it('renders 2 h3 element if user is admin', async () => {
     const isAdmin = true
 
     render(
@@ -138,7 +123,7 @@ describe('Dashboard user is admin', () => {
     expect(headerElements).toHaveLength(2)
   })
 
-  it('renders 3 link elements', async () => {
+  it('renders 3 link elements if user is admin', async () => {
     const isAdmin = true
 
     render(
