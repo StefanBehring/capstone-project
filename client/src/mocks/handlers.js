@@ -83,4 +83,14 @@ export const handlers = [
       })
     )
   }),
+  rest.get('/api/dashboard', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        moviesCount: 245,
+        votingsCount: 10456,
+        unwatchedMoviesCount: 34,
+      })
+    )
+  }),
 ]
