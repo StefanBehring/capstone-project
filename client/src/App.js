@@ -21,6 +21,7 @@ import EditPasswordForm from './components/Profile/EditPasswordForm/EditPassword
 import MovieOverview from './components/MovieOverview/MovieOverview'
 import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 import RegisterSuccess from './components/RegisterSuccess/RegisterSuccess'
+import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -89,8 +90,8 @@ function App() {
             <Route exact path="/notLoggedIn">
               <NotLoggedIn />
             </Route>
-            <Route path={['/home', '/']}>
-              <Home />
+            <Route path={['/dashboard', '/home', '/']}>
+              {isLoggedIn ? <Dashboard isAdmin={isAdmin} /> : <Home />}
             </Route>
           </Switch>
         </Main>
