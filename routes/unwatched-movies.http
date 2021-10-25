@@ -1,0 +1,7 @@
+### GET id
+GET http://localhost:4000/api/unwatched-movies
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3NDYxMTY3OGFhYjBmN2I4NjllNDkwIn0sImlhdCI6MTYzNTE1MDIxMiwiZXhwIjoxNjM1NTEwMjEyfQ.g1uzmkXfooC49m8Y_D1fJD0hhppC5Lw7AgIZYd8tLIc
+
+### PATCH
+PATCH http://localhost:4000/api/unwatched-movies/6172f1dc4c7bb58e3bb073c3
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3NDYxMTY3OGFhYjBmN2I4NjllNDkwIn0sImlhdCI6MTYzNTE3MDI1NywiZXhwIjoxNjM1NTMwMjU3fQ.A69HSrnQD7uB-3XBZV1oZSnnDXABY_Lu2W1Be-cRPQE
