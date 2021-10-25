@@ -6,7 +6,7 @@ import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 
 const LoginForm = ({ onLogin }) => {
-  let history = useHistory()
+  const history = useHistory()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -29,7 +29,7 @@ const LoginForm = ({ onLogin }) => {
           setErrorMessage('')
         }
         event.target.reset()
-        history.push('/profile')
+        history.push('/dashboard')
       })
       .catch(error => {
         console.error(error.message)
@@ -71,9 +71,9 @@ const Form = styled.form`
   color: var(--color-black);
   display: flex;
   flex-direction: column;
-  margin: 0.5rem auto;
+  margin-top: 1rem;
   padding: 0.5rem;
-  width: 350px;
+  width: 340px;
 
   h2 {
     text-align: center;
