@@ -22,6 +22,7 @@ import MovieOverview from './components/MovieOverview/MovieOverview'
 import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 import RegisterSuccess from './components/RegisterSuccess/RegisterSuccess'
 import Dashboard from './components/Dashboard/Dashboard'
+import UnwatchedMoviesOverview from './components/UnwatchedMoviesOverview/UnwatchedMoviesOverview'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -65,6 +66,13 @@ function App() {
                 <Redirect to="/" />
               ) : (
                 <LoginForm onLogin={handleLogin} />
+              )}
+            </Route>
+            <Route exact path="/unwatched-movies">
+              {isLoggedIn ? (
+                <UnwatchedMoviesOverview />
+              ) : (
+                <Redirect to="/notLoggedIn" />
               )}
             </Route>
             <Route exact path="/voting">
