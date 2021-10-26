@@ -49,12 +49,13 @@ function App() {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/addNewMovie">
+            <Route exact path="/add-new-movie">
               {isAdmin ? <AddMovieForm /> : <Redirect to="/" />}
             </Route>
-            <Route exact path="/movieOverview">
+            <Route exact path="/movie-overview">
               {isAdmin ? <MovieOverview /> : <Redirect to="/" />}
             </Route>
+
             <Route exact path="/register-success">
               {isLoggedIn ? <Redirect to="/" /> : <RegisterSuccess />}
             </Route>
@@ -68,36 +69,39 @@ function App() {
                 <LoginForm onLogin={handleLogin} />
               )}
             </Route>
+
             <Route exact path="/unwatched-movies">
               {isLoggedIn ? (
                 <UnwatchedMoviesOverview />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
             <Route exact path="/voting">
-              {isLoggedIn ? <Voting /> : <Redirect to="/notLoggedIn" />}
-            </Route>
-            <Route exact path="/toplist">
-              <Toplist />
+              {isLoggedIn ? <Voting /> : <Redirect to="/not-logged-in" />}
             </Route>
             <Route exact path="/profile">
               {isLoggedIn ? (
                 <Profile onLogout={handleLogout} />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
-            <Route exact path="/editPassword">
+            <Route exact path="/edit-password">
               {isLoggedIn ? (
                 <EditPasswordForm />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
-            <Route exact path="/notLoggedIn">
+
+            <Route exact path="/toplist">
+              <Toplist />
+            </Route>
+            <Route exact path="/not-logged-in">
               <NotLoggedIn />
             </Route>
+
             <Route path={['/dashboard', '/home', '/']}>
               {isLoggedIn ? <Dashboard isAdmin={isAdmin} /> : <Home />}
             </Route>

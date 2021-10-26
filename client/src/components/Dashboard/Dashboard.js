@@ -13,7 +13,7 @@ const Dashboard = ({ isAdmin }) => {
   }
 
   if (dashboardData.errorMessage !== '') {
-    return <Redirect to="/notLoggedIn" />
+    return <Redirect to="/not-logged-in" />
   }
 
   return (

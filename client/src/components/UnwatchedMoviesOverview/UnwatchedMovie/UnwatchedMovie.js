@@ -18,7 +18,7 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
       const token = JSON.parse(localStorage.getItem('authToken'))
 
       if (token === '') {
-        return <Redirect to="/notLoggedIn" />
+        return <Redirect to="/not-logged-in" />
       } else {
         const config = {
           headers: {
@@ -30,7 +30,7 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
       }
     } catch (error) {
       console.error(error)
-      return <Redirect to="/notLoggedIn" />
+      return <Redirect to="/not-logged-in" />
     }
   }
 
@@ -43,7 +43,7 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
   }
 
   if (unwatchedMovieData.errorMessage !== '') {
-    return <Redirect to="/notLoggedIn" />
+    return <Redirect to="/not-logged-in" />
   }
 
   return (
