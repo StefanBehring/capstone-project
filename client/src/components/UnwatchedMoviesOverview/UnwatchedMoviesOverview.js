@@ -18,8 +18,8 @@ const UnwatchedMoviesOverview = () => {
   return (
     <UnwatchedMoviesWrapper>
       <h2>Unwatched Movies</h2>
-      {unwatchedMoviesData.infoData.map(movie => {
-        return <UnwatchedMovie key={movie} unwatchedMovieId={movie} />
+      {unwatchedMoviesData.infoData.map(movieId => {
+        return <UnwatchedMovie key={movieId} unwatchedMovieId={movieId} />
       })}
     </UnwatchedMoviesWrapper>
   )
