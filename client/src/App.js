@@ -30,7 +30,6 @@ function App() {
 
   const handleLogin = loginData => {
     const { token, isUserAdmin } = loginData
-    alert(token)
     saveToLocal('authToken', token)
     setIsLoggedIn(true)
     setIsAdmin(isUserAdmin)
