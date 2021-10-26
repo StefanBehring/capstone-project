@@ -9,8 +9,8 @@ const useMoviesAll = () => {
   useEffect(() => {
     async function fetchOwnData() {
       try {
-        const response = await getMoviesAll()
-        const newMovies = { movies: [...response.data], isLoading: false }
+        const responseData = await getMoviesAll()
+        const newMovies = { movies: [...responseData], isLoading: false }
         setMoviesData(newMovies)
       } catch (error) {
         console.error(error)

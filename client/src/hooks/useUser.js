@@ -23,7 +23,7 @@ const useUser = () => {
         const user = await getUserByToken(token)
 
         const newUser = {
-          userData: user.data,
+          userData: user,
           isLoggedIn: true,
           isLoading: false,
           errorMessage: '',

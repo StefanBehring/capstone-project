@@ -16,8 +16,8 @@ const useMovieFromTmdb = tmdbId => {
   useEffect(() => {
     const fetchMovie = async id => {
       try {
-        const response = await getMovieFromTmdbById(id)
-        let newMovie = response.data
+        const movieData = await getMovieFromTmdbById(id)
+        let newMovie = movieData
         newMovie.isLoading = false
         setMovie(newMovie)
       } catch (error) {

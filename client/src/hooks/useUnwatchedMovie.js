@@ -13,10 +13,10 @@ const useUnwatchedMovie = unwatchedMovieId => {
   useEffect(() => {
     const fetchUnwatchedMovie = async unwatchedMovieId => {
       try {
-        const movieUnwatchedMovie = await getMovieById(unwatchedMovieId)
+        const unwatchedMovieData = await getMovieById(unwatchedMovieId)
 
         const newUnwatchedMovie = {
-          infoData: movieUnwatchedMovie.data,
+          infoData: unwatchedMovieData,
           isLoading: false,
           errorMessage: '',
         }

@@ -22,7 +22,7 @@ const useUnwatchedMovies = () => {
         const userUnwatchedMovies = await getUnwatchedMoviesByToken(token)
 
         const newUnwatchedMovies = {
-          infoData: userUnwatchedMovies.data,
+          infoData: userUnwatchedMovies,
           isLoading: false,
           errorMessage: '',
         }

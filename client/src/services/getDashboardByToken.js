@@ -7,7 +7,7 @@ const getDashboardByToken = token => {
     },
   }
 
-  return axios.get('/api/dashboard', config)
+  return axios.get('/api/dashboard', config).then(response => response.data)
 }
 
 export default getDashboardByToken

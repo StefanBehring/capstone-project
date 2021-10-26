@@ -7,7 +7,9 @@ const getUnwatchedMoviesByToken = token => {
     },
   }
 
-  return axios.get('/api/unwatched-movies', config)
+  return axios
+    .get('/api/unwatched-movies', config)
+    .then(response => response.data)
 }
 
 export default getUnwatchedMoviesByToken

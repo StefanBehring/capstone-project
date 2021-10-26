@@ -18,8 +18,8 @@ const useVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
         const responseMovieTwo = await getMovieFromTmdbById(secondTmdbId)
 
         const newMoviesData = {
-          firstMovie: responseMovieOne.data,
-          secondMovie: responseMovieTwo.data,
+          firstMovie: responseMovieOne,
+          secondMovie: responseMovieTwo,
           isLoading: false,
           errorMessage: '',
         }

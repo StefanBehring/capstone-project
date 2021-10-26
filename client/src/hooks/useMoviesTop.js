@@ -13,12 +13,12 @@ const useMoviesTop = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await getMoviesTop()
-        if (!Array.isArray(response.data)) {
+        const responseData = await getMoviesTop()
+        if (!Array.isArray(responseData)) {
           throw new Error('Invalid data')
         }
         const newMovieData = {
-          movies: [...response.data],
+          movies: [...responseData],
           isLoading: false,
           errorMessage: '',
         }

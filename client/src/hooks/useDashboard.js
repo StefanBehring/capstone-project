@@ -22,7 +22,7 @@ const useDashboard = () => {
         const user = await getDashboardByToken(token)
 
         const newDashboard = {
-          infoData: user.data,
+          infoData: user,
           isLoading: false,
           errorMessage: '',
         }
