@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: '',
 }
 
-const useFetchMoviesTop = () => {
+const useMoviesTop = () => {
   const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const useFetchMoviesTop = () => {
   return movieData
 }
 
-export default useFetchMoviesTop
+export default useMoviesTop

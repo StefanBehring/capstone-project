@@ -4,11 +4,11 @@ import { useState } from 'react'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 import MovieCard from '../../MovieCard/MovieCard'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
-import useFetchUnwatchedMovie from '../../../hooks/useFetchUnwatchedMovie'
 import patchUnwatchedMovieByToken from '../../../services/patchUnwatchedMovieByToken'
+import useUnwatchedMovie from '../../../hooks/useUnwatchedMovie'
 
 const UnwatchedMovie = ({ unwatchedMovieId }) => {
-  const unwatchedMovieData = useFetchUnwatchedMovie(unwatchedMovieId)
+  const unwatchedMovieData = useUnwatchedMovie(unwatchedMovieId)
 
   const [isSuccess, setIsSuccess] = useState(false)
 

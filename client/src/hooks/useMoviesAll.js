@@ -3,7 +3,7 @@ import getMoviesAll from '../services/getMoviesAll'
 
 const initialState = { movies: [], isLoading: true }
 
-const useFetchMoviesAll = () => {
+const useMoviesAll = () => {
   const [moviesData, setMoviesData] = useState(initialState)
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const useFetchMoviesAll = () => {
   return moviesData
 }
 
-export default useFetchMoviesAll
+export default useMoviesAll

@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: '',
 }
 
-const useFetchDashboard = () => {
+const useDashboard = () => {
   const [dashboardData, setDashboardData] = useState(initialState)
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const useFetchDashboard = () => {
   return dashboardData
 }
 
-export default useFetchDashboard
+export default useDashboard

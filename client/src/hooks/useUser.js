@@ -8,7 +8,7 @@ const initialState = {
   errorMessage: '',
 }
 
-const useFetchUser = () => {
+const useUser = () => {
   const [userData, setUserData] = useState(initialState)
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const useFetchUser = () => {
   return userData
 }
 
-export default useFetchUser
+export default useUser

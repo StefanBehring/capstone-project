@@ -8,7 +8,7 @@ const initialState = {
   errorMessage: '',
 }
 
-const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
+const useVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   return movieData
 }
 
-export default useFetchVotingArea
+export default useVotingArea

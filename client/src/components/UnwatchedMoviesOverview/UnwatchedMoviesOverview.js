@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 import { Redirect } from 'react-router'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchUnwatchedMovies from '../../hooks/useFetchUnwatchedMovies'
 import UnwatchedMovie from './UnwatchedMovie/UnwatchedMovie'
+import useUnwatchedMovies from '../../hooks/useUnwatchedMovies'
 
 const UnwatchedMoviesOverview = () => {
-  const unwatchedMoviesData = useFetchUnwatchedMovies()
+  const unwatchedMoviesData = useUnwatchedMovies()
 
   if (unwatchedMoviesData.isLoading) {
     return <LoadingSpinner />

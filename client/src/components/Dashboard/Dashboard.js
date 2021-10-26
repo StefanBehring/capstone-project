@@ -2,11 +2,11 @@ import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import AdminArea from './AdminArea/AdminArea'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchDashboard from '../../hooks/useFetchDashboard'
+import useDashboard from '../../hooks/useDashboard'
 import { Redirect } from 'react-router'
 
 const Dashboard = ({ isAdmin }) => {
-  const dashboardData = useFetchDashboard()
+  const dashboardData = useDashboard()
 
   if (dashboardData.isLoading) {
     return <LoadingSpinner />

@@ -3,12 +3,12 @@ import { Redirect } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
-import patchUserPassword from '../../../services/patchUserPassword'
-import useFetchUser from '../../../hooks/useFetchUser'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
+import patchUserPassword from '../../../services/patchUserPassword'
+import useUser from '../../../hooks/useUser'
 
 const EditPasswordForm = () => {
-  const user = useFetchUser()
+  const user = useUser()
   const userData = user.userData
 
   const [isSuccess, setIsSuccess] = useState(false)

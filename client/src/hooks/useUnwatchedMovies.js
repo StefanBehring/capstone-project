@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: '',
 }
 
-const useFetchUnwatchedMovies = () => {
+const useUnwatchedMovies = () => {
   const [unwatchedMovies, setUnwatchedMovies] = useState(initialState)
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const useFetchUnwatchedMovies = () => {
   return unwatchedMovies
 }
 
-export default useFetchUnwatchedMovies
+export default useUnwatchedMovies

@@ -5,13 +5,13 @@ import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
-import deleteUserById from '../../services/deleteUserById'
-import useFetchUser from '../../hooks/useFetchUser'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
+import deleteUserById from '../../services/deleteUserById'
+import useUser from '../../hooks/useUser'
 
 const Profile = ({ onLogout }) => {
   let history = useHistory()
-  const user = useFetchUser()
+  const user = useUser()
   const userData = user.userData
 
   const [errorComponent, setErrorComponent] = useState('')

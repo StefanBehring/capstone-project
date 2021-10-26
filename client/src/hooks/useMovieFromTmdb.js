@@ -10,7 +10,7 @@ const initialState = {
   isLoading: true,
 }
 
-const useFetchMovieFromTmdb = tmdbId => {
+const useMovieFromTmdb = tmdbId => {
   const [movie, setMovie] = useState(initialState)
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const useFetchMovieFromTmdb = tmdbId => {
   return movie
 }
 
-export default useFetchMovieFromTmdb
+export default useMovieFromTmdb
