@@ -17,17 +17,12 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
     try {
       const token = JSON.parse(localStorage.getItem('authToken'))
 
-      if (token === '') {
+      if (!token) {
         return <Redirect to="/not-logged-in" />
-      } else {
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-        await patchUnwatchedMovieByToken(unwatchedMovieId, config)
-        setIsSuccess(true)
       }
+
+      await patchUnwatchedMovieByToken(unwatchedMovieId, token)
+      setIsSuccess(true)
     } catch (error) {
       console.error(error)
       return <Redirect to="/not-logged-in" />
