@@ -8,10 +8,10 @@ import patchVotingsByid from '../../services/patchVotingsById'
 import postNewVoting from '../../services/postNewVoting'
 import getMoviesForVotingByUserId from '../../services/getMoviesForVotingByUserId'
 import patchUserUnknownMoviesByUserId from '../../services/patchUserUnknownMoviesByUserId'
-import useFetchUser from '../../hooks/useFetchUser'
+import useUser from '../../hooks/useUser'
 
 const Voting = () => {
-  const user = useFetchUser()
+  const user = useUser()
   const userData = user.userData
 
   const [movies, setMovies] = useState([])

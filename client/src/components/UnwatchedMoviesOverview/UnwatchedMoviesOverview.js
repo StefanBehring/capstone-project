@@ -1,26 +1,25 @@
 import styled from 'styled-components/macro'
 import { Redirect } from 'react-router'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchUnwatchedMovies from '../../hooks/useFetchUnwatchedMovies'
 import UnwatchedMovie from './UnwatchedMovie/UnwatchedMovie'
+import useUnwatchedMovies from '../../hooks/useUnwatchedMovies'
 
 const UnwatchedMoviesOverview = () => {
-  const unwatchedMoviesData = useFetchUnwatchedMovies()
+  const unwatchedMoviesData = useUnwatchedMovies()
 
   if (unwatchedMoviesData.isLoading) {
     return <LoadingSpinner />
   }
 
   if (unwatchedMoviesData.errorMessage !== '') {
-    alert('Redirecting to notLoggedIn')
-    return <Redirect to="/notLoggedIn" />
+    return <Redirect to="/not-logged-in" />
   }
 
   return (
     <UnwatchedMoviesWrapper>
       <h2>Unwatched Movies</h2>
-      {unwatchedMoviesData.infoData.map(movie => {
-        return <UnwatchedMovie key={movie} unwatchedMovieId={movie} />
+      {unwatchedMoviesData.infoData.map(movieId => {
+        return <UnwatchedMovie key={movieId} unwatchedMovieId={movieId} />
       })}
     </UnwatchedMoviesWrapper>
   )

@@ -7,6 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 
+import saveToLocal from './lib/saveToLocal'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
@@ -16,7 +17,6 @@ import RegisterAccountForm from './components/RegisterAccountForm/RegisterAccoun
 import LoginForm from './components/LoginForm/LoginForm'
 import Profile from './components/Profile/Profile'
 import NotLoggedIn from './components/NotLoggedIn/NotLoggedIn'
-import LocalStorageInit from './LocalStorage/LocalStorageInit'
 import EditPasswordForm from './components/Profile/EditPasswordForm/EditPasswordForm'
 import MovieOverview from './components/MovieOverview/MovieOverview'
 import AddMovieForm from './components/AddMovieForm/AddMovieForm'
@@ -28,17 +28,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
-  LocalStorageInit(isLoggedIn)
-
   const handleLogin = loginData => {
     const { token, isUserAdmin } = loginData
-    localStorage.setItem('authToken', JSON.stringify(token))
+    saveToLocal('authToken', token)
     setIsLoggedIn(true)
     setIsAdmin(isUserAdmin)
   }
 
   const handleLogout = () => {
-    localStorage.setItem('authToken', JSON.stringify(''))
+    saveToLocal('authToken', '')
     setIsLoggedIn(false)
     setIsAdmin(false)
   }
@@ -49,12 +47,13 @@ function App() {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/addNewMovie">
+            <Route exact path="/add-new-movie">
               {isAdmin ? <AddMovieForm /> : <Redirect to="/" />}
             </Route>
-            <Route exact path="/movieOverview">
+            <Route exact path="/movie-overview">
               {isAdmin ? <MovieOverview /> : <Redirect to="/" />}
             </Route>
+
             <Route exact path="/register-success">
               {isLoggedIn ? <Redirect to="/" /> : <RegisterSuccess />}
             </Route>
@@ -68,36 +67,39 @@ function App() {
                 <LoginForm onLogin={handleLogin} />
               )}
             </Route>
+
             <Route exact path="/unwatched-movies">
               {isLoggedIn ? (
                 <UnwatchedMoviesOverview />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
             <Route exact path="/voting">
-              {isLoggedIn ? <Voting /> : <Redirect to="/notLoggedIn" />}
-            </Route>
-            <Route exact path="/toplist">
-              <Toplist />
+              {isLoggedIn ? <Voting /> : <Redirect to="/not-logged-in" />}
             </Route>
             <Route exact path="/profile">
               {isLoggedIn ? (
                 <Profile onLogout={handleLogout} />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
-            <Route exact path="/editPassword">
+            <Route exact path="/edit-password">
               {isLoggedIn ? (
                 <EditPasswordForm />
               ) : (
-                <Redirect to="/notLoggedIn" />
+                <Redirect to="/not-logged-in" />
               )}
             </Route>
-            <Route exact path="/notLoggedIn">
+
+            <Route exact path="/toplist">
+              <Toplist />
+            </Route>
+            <Route exact path="/not-logged-in">
               <NotLoggedIn />
             </Route>
+
             <Route path={['/dashboard', '/home', '/']}>
               {isLoggedIn ? <Dashboard isAdmin={isAdmin} /> : <Home />}
             </Route>

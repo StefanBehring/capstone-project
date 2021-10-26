@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import getMovieById from '../services/getMovieById'
 
-const useFetchUnwatchedMovie = unwatchedMovieId => {
-  const [unwatchedMovie, setUnwatchedMovie] = useState({
-    infoData: {},
-    isLoading: true,
-    errorMessage: '',
-  })
+const initialState = {
+  tmdbId: '',
+  isLoading: true,
+  errorMessage: '',
+}
+
+const useUnwatchedMovie = unwatchedMovieId => {
+  const [unwatchedMovie, setUnwatchedMovie] = useState(initialState)
 
   useEffect(() => {
     const fetchUnwatchedMovie = async unwatchedMovieId => {
       try {
-        const movieUnwatchedMovie = await getMovieById(unwatchedMovieId)
+        const unwatchedMovieData = await getMovieById(unwatchedMovieId)
 
         const newUnwatchedMovie = {
-          infoData: movieUnwatchedMovie.data,
+          tmdbId: unwatchedMovieData.tmdbId,
           isLoading: false,
           errorMessage: '',
         }
@@ -22,7 +24,7 @@ const useFetchUnwatchedMovie = unwatchedMovieId => {
       } catch (error) {
         console.error(error)
         const newUnwatchedMovie = {
-          infoData: {},
+          tmdbId: '',
           isLoading: false,
           errorMessage: error.message,
         }
@@ -36,4 +38,4 @@ const useFetchUnwatchedMovie = unwatchedMovieId => {
   return unwatchedMovie
 }
 
-export default useFetchUnwatchedMovie
+export default useUnwatchedMovie

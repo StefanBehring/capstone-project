@@ -2,30 +2,30 @@ import styled from 'styled-components/macro'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import AdminArea from './AdminArea/AdminArea'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchDashboard from '../../hooks/useFetchDashboard'
+import useDashboard from '../../hooks/useDashboard'
 import { Redirect } from 'react-router'
 
 const Dashboard = ({ isAdmin }) => {
-  const dashboardData = useFetchDashboard()
+  const dashboardData = useDashboard()
 
   if (dashboardData.isLoading) {
     return <LoadingSpinner />
   }
 
   if (dashboardData.errorMessage !== '') {
-    return <Redirect to="/notLoggedIn" />
+    return <Redirect to="/not-logged-in" />
   }
 
   return (
     <DashboardWrapper>
       <Wrapper>
         <h2>Dashboard</h2>
-        <p>Movies: {dashboardData.infoData.moviesCount}</p>
-        <p>Votings: {dashboardData.infoData.votingsCount}</p>
+        <p>Movies: {dashboardData.moviesCount}</p>
+        <p>Votings: {dashboardData.votingsCount}</p>
       </Wrapper>
       <Wrapper>
         <h3>Unwatched Movies</h3>
-        <p>On your list: {dashboardData.infoData.unwatchedMoviesCount}</p>
+        <p>On your list: {dashboardData.unwatchedMoviesCount}</p>
         <LinkButtonBlue message="Overview" direction="/unwatched-movies" />
       </Wrapper>
       {isAdmin && <AdminArea />}

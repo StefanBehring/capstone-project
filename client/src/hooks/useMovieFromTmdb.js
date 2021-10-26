@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react'
 import getMovieFromTmdbById from '../services/getMovieFromTmdbById'
 
-const useFetchMovieFromTmdb = tmdbId => {
-  const [movie, setMovie] = useState({
-    tmdbId: '550',
-    imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
-    title: 'Currently loading data',
-    year: '1999',
-    genre: 'Drama',
-    isLoading: true,
-  })
+const initialState = {
+  tmdbId: '550',
+  imgUrl: 'https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg',
+  title: 'Currently loading data',
+  year: '1999',
+  genre: 'Drama',
+  isLoading: true,
+}
+
+const useMovieFromTmdb = tmdbId => {
+  const [movie, setMovie] = useState(initialState)
 
   useEffect(() => {
     const fetchMovie = async id => {
       try {
-        const response = await getMovieFromTmdbById(id)
-        let newMovie = response.data
+        const movieData = await getMovieFromTmdbById(id)
+        let newMovie = movieData
         newMovie.isLoading = false
         setMovie(newMovie)
       } catch (error) {
@@ -38,4 +40,4 @@ const useFetchMovieFromTmdb = tmdbId => {
   return movie
 }
 
-export default useFetchMovieFromTmdb
+export default useMovieFromTmdb

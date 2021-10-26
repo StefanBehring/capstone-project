@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchMovieFromTmdb from '../../hooks/useFetchMovieFromTmdb'
+import useMovieFromTmdb from '../../hooks/useMovieFromTmdb'
 
 const MovieCard = ({ tmdbId }) => {
-  const movie = useFetchMovieFromTmdb(tmdbId)
+  const movie = useMovieFromTmdb(tmdbId)
 
   if (movie.isLoading) {
     return <LoadingSpinner />

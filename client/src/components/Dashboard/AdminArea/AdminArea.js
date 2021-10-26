@@ -5,8 +5,8 @@ const AdminArea = () => {
   return (
     <Wrapper>
       <h3>Admin</h3>
-      <LinkButtonBlue message="Add New Movie" direction="/addNewMovie" />
-      <LinkButtonBlue message="View All Movies" direction="/movieOverview" />
+      <LinkButtonBlue message="Add New Movie" direction="/add-new-movie" />
+      <LinkButtonBlue message="View All Movies" direction="/movie-overview" />
     </Wrapper>
   )
 }

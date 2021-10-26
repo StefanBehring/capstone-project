@@ -5,8 +5,9 @@ import tmdbLogo from '../../assets/tmdb-logo.svg'
 const Header = () => {
   return (
     <Wrapper>
-      <h1>be objective</h1>
-      <img src={logo} width="240" height="50" alt="" />
+      <h1>
+        <img src={logo} width="240" height="50" alt="be objective" />
+      </h1>
       <a
         href="https://www.themoviedb.org/?language=de"
         target="_new"
@@ -24,10 +25,6 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  h1 {
-    display: none;
-  }
 
   img {
     margin: 0;

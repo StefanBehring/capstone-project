@@ -21,9 +21,9 @@ router.get('/', auth, async (request, response, next) => {
   }
 })
 
-router.patch('/:unwatchedMovieId', auth, async (request, response, next) => {
+router.patch('/', auth, async (request, response, next) => {
   const userId = request.user.id
-  const { unwatchedMovieId } = request.params
+  const { unwatchedMovieId } = request.body
 
   try {
     const user = await User.findById(userId)

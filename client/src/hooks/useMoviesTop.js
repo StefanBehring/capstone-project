@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
 import getMoviesTop from '../services/getMoviesTop'
 
-const useFetchMoviesTop = () => {
-  const [movieData, setMovieData] = useState({
-    movies: [],
-    isLoading: true,
-    errorMessage: '',
-  })
+const initialState = {
+  movies: [],
+  isLoading: true,
+  errorMessage: '',
+}
+
+const useMoviesTop = () => {
+  const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await getMoviesTop()
-        if (!Array.isArray(response.data)) {
+        const responseData = await getMoviesTop()
+        if (!Array.isArray(responseData)) {
           throw new Error('Invalid data')
         }
         const newMovieData = {
-          movies: [...response.data],
+          movies: [...responseData],
           isLoading: false,
           errorMessage: '',
         }
@@ -38,4 +40,4 @@ const useFetchMoviesTop = () => {
   return movieData
 }
 
-export default useFetchMoviesTop
+export default useMoviesTop

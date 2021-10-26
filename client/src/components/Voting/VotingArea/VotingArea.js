@@ -4,7 +4,7 @@ import UnknownArea from './UnknownArea/UnknownArea'
 import RatingArea from './RatingArea/RatingArea'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
-import useFetchVotingArea from '../../../hooks/useFetchVotingArea'
+import useVotingArea from '../../../hooks/useVotingArea'
 
 const VotingArea = ({
   onVoteClick,
@@ -12,7 +12,7 @@ const VotingArea = ({
   firstMovieTmdbId,
   secondMovieTmdbId,
 }) => {
-  const moviesData = useFetchVotingArea(firstMovieTmdbId, secondMovieTmdbId)
+  const moviesData = useVotingArea(firstMovieTmdbId, secondMovieTmdbId)
 
   if (moviesData.errorMessage !== '') {
     return <ErrorCard title="Error" message={moviesData.errorMessage} />

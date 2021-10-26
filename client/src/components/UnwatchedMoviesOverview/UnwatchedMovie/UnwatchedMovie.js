@@ -4,52 +4,48 @@ import { useState } from 'react'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 import MovieCard from '../../MovieCard/MovieCard'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
-import useFetchUnwatchedMovie from '../../../hooks/useFetchUnwatchedMovie'
 import patchUnwatchedMovieByToken from '../../../services/patchUnwatchedMovieByToken'
+import useUnwatchedMovie from '../../../hooks/useUnwatchedMovie'
 
 const UnwatchedMovie = ({ unwatchedMovieId }) => {
-  const unwatchedMovieData = useFetchUnwatchedMovie(unwatchedMovieId)
+  const unwatchedMovie = useUnwatchedMovie(unwatchedMovieId)
 
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleSubmit = async event => {
     event.preventDefault()
     try {
       const token = JSON.parse(localStorage.getItem('authToken'))
 
-      if (token === '') {
-        return <Redirect to="/notLoggedIn" />
-      } else {
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-        await patchUnwatchedMovieByToken(unwatchedMovieId, config)
-        setIsSuccess(true)
+      if (!token) {
+        setIsError(true)
       }
+
+      await patchUnwatchedMovieByToken(unwatchedMovieId, token)
+      setIsSuccess(true)
     } catch (error) {
       console.error(error)
-      return <Redirect to="/notLoggedIn" />
+      setIsError(true)
     }
   }
 
-  if (unwatchedMovieData.isLoading) {
+  if (unwatchedMovie.isLoading) {
     return <LoadingSpinner />
+  }
+
+  if (unwatchedMovie.errorMessage !== '' || isError) {
+    return <Redirect to="/not-logged-in" />
   }
 
   if (isSuccess) {
     return <Redirect to="/unwatched-movies" />
   }
 
-  if (unwatchedMovieData.errorMessage !== '') {
-    return <Redirect to="/notLoggedIn" />
-  }
-
   return (
     <UnwatchedMovieWrapper onSubmit={handleSubmit}>
       <Line />
-      <MovieCard tmdbId={unwatchedMovieData.infoData.tmdbId} />
+      <MovieCard tmdbId={unwatchedMovie.tmdbId} />
       <ButtonGreen message="Watched It!" />
     </UnwatchedMovieWrapper>
   )

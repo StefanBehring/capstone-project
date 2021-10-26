@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 const patchUserPassword = (userId, password) => {
-  return axios.patch(`/api/users/${userId}`, { password: password })
+  const body = { password: password }
+
+  return axios.patch(`/api/users/${userId}`, body)
 }
 
 export default patchUserPassword

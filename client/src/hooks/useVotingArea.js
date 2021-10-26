@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import getMovieFromTmdbById from '../services/getMovieFromTmdbById'
 
-const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
-  const [movieData, setMovieData] = useState({
-    firstMovie: '',
-    secondMovie: '',
-    isLoading: true,
-    errorMessage: '',
-  })
+const initialState = {
+  firstMovie: '',
+  secondMovie: '',
+  isLoading: true,
+  errorMessage: '',
+}
+
+const useVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
+  const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
     const fetchMovies = async (firstTmdbId, secondTmdbId) => {
@@ -16,8 +18,8 @@ const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
         const responseMovieTwo = await getMovieFromTmdbById(secondTmdbId)
 
         const newMoviesData = {
-          firstMovie: responseMovieOne.data,
-          secondMovie: responseMovieTwo.data,
+          firstMovie: responseMovieOne,
+          secondMovie: responseMovieTwo,
           isLoading: false,
           errorMessage: '',
         }
@@ -40,4 +42,4 @@ const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
   return movieData
 }
 
-export default useFetchVotingArea
+export default useVotingArea
