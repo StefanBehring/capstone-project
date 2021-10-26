@@ -12,7 +12,6 @@ const UnwatchedMoviesOverview = () => {
   }
 
   if (unwatchedMoviesData.errorMessage !== '') {
-    alert('Redirecting to notLoggedIn')
     return <Redirect to="/not-logged-in" />
   }
 
