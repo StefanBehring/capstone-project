@@ -7,7 +7,9 @@ const patchUnwatchedMovieByToken = (unwatchedMovieId, token) => {
     },
   }
 
-  return axios.patch(`/api/unwatched-movies/${unwatchedMovieId}`, null, config)
+  const body = { unwatchedMovieId: unwatchedMovieId }
+
+  return axios.patch('/api/unwatched-movies', body, config)
 }
 
 export default patchUnwatchedMovieByToken
