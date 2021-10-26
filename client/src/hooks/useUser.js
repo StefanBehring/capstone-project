@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import loadFromLocal from '../lib/loadFromLocal'
 import getUserByToken from '../services/getUserByToken'
 
 const initialState = {
@@ -14,7 +15,7 @@ const useUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
+        const token = loadFromLocal('authToken')
 
         if (!token) {
           throw new Error('no token')

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import loadFromLocal from '../lib/loadFromLocal'
 import getUnwatchedMoviesByToken from '../services/getUnwatchedMoviesByToken'
 
 const initialState = {
@@ -13,7 +14,7 @@ const useUnwatchedMovies = () => {
   useEffect(() => {
     const fetchUnwatchedMovies = async () => {
       try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
+        const token = loadFromLocal('authToken')
 
         if (!token) {
           throw new Error('no token')

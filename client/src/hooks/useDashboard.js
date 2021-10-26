@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import loadFromLocal from '../lib/loadFromLocal'
 import getDashboardByToken from '../services/getDashboardByToken'
 
 const initialState = {
@@ -13,7 +14,7 @@ const useDashboard = () => {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const token = JSON.parse(localStorage.getItem('authToken'))
+        const token = loadFromLocal('authToken')
 
         if (!token) {
           throw new Error('no token')
