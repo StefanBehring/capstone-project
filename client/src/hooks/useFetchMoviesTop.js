@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import getMoviesTop from '../services/getMoviesTop'
 
+const initialState = {
+  movies: [],
+  isLoading: true,
+  errorMessage: '',
+}
+
 const useFetchMoviesTop = () => {
-  const [movieData, setMovieData] = useState({
-    movies: [],
-    isLoading: true,
-    errorMessage: '',
-  })
+  const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
     const fetchMovies = async () => {

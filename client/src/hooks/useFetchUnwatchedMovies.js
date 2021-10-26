@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import getUnwatchedMoviesByToken from '../services/getUnwatchedMoviesByToken'
 
+const initialState = {
+  infoData: [],
+  isLoading: false,
+  errorMessage: '',
+}
+
 const useFetchUnwatchedMovies = () => {
-  const [unwatchedMovies, setUnwatchedMovies] = useState({
-    infoData: [],
-    isLoading: false,
-    errorMessage: '',
-  })
+  const [unwatchedMovies, setUnwatchedMovies] = useState(initialState)
 
   useEffect(() => {
     const fetchUnwatchedMovies = async () => {
@@ -14,12 +16,7 @@ const useFetchUnwatchedMovies = () => {
         const token = JSON.parse(localStorage.getItem('authToken'))
 
         if (token === '') {
-          const newUnwatchedMovies = {
-            infoData: [],
-            isLoading: false,
-            errorMessage: '',
-          }
-          setUnwatchedMovies(newUnwatchedMovies)
+          setUnwatchedMovies(initialState)
         } else {
           const config = {
             headers: {

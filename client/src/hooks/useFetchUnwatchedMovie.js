@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import getMovieById from '../services/getMovieById'
 
+const initialState = {
+  infoData: {},
+  isLoading: true,
+  errorMessage: '',
+}
+
 const useFetchUnwatchedMovie = unwatchedMovieId => {
-  const [unwatchedMovie, setUnwatchedMovie] = useState({
-    infoData: {},
-    isLoading: true,
-    errorMessage: '',
-  })
+  const [unwatchedMovie, setUnwatchedMovie] = useState(initialState)
 
   useEffect(() => {
     const fetchUnwatchedMovie = async unwatchedMovieId => {

@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import getUserByToken from '../services/getUserByToken'
 
+const initialState = {
+  userData: {},
+  isLoggedIn: false,
+  isLoading: true,
+  errorMessage: '',
+}
+
 const useFetchUser = () => {
-  const [userData, setUserData] = useState({
-    userData: {},
-    isLoggedIn: false,
-    isLoading: true,
-    errorMessage: '',
-  })
+  const [userData, setUserData] = useState(initialState)
 
   useEffect(() => {
     const fetchUser = async () => {

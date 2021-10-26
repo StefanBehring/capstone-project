@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import getMoviesAll from '../services/getMoviesAll'
 
+const initialState = { movies: [], isLoading: true }
+
 const useFetchMoviesAll = () => {
-  const [moviesData, setMoviesData] = useState({ movies: [], isLoading: true })
+  const [moviesData, setMoviesData] = useState(initialState)
 
   useEffect(() => {
     async function fetchOwnData() {
@@ -13,17 +15,7 @@ const useFetchMoviesAll = () => {
       } catch (error) {
         console.error(error)
         setMoviesData({
-          movies: [
-            {
-              tmdbId: 550,
-            },
-            {
-              tmdbId: 580,
-            },
-            {
-              tmdbId: 600,
-            },
-          ],
+          movies: [],
           isLoading: false,
         })
       }

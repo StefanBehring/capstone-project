@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import getMovieFromTmdbById from '../services/getMovieFromTmdbById'
 
+const initialState = {
+  firstMovie: '',
+  secondMovie: '',
+  isLoading: true,
+  errorMessage: '',
+}
+
 const useFetchVotingArea = (firstMovieTmdbId, secondMovieTmdbId) => {
-  const [movieData, setMovieData] = useState({
-    firstMovie: '',
-    secondMovie: '',
-    isLoading: true,
-    errorMessage: '',
-  })
+  const [movieData, setMovieData] = useState(initialState)
 
   useEffect(() => {
     const fetchMovies = async (firstTmdbId, secondTmdbId) => {

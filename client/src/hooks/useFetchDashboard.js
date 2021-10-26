@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import getDashboardByToken from '../services/getDashboardByToken'
 
+const initialState = {
+  infoData: {},
+  isLoading: true,
+  errorMessage: '',
+}
+
 const useFetchDashboard = () => {
-  const [dashboardData, setDashboardData] = useState({
-    infoData: {},
-    isLoading: true,
-    errorMessage: '',
-  })
+  const [dashboardData, setDashboardData] = useState(initialState)
 
   useEffect(() => {
     const fetchDashboard = async () => {
