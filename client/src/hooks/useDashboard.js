@@ -3,7 +3,9 @@ import loadFromLocal from '../lib/loadFromLocal'
 import getDashboardByToken from '../services/getDashboardByToken'
 
 const initialState = {
-  infoData: {},
+  moviesCount: 0,
+  votingsCount: 0,
+  unwatchedMoviesCount: 0,
   isLoading: true,
   errorMessage: '',
 }
@@ -20,10 +22,12 @@ const useDashboard = () => {
           throw new Error('no token')
         }
 
-        const user = await getDashboardByToken(token)
+        const dashboard = await getDashboardByToken(token)
 
         const newDashboard = {
-          infoData: user,
+          moviesCount: dashboard.moviesCount,
+          votingsCount: dashboard.votingsCount,
+          unwatchedMoviesCount: dashboard.unwatchedMoviesCount,
           isLoading: false,
           errorMessage: '',
         }
@@ -31,7 +35,9 @@ const useDashboard = () => {
       } catch (error) {
         console.error(error)
         const newDashboard = {
-          infoData: {},
+          moviesCount: 0,
+          votingsCount: 0,
+          unwatchedMoviesCount: 0,
           isLoading: false,
           errorMessage: error.message,
         }

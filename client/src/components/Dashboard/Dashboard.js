@@ -20,12 +20,12 @@ const Dashboard = ({ isAdmin }) => {
     <DashboardWrapper>
       <Wrapper>
         <h2>Dashboard</h2>
-        <p>Movies: {dashboardData.infoData.moviesCount}</p>
-        <p>Votings: {dashboardData.infoData.votingsCount}</p>
+        <p>Movies: {dashboardData.moviesCount}</p>
+        <p>Votings: {dashboardData.votingsCount}</p>
       </Wrapper>
       <Wrapper>
         <h3>Unwatched Movies</h3>
-        <p>On your list: {dashboardData.infoData.unwatchedMoviesCount}</p>
+        <p>On your list: {dashboardData.unwatchedMoviesCount}</p>
         <LinkButtonBlue message="Overview" direction="/unwatched-movies" />
       </Wrapper>
       {isAdmin && <AdminArea />}
