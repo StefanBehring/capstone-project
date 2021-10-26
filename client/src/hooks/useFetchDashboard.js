@@ -19,13 +19,7 @@ const useFetchDashboard = () => {
           throw new Error('no token')
         }
 
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-
-        const user = await getDashboardByToken(config)
+        const user = await getDashboardByToken(token)
 
         const newDashboard = {
           infoData: user.data,

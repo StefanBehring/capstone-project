@@ -19,13 +19,8 @@ const useFetchUser = () => {
         if (!token) {
           throw new Error('no token')
         }
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
 
-        const user = await getUserByToken(config)
+        const user = await getUserByToken(token)
 
         const newUser = {
           userData: user.data,

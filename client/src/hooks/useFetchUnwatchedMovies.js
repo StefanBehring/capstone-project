@@ -19,13 +19,7 @@ const useFetchUnwatchedMovies = () => {
           throw new Error('no token')
         }
 
-        const config = {
-          headers: {
-            'x-auth-token': token,
-          },
-        }
-
-        const userUnwatchedMovies = await getUnwatchedMoviesByToken(config)
+        const userUnwatchedMovies = await getUnwatchedMoviesByToken(token)
 
         const newUnwatchedMovies = {
           infoData: userUnwatchedMovies.data,

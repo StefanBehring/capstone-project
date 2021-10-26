@@ -1,6 +1,12 @@
 import axios from 'axios'
 
-const getUserByToken = config => {
+const getUserByToken = token => {
+  const config = {
+    headers: {
+      'x-auth-token': token,
+    },
+  }
+
   return axios.get('/api/auth', config)
 }
 
