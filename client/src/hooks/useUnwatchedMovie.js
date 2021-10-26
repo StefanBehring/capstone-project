@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import getMovieById from '../services/getMovieById'
 
 const initialState = {
-  infoData: {},
+  tmdbId: '',
   isLoading: true,
   errorMessage: '',
 }
@@ -16,7 +16,7 @@ const useUnwatchedMovie = unwatchedMovieId => {
         const unwatchedMovieData = await getMovieById(unwatchedMovieId)
 
         const newUnwatchedMovie = {
-          infoData: unwatchedMovieData,
+          tmdbId: unwatchedMovieData.tmdbId,
           isLoading: false,
           errorMessage: '',
         }
@@ -24,7 +24,7 @@ const useUnwatchedMovie = unwatchedMovieId => {
       } catch (error) {
         console.error(error)
         const newUnwatchedMovie = {
-          infoData: {},
+          tmdbId: '',
           isLoading: false,
           errorMessage: error.message,
         }

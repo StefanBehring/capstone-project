@@ -8,9 +8,10 @@ import patchUnwatchedMovieByToken from '../../../services/patchUnwatchedMovieByT
 import useUnwatchedMovie from '../../../hooks/useUnwatchedMovie'
 
 const UnwatchedMovie = ({ unwatchedMovieId }) => {
-  const unwatchedMovieData = useUnwatchedMovie(unwatchedMovieId)
+  const unwatchedMovie = useUnwatchedMovie(unwatchedMovieId)
 
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -18,33 +19,33 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
       const token = JSON.parse(localStorage.getItem('authToken'))
 
       if (!token) {
-        return <Redirect to="/not-logged-in" />
+        setIsError(true)
       }
 
       await patchUnwatchedMovieByToken(unwatchedMovieId, token)
       setIsSuccess(true)
     } catch (error) {
       console.error(error)
-      return <Redirect to="/not-logged-in" />
+      setIsError(true)
     }
   }
 
-  if (unwatchedMovieData.isLoading) {
+  if (unwatchedMovie.isLoading) {
     return <LoadingSpinner />
+  }
+
+  if (unwatchedMovie.errorMessage !== '' || isError) {
+    return <Redirect to="/not-logged-in" />
   }
 
   if (isSuccess) {
     return <Redirect to="/unwatched-movies" />
   }
 
-  if (unwatchedMovieData.errorMessage !== '') {
-    return <Redirect to="/not-logged-in" />
-  }
-
   return (
     <UnwatchedMovieWrapper onSubmit={handleSubmit}>
       <Line />
-      <MovieCard tmdbId={unwatchedMovieData.infoData.tmdbId} />
+      <MovieCard tmdbId={unwatchedMovie.tmdbId} />
       <ButtonGreen message="Watched It!" />
     </UnwatchedMovieWrapper>
   )
