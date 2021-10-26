@@ -1,11 +1,8 @@
 import axios from 'axios'
+import generateConfig from '../lib/generateConfig'
 
 const patchUnwatchedMovieByToken = (unwatchedMovieId, token) => {
-  const config = {
-    headers: {
-      'x-auth-token': token,
-    },
-  }
+  const config = generateConfig(token)
 
   const body = { unwatchedMovieId: unwatchedMovieId }
 
