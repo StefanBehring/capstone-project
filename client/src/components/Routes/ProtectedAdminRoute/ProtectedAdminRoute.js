@@ -7,18 +7,18 @@ const ProtectedAdminRoute = ({ isAdmin, component: Component, ...rest }) => {
       render={props => {
         if (isAdmin) {
           return <Component {...props} />
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: '/',
-                state: {
-                  from: props.location,
-                },
-              }}
-            />
-          )
         }
+
+        return (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        )
       }}
     />
   )

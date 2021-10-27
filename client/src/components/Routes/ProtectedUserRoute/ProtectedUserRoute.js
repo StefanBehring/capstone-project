@@ -14,18 +14,18 @@ const ProtectedUserRoute = ({
           return <Component onLogin={onLogin} {...props} />
         } else if (!isLoggedIn) {
           return <Component {...props} />
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: '/',
-                state: {
-                  from: props.location,
-                },
-              }}
-            />
-          )
         }
+
+        return (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        )
       }}
     />
   )
