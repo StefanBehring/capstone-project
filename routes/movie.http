@@ -1,0 +1,21 @@
+### POST
+POST http://localhost:4000/api/movie
+Content-Type: application/json
+
+{
+    "tmdbId": "550"
+}
+
+### GET id
+GET http://localhost:4000/api/movie/6172ec744c7bb58e3bb07307
+
+### PATCH
+PATCH http://localhost:4000/api/movie/6172ec744c7bb58e3bb07307
+Content-Type: application/json
+
+{
+    "rating": 1476
+}
+
+### DELETE
+DELETE  http://localhost:4000/api/movie/6164051ad61ea5d4d5514641
