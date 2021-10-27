@@ -5,25 +5,16 @@ const User = require('../models/User')
 
 const router = express.Router()
 
-router.get('/all', async (request, response, next) => {
-  try {
-    const movies = await Movie.find()
-    if (!movies) {
-      console.error('Error receiving movies from database')
-      return next({
-        status: 404,
-        message: 'Error receiving movies from database',
-      })
-    }
-    response.status(200).json(movies)
-  } catch (error) {
-    serverError(error, next)
-  }
-})
+router.get('/', async (request, response, next) => {
+  const isToplist = request.query.isToplist
 
-router.get('/top', async (request, response, next) => {
   try {
-    const movies = await Movie.find().sort({ rating: -1 }).limit(100)
+    let movies
+    if (isToplist) {
+      movies = await Movie.find().sort({ rating: -1 }).limit(100)
+    } else {
+      movies = await Movie.find()
+    }
     if (!movies) {
       console.error('Error receiving movies from database')
       return next({
