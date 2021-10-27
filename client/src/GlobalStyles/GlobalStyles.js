@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
     :root {
         --color-primary-dark: #0D4432;
         --color-primary-light: #2BB885;
