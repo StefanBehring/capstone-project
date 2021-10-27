@@ -1,11 +1,6 @@
 import styled from 'styled-components/macro'
 import { useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import saveToLocal from './lib/saveToLocal'
 import Header from './components/Header/Header'
@@ -23,6 +18,9 @@ import AddMovieForm from './components/AddMovieForm/AddMovieForm'
 import RegisterSuccess from './components/RegisterSuccess/RegisterSuccess'
 import Dashboard from './components/Dashboard/Dashboard'
 import UnwatchedMoviesOverview from './components/UnwatchedMoviesOverview/UnwatchedMoviesOverview'
+import ProtectedAdminRoute from './components/Routes/ProtectedAdminRoute/ProtectedAdminRoute'
+import ProtectedUserRoute from './components/Routes/ProtectedUserRoute/ProtectedUserRoute'
+import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -47,51 +45,64 @@ function App() {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/add-new-movie">
-              {isAdmin ? <AddMovieForm /> : <Redirect to="/" />}
-            </Route>
-            <Route exact path="/movie-overview">
-              {isAdmin ? <MovieOverview /> : <Redirect to="/" />}
-            </Route>
+            <ProtectedAdminRoute
+              exact
+              path="/add-new-movie"
+              isAdmin={isAdmin}
+              component={AddMovieForm}
+            />
+            <ProtectedAdminRoute
+              exact
+              path="/movie-overview"
+              isAdmin={isAdmin}
+              component={MovieOverview}
+            />
 
-            <Route exact path="/register-success">
-              {isLoggedIn ? <Redirect to="/" /> : <RegisterSuccess />}
-            </Route>
-            <Route exact path="/register">
-              {isLoggedIn ? <Redirect to="/" /> : <RegisterAccountForm />}
-            </Route>
-            <Route exact path="/login">
-              {isLoggedIn ? (
-                <Redirect to="/" />
-              ) : (
-                <LoginForm onLogin={handleLogin} />
-              )}
-            </Route>
+            <ProtectedUserRoute
+              exact
+              path="/register-success"
+              isLoggedIn={isLoggedIn}
+              component={RegisterSuccess}
+            />
+            <ProtectedUserRoute
+              exact
+              path="/register"
+              isLoggedIn={isLoggedIn}
+              component={RegisterAccountForm}
+            />
+            <ProtectedUserRoute
+              exact
+              path="/login"
+              isLoggedIn={isLoggedIn}
+              component={LoginForm}
+              onLogin={handleLogin}
+            />
 
-            <Route exact path="/unwatched-movies">
-              {isLoggedIn ? (
-                <UnwatchedMoviesOverview />
-              ) : (
-                <Redirect to="/not-logged-in" />
-              )}
-            </Route>
-            <Route exact path="/voting">
-              {isLoggedIn ? <Voting /> : <Redirect to="/not-logged-in" />}
-            </Route>
-            <Route exact path="/profile">
-              {isLoggedIn ? (
-                <Profile onLogout={handleLogout} />
-              ) : (
-                <Redirect to="/not-logged-in" />
-              )}
-            </Route>
-            <Route exact path="/edit-password">
-              {isLoggedIn ? (
-                <EditPasswordForm />
-              ) : (
-                <Redirect to="/not-logged-in" />
-              )}
-            </Route>
+            <ProtectedRoute
+              exact
+              path="/unwatched-movies"
+              isLoggedIn={isLoggedIn}
+              component={UnwatchedMoviesOverview}
+            />
+            <ProtectedRoute
+              exact
+              path="/voting"
+              isLoggedIn={isLoggedIn}
+              component={Voting}
+            />
+            <ProtectedRoute
+              exact
+              path="/profile"
+              isLoggedIn={isLoggedIn}
+              component={Profile}
+              onLogout={handleLogout}
+            />
+            <ProtectedRoute
+              exact
+              path="/edit-password"
+              isLoggedIn={isLoggedIn}
+              component={EditPasswordForm}
+            />
 
             <Route exact path="/toplist">
               <Toplist />
