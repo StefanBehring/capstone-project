@@ -35,7 +35,7 @@ router.get('/:votingId', async (request, response, next) => {
     }
     response.status(200).json(vote)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -92,7 +92,7 @@ router.patch('/:votingId', async (request, response, next) => {
     )
     response.status(200).json(newVote)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 

@@ -6,7 +6,7 @@ const User = require('../models/User')
 const router = express.Router()
 
 router.get('/', auth, async (request, response, next) => {
-  const userId = request.user.id
+  const userId = response.locals.user.id
 
   try {
     const user = await User.findById(userId).select('unwatchedMovies')
@@ -17,12 +17,12 @@ router.get('/', auth, async (request, response, next) => {
 
     response.status(200).json(user.unwatchedMovies)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
 router.patch('/', auth, async (request, response, next) => {
-  const userId = request.user.id
+  const userId = response.locals.user.id
   const { unwatchedMovieId } = request.body
 
   try {
@@ -41,7 +41,7 @@ router.patch('/', auth, async (request, response, next) => {
 
     response.status(200).json({ newUnwatchedMovies })
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 

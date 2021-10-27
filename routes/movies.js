@@ -50,7 +50,7 @@ router.get('/all', async (request, response, next) => {
     }
     response.status(200).json(movies)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -66,7 +66,7 @@ router.get('/top', async (request, response, next) => {
     }
     response.status(200).json(movies)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -118,7 +118,7 @@ router.get('/voting/:userId', async (request, response, next) => {
 
     response.status(200).json(dataVoting)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -133,7 +133,7 @@ router.get('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -158,7 +158,7 @@ router.patch('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
@@ -173,7 +173,7 @@ router.delete('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 

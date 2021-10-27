@@ -59,16 +59,17 @@ router.post('/', async (request, response, next) => {
       }
     })
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
 router.get('/', auth, async (request, response, next) => {
   try {
-    const user = await User.findById(request.user.id).select('-password')
+    const userId = response.locals.user.id
+    const user = await User.findById(userId).select('-password')
     response.status(200).json(user)
   } catch (error) {
-    return serverError(error)
+    serverError(error, next)
   }
 })
 
