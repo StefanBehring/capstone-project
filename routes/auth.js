@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const auth = require('../middleware/auth')
+const serverError = require('../lib/serverError')
 
 const router = express.Router()
 
@@ -57,21 +58,18 @@ router.post('/', async (request, response, next) => {
         return next({ status: 400, message: error.message })
       }
     })
-  } catch (err) {
-    console.error(err)
-    const error = { message: 'Unknown error!' }
-    return next({ status: 500, message: error.message })
+  } catch (error) {
+    serverError(error, next)
   }
 })
 
 router.get('/', auth, async (request, response, next) => {
   try {
-    const user = await User.findById(request.user.id).select('-password')
+    const userId = response.locals.user.id
+    const user = await User.findById(userId).select('-password')
     response.status(200).json(user)
-  } catch (err) {
-    console.error(err)
-    const error = { message: 'Unknown error!' }
-    return next({ status: 500, message: error.message })
+  } catch (error) {
+    serverError(error, next)
   }
 })
 

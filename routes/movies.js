@@ -1,5 +1,6 @@
 const express = require('express')
 const axios = require('axios')
+const serverError = require('../lib/serverError')
 const Movie = require('../models/Movie')
 const User = require('../models/User')
 
@@ -49,8 +50,7 @@ router.get('/all', async (request, response, next) => {
     }
     response.status(200).json(movies)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -66,8 +66,7 @@ router.get('/top', async (request, response, next) => {
     }
     response.status(200).json(movies)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -119,8 +118,7 @@ router.get('/voting/:userId', async (request, response, next) => {
 
     response.status(200).json(dataVoting)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -135,8 +133,7 @@ router.get('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -161,8 +158,7 @@ router.patch('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -177,8 +173,7 @@ router.delete('/:movieId', async (request, response, next) => {
     }
     response.status(200).json(movie)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 

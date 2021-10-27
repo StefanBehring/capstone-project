@@ -1,5 +1,6 @@
 const express = require('express')
 const auth = require('../middleware/auth')
+const serverError = require('../lib/serverError')
 const Movie = require('../models/Movie')
 const User = require('../models/User')
 const Voting = require('../models/Voting')
@@ -7,7 +8,7 @@ const Voting = require('../models/Voting')
 const router = express.Router()
 
 router.get('/', auth, async (request, response, next) => {
-  const userId = request.user.id
+  const userId = response.locals.user.id
 
   try {
     const movies = await Movie.find()
@@ -35,8 +36,7 @@ router.get('/', auth, async (request, response, next) => {
     }
     response.status(200).json(dashboardData)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 

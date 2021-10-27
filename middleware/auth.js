@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET)
 
-    req.user = decoded.user
+    res.locals.user = decoded.user
     next()
   } catch (error) {
     return res.status(401).json({ message: 'Token is invalid!' })

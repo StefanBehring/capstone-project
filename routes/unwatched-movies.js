@@ -1,11 +1,12 @@
 const express = require('express')
+const serverError = require('../lib/serverError')
 const auth = require('../middleware/auth')
 const User = require('../models/User')
 
 const router = express.Router()
 
 router.get('/', auth, async (request, response, next) => {
-  const userId = request.user.id
+  const userId = response.locals.user.id
 
   try {
     const user = await User.findById(userId).select('unwatchedMovies')
@@ -16,13 +17,12 @@ router.get('/', auth, async (request, response, next) => {
 
     response.status(200).json(user.unwatchedMovies)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
 router.patch('/', auth, async (request, response, next) => {
-  const userId = request.user.id
+  const userId = response.locals.user.id
   const { unwatchedMovieId } = request.body
 
   try {
@@ -41,8 +41,7 @@ router.patch('/', auth, async (request, response, next) => {
 
     response.status(200).json({ newUnwatchedMovies })
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 

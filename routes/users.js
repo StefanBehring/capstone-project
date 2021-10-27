@@ -1,5 +1,6 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
+const serverError = require('../lib/serverError')
 const User = require('../models/User')
 
 const router = express.Router()
@@ -72,8 +73,7 @@ router.get('/:userId', async (request, response, next) => {
       isAdmin: user.isAdmin,
     })
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -116,8 +116,7 @@ router.patch('/unknownmovies/:userId', async (request, response, next) => {
       isAdmin: newUser.isAdmin,
     })
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -162,8 +161,7 @@ router.delete('/:userId', async (request, response, next) => {
     }
     response.status(200).json(user)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 

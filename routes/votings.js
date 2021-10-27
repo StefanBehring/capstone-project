@@ -1,4 +1,5 @@
 const express = require('express')
+const serverError = require('../lib/serverError')
 const Voting = require('../models/Voting')
 const Movie = require('../models/Movie')
 
@@ -34,8 +35,7 @@ router.get('/:votingId', async (request, response, next) => {
     }
     response.status(200).json(vote)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
@@ -92,8 +92,7 @@ router.patch('/:votingId', async (request, response, next) => {
     )
     response.status(200).json(newVote)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    serverError(error, next)
   }
 })
 
