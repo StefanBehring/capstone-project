@@ -9,7 +9,7 @@ export const handlers = [
     }
     return res(ctx.status(201), ctx.json(newVoting))
   }),
-  rest.get('/api/movies/top', (req, res, ctx) => {
+  rest.get('/api/movies/?isToplist=true', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
@@ -31,7 +31,7 @@ export const handlers = [
       ])
     )
   }),
-  rest.get('/api/movies/all', (req, res, ctx) => {
+  rest.get('/api/movies', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
@@ -90,6 +90,17 @@ export const handlers = [
         moviesCount: 245,
         votingsCount: 10456,
         unwatchedMoviesCount: 34,
+      })
+    )
+  }),
+  rest.get('/api/auth', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        _id: '61669b0f5642db42d61f716b',
+        username: 'JohnDoe',
+        email: 'johndoe@mail.com',
+        isAdmin: false,
       })
     )
   }),

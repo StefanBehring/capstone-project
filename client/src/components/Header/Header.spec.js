@@ -27,6 +27,6 @@ describe('Header', () => {
     render(<Header />)
 
     const imgElements = screen.getAllByRole('img')
-    expect(imgElements).toBeInTheDocument()
+    expect(imgElements).toHaveLength(2)
   })
 })
