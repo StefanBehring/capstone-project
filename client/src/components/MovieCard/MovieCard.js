@@ -31,7 +31,7 @@ const Wrapper = styled.section`
   justify-content: flex-start;
   margin: 0.5rem auto;
   padding: 0.5rem;
-  width: 350px;
+  width: 340px;
 
   img {
     height: 100px;

@@ -87,7 +87,7 @@ const Form = styled.form`
   flex-direction: column;
   margin: 0.5rem auto;
   padding: 0.5rem;
-  width: 350px;
+  width: 340px;
 
   h2 {
     text-align: center;

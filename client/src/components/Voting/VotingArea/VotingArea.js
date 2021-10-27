@@ -46,7 +46,7 @@ const AreaVoting = styled.div`
   margin: 0.5rem auto;
   padding: 0.5rem;
   min-height: 250px;
-  width: 350px;
+  width: 340px;
 `
 
 export default VotingArea
