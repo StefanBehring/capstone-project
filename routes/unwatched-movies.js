@@ -1,4 +1,5 @@
 const express = require('express')
+const serverError = require('../lib/serverError')
 const auth = require('../middleware/auth')
 const User = require('../models/User')
 
@@ -16,8 +17,7 @@ router.get('/', auth, async (request, response, next) => {
 
     response.status(200).json(user.unwatchedMovies)
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    return serverError(error)
   }
 })
 
@@ -41,8 +41,7 @@ router.patch('/', auth, async (request, response, next) => {
 
     response.status(200).json({ newUnwatchedMovies })
   } catch (error) {
-    console.error(error)
-    return next({ status: 500, message: 'Server error' })
+    return serverError(error)
   }
 })
 
