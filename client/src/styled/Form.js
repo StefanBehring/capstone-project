@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
 
 const Form = styled.form`
-  background-color: var(--color-white-light);
+  background-color: var(--color-primary-dark);
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--color-black);
+  color: var(--color-primary-light);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -18,6 +18,8 @@ const Form = styled.form`
   }
 
   input {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-heavy);
     padding: 0.5rem 0.8rem;
   }
 `

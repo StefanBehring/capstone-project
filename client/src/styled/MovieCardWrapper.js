@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
 
 const MovieCardWrapper = styled.section`
-  background-color: var(--color-white-light);
+  background-color: var(--color-primary-dark);
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--color-black);
+  color: var(--color-primary-light);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

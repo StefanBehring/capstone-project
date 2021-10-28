@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import H3 from '../../../styled/H3'
 import ParagraphCenter from '../../../styled/ParagraphCenter'
 
 const ErrorCard = ({ title, message }) => {
@@ -22,6 +21,11 @@ const Wrapper = styled.div`
   max-width: 300px;
   min-width: 200px;
   padding: 0.5rem;
+`
+
+const H3 = styled.h3`
+  color: var(--color-white-default);
+  margin: 0;
 `
 
 export default ErrorCard

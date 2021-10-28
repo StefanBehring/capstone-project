@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import saveToLocal from './lib/saveToLocal'
 import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 import Voting from './components/Voting/Voting'
 import Toplist from './components/Toplist/Toplist'
@@ -42,7 +41,7 @@ function App() {
   return (
     <Router>
       <Wrapper>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         <Main>
           <Switch>
             <ProtectedAdminRoute
@@ -116,7 +115,6 @@ function App() {
             </Route>
           </Switch>
         </Main>
-        <Footer />
       </Wrapper>
     </Router>
   )
@@ -125,7 +123,7 @@ function App() {
 const Wrapper = styled.div`
   justify-self: center;
   display: grid;
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 50px auto;
   height: 100vh;
   margin: 0 auto;
   max-width: 500px;
