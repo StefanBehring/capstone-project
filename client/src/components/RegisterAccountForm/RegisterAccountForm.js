@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import styled from 'styled-components/macro'
+import Form from '../../styled/Form'
+import H2 from '../../styled/H2'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
@@ -60,7 +61,7 @@ const RegisterAccountForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Register Account</h2>
+      <H2>Register Account</H2>
       {successMessage && (
         <SuccessCard title="Success" message={successMessage} />
       )}
@@ -106,25 +107,5 @@ const RegisterAccountForm = () => {
     </Form>
   )
 }
-
-const Form = styled.form`
-  background-color: var(--color-white-light);
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  width: 340px;
-
-  h2 {
-    text-align: center;
-  }
-
-  label {
-    margin: 0.5rem 0 0;
-  }
-`
 
 export default RegisterAccountForm

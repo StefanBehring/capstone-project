@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
-import styled from 'styled-components/macro'
+import Form from '../../styled/Form'
+import H2 from '../../styled/H2'
 import postAuthForLogin from '../../services/postAuthForLogin'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
@@ -39,7 +40,7 @@ const LoginForm = ({ onLogin }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+      <H2>Login</H2>
       {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
       <label htmlFor="username">Username</label>
       <input
@@ -63,25 +64,5 @@ const LoginForm = ({ onLogin }) => {
     </Form>
   )
 }
-
-const Form = styled.form`
-  background-color: var(--color-white-light);
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  width: 340px;
-
-  h2 {
-    text-align: center;
-  }
-
-  label {
-    margin: 0.5rem 0 0;
-  }
-`
 
 export default LoginForm

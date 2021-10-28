@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import styled from 'styled-components/macro'
+import Form from '../../../styled/Form'
+import H2 from '../../../styled/H2'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
@@ -53,7 +54,7 @@ const EditPasswordForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Edit Password</h2>
+      <H2>Edit Password</H2>
       {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
       <label htmlFor="password">Password</label>
       <input
@@ -77,25 +78,5 @@ const EditPasswordForm = () => {
     </Form>
   )
 }
-
-const Form = styled.form`
-  background-color: var(--color-white-light);
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  width: 340px;
-
-  h2 {
-    text-align: center;
-  }
-
-  label {
-    margin: 0.5rem 0 0;
-  }
-`
 
 export default EditPasswordForm

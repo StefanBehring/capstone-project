@@ -1,4 +1,6 @@
-import styled from 'styled-components/macro'
+import ComponentsWrapper from '../../styled/ComponentsWrapper'
+import ParagraphCenter from '../../styled/ParagraphCenter'
+import H2 from '../../styled/H2'
 import MovieCard from '../MovieCard/MovieCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import useMoviesAll from '../../hooks/useMoviesAll'
@@ -11,28 +13,14 @@ const MovieOverview = () => {
   }
 
   return (
-    <Wrapper>
-      <h2>Movie Overview</h2>
-      <MovieCount>Moviecount: {moviesData.movies.length}</MovieCount>
+    <ComponentsWrapper>
+      <H2>Movie Overview</H2>
+      <ParagraphCenter>Moviecount: {moviesData.movies.length}</ParagraphCenter>
       {moviesData.movies.map(movie => (
         <MovieCard key={movie.tmdbId} tmdbId={movie.tmdbId} />
       ))}
-    </Wrapper>
+    </ComponentsWrapper>
   )
 }
-
-const Wrapper = styled.div`
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    margin: 0.5rem auto;
-  }
-`
-
-const MovieCount = styled.p`
-  margin: 0.5rem auto 0;
-`
 
 export default MovieOverview

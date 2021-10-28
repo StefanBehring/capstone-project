@@ -1,17 +1,19 @@
 import CardWrapper from '../../styled/CardWrapper'
+import H2 from '../../styled/H2'
+import ParagraphCenter from '../../styled/ParagraphCenter'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 
 const Home = () => {
   return (
     <CardWrapper>
-      <h2>Welcome to rate the movie</h2>
-      <p>
+      <H2>Welcome to rate the movie</H2>
+      <ParagraphCenter>
         On this app you will have the option to rate movies in a more accurate
         way than on other rating forms.
-      </p>
-      <p>Have fun!</p>
+      </ParagraphCenter>
+      <ParagraphCenter>Have fun!</ParagraphCenter>
       <LinkButtonBlue message="Login" direction="/login" />
-      <p>Don't have an account yet?</p>
+      <ParagraphCenter>Don't have an account yet?</ParagraphCenter>
       <LinkButtonBlue message="Register now!" direction="/register" />
     </CardWrapper>
   )

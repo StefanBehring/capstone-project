@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro'
+import H3 from '../../../styled/H3'
+import ParagraphCenter from '../../../styled/ParagraphCenter'
 
 const SuccessCard = ({ title, message }) => {
   return (
     <Wrapper>
-      <h3>{title}</h3>
-      <p>{message}</p>
+      <H3>{title}</H3>
+      <ParagraphCenter>{message}</ParagraphCenter>
     </Wrapper>
   )
 }
@@ -20,14 +22,6 @@ const Wrapper = styled.div`
   max-width: 300px;
   min-width: 200px;
   padding: 0.5rem;
-
-  h3 {
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-  }
 `
 
 export default SuccessCard
