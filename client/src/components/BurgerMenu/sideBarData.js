@@ -2,6 +2,7 @@ import * as AiIcons from 'react-icons/ai'
 
 export const sideBarData = [
   {
+    id: 0,
     title: 'Home',
     path: '/',
     icon: <AiIcons.AiFillHome />,
@@ -10,6 +11,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 1,
     title: 'Dashboard',
     path: '/dashboard',
     icon: <AiIcons.AiFillHome />,
@@ -18,6 +20,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 2,
     title: 'Voting',
     path: '/voting',
     icon: <AiIcons.AiFillStar />,
@@ -26,6 +29,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 3,
     title: 'Toplist',
     path: '/toplist',
     icon: <AiIcons.AiOutlineAreaChart />,
@@ -34,6 +38,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 4,
     title: 'Profile',
     path: '/profile',
     icon: <AiIcons.AiFillIdcard />,
@@ -42,6 +47,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 5,
     title: 'Login',
     path: '/login',
     icon: <AiIcons.AiOutlineLogin />,
@@ -50,6 +56,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 6,
     title: 'Register',
     path: '/register',
     icon: <AiIcons.AiFillPlayCircle />,
@@ -58,6 +65,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
+    id: 7,
     title: 'Add New Movie',
     path: '/add-new-movie',
     icon: <AiIcons.AiFillPlusCircle />,
@@ -66,6 +74,7 @@ export const sideBarData = [
     mustBeAdmin: true,
   },
   {
+    id: 8,
     title: 'Movie Overview',
     path: '/movie-overview',
     icon: <AiIcons.AiFillRead />,
@@ -74,6 +83,7 @@ export const sideBarData = [
     mustBeAdmin: true,
   },
   {
+    id: 9,
     title: 'Logout',
     path: '/profile',
     icon: <AiIcons.AiOutlineLogout />,

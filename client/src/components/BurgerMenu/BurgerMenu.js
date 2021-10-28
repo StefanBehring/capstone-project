@@ -49,10 +49,10 @@ const BurgerMenu = ({ isLoggedIn, isAdmin }) => {
 
               if (showNavLiItem) {
                 return (
-                  <NavLiItem key={item.path}>
-                    <Link to={item.path}>
+                  <NavLiItem key={item.id}>
+                    <Link key={item.id} to={item.path}>
                       {item.icon}
-                      <Title>{item.title}</Title>
+                      <Title key={item.id}>{item.title}</Title>
                     </Link>
                   </NavLiItem>
                 )
