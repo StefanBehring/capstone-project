@@ -27,7 +27,7 @@ const BurgerMenu = ({ isLoggedIn, isAdmin }) => {
                 <AiIcons.AiOutlineClose />
               </SidebarLink>
             </Toggle>
-            {sideBarData.map((item, index) => {
+            {sideBarData.map(item => {
               let showNavLiItem = true
               if (
                 item.showToLoggedIn &&
