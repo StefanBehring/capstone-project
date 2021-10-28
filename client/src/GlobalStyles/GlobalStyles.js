@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
         --color-black: #000000;
 
         --font-family: 'Montserrat', sans-serif;
+        --font-family-heading: 'Railway', sans-serif;
     }
 
     * {
