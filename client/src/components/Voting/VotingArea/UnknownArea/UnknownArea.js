@@ -53,7 +53,7 @@ const AreaVoteUnknown = styled.div`
   align-items: center;
 
   p {
-    color: var(--color-black);
+    color: var(--color-primary-light);
     margin: 0 0 0 0.5rem;
   }
 `
