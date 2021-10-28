@@ -73,6 +73,7 @@ const RegisterAccountForm = () => {
         name="username"
         minLength="6"
         placeholder="your username"
+        autoFocus="true"
         required
         onChange={handleChangeUsername}
       />
