@@ -1,4 +1,6 @@
-import styled from 'styled-components/macro'
+import ComponentsWrapper from '../../styled/ComponentsWrapper'
+import H2 from '../../styled/H2'
+import Ranking from '../../styled/Ranking'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import MovieCard from '../MovieCard/MovieCard'
@@ -16,8 +18,8 @@ const Toplist = () => {
   }
 
   return (
-    <Wrapper>
-      <h2>Toplist</h2>
+    <ComponentsWrapper>
+      <H2>Toplist</H2>
       {moviesData.movies.map((movie, index) => {
         return (
           <div key={movie._id}>
@@ -26,24 +28,8 @@ const Toplist = () => {
           </div>
         )
       })}
-    </Wrapper>
+    </ComponentsWrapper>
   )
 }
-
-const Wrapper = styled.div`
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    text-align: center;
-  }
-`
-
-const Ranking = styled.p`
-  font-weight: bold;
-  text-align: center;
-  margin: 0.7rem auto 0.3rem;
-`
 
 export default Toplist

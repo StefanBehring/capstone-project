@@ -1,20 +1,12 @@
-import styled from 'styled-components/macro'
+import FooterWrapper from '../../styled/FooterWrapper'
 import Navigation from '../Navigation/Navigation'
 
 const Footer = () => {
   return (
-    <Wrapper>
+    <FooterWrapper>
       <Navigation />
-    </Wrapper>
+    </FooterWrapper>
   )
 }
-
-const Wrapper = styled.footer`
-  background-color: var(--color-grey-light);
-  color: var(--color-black);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 export default Footer

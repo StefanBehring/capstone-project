@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
-import CardWrapper from '../../styled/CardWrapper'
 import styled from 'styled-components/macro'
+import H2 from '../../styled/H2'
+import CardWrapper from '../../styled/CardWrapper'
+import ParagraphCenter from '../../styled/ParagraphCenter'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ButtonRed from '../Buttons/ButtonRed/ButtonRed'
@@ -46,9 +48,9 @@ const Profile = ({ onLogout }) => {
 
   return (
     <CardWrapper>
-      <h2>Profile</h2>
-      <Paragraph>{userData.username}</Paragraph>
-      <Paragraph>{userData.email}</Paragraph>
+      <H2>Profile</H2>
+      <ParagraphCenter>{userData.username}</ParagraphCenter>
+      <ParagraphCenter>{userData.email}</ParagraphCenter>
       <Links>
         <LinkButtonBlue direction="/edit-password" message="Change Password" />
         <ButtonGreen message="Logout" onClickFunction={handleLogout} />
@@ -57,10 +59,6 @@ const Profile = ({ onLogout }) => {
     </CardWrapper>
   )
 }
-
-const Paragraph = styled.p`
-  margin: 0 auto 0.5rem;
-`
 
 const Links = styled.div`
   display: flex;

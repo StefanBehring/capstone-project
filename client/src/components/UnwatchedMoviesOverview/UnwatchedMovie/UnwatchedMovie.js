@@ -1,6 +1,7 @@
-import styled from 'styled-components/macro'
 import { Redirect } from 'react-router'
 import { useState } from 'react'
+import FormWrapper from '../../../styled/FormWrapper'
+import Line from '../../../styled/Line'
 import LoadingSpinner from '../../Messages/LoadingSpinner/LoadingSpinner'
 import MovieCard from '../../MovieCard/MovieCard'
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen'
@@ -43,22 +44,12 @@ const UnwatchedMovie = ({ unwatchedMovieId }) => {
   }
 
   return (
-    <UnwatchedMovieWrapper onSubmit={handleSubmit}>
+    <FormWrapper onSubmit={handleSubmit}>
       <Line />
       <MovieCard tmdbId={unwatchedMovie.tmdbId} />
       <ButtonGreen message="Watched It!" />
-    </UnwatchedMovieWrapper>
+    </FormWrapper>
   )
 }
-
-const UnwatchedMovieWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-`
-
-const Line = styled.hr`
-  border-top: 1px solid var(--color-black);
-  width: 80%;
-`
 
 export default UnwatchedMovie

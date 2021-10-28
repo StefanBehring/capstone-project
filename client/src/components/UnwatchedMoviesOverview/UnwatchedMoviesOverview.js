@@ -1,4 +1,5 @@
-import styled from 'styled-components/macro'
+import ComponentsWrapper from '../../styled/ComponentsWrapper'
+import H2 from '../../styled/H2'
 import { Redirect } from 'react-router'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import UnwatchedMovie from './UnwatchedMovie/UnwatchedMovie'
@@ -16,24 +17,13 @@ const UnwatchedMoviesOverview = () => {
   }
 
   return (
-    <UnwatchedMoviesWrapper>
-      <h2>Unwatched Movies</h2>
+    <ComponentsWrapper>
+      <H2>Unwatched Movies</H2>
       {unwatchedMoviesData.infoData.map(movieId => {
         return <UnwatchedMovie key={movieId} unwatchedMovieId={movieId} />
       })}
-    </UnwatchedMoviesWrapper>
+    </ComponentsWrapper>
   )
 }
-
-const UnwatchedMoviesWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  h2 {
-    color: var(--color-black);
-    margin-bottom: 0.3rem;
-  }
-`
 
 export default UnwatchedMoviesOverview
