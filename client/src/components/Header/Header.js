@@ -1,37 +1,27 @@
-import styled from 'styled-components/macro'
+import HeaderWrapper from '../../styled/HeaderWrapper'
 import logo from '../../assets/header-b-objective.svg'
-import tmdbLogo from '../../assets/tmdb-logo.svg'
+// import tmdbLogo from '../../assets/tmdb-logo.svg'
+import BurgerMenu from '../BurgerMenu/BurgerMenu'
 
 const Header = () => {
   return (
-    <Wrapper>
+    <HeaderWrapper>
       <h1>
         <img src={logo} width="240" height="50" alt="be objective" />
       </h1>
-      <a
-        href="https://www.themoviedb.org/?language=de"
-        target="_new"
-        aria-label="themoviedb.org"
-      >
-        <img src={tmdbLogo} width="190" height="81" alt="" />
-      </a>
-    </Wrapper>
+      <BurgerMenu />
+    </HeaderWrapper>
   )
 }
 
-const Wrapper = styled.header`
-  background-color: var(--color-primary-light);
-  color: var(--color-black);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  img {
-    margin: 0;
-    padding: 0;
-    height: 50px;
-    width: auto;
-  }
-`
+/*
+<a
+  href="https://www.themoviedb.org/?language=de"
+  target="_new"
+  aria-label="themoviedb.org"
+>
+  <img src={tmdbLogo} width="190" height="81" alt="" />
+</a>
+*/
 
 export default Header
