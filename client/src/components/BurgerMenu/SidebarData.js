@@ -1,6 +1,6 @@
 import * as AiIcons from 'react-icons/ai'
 
-export const SidebarData = [
+export const sideBarData = [
   {
     title: 'Home',
     path: '/',

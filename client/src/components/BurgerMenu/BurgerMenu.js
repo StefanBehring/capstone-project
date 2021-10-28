@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { SidebarData } from './SidebarData'
+import { sideBarData } from './sideBarData'
 import tmdbLogo from '../../assets/tmdb-logo.svg'
 import { IconContext } from 'react-icons'
 import * as FaIcons from 'react-icons/fa'
@@ -27,7 +27,7 @@ const BurgerMenu = ({ isLoggedIn, isAdmin }) => {
                 <AiIcons.AiOutlineClose />
               </SidebarLink>
             </Toggle>
-            {SidebarData.map((item, index) => {
+            {sideBarData.map((item, index) => {
               let showNavLiItem = true
               if (
                 item.showToLoggedIn &&
@@ -49,7 +49,7 @@ const BurgerMenu = ({ isLoggedIn, isAdmin }) => {
 
               if (showNavLiItem) {
                 return (
-                  <NavLiItem key={index}>
+                  <NavLiItem key={item.path}>
                     <Link to={item.path}>
                       {item.icon}
                       <Title>{item.title}</Title>
