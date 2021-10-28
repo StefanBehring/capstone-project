@@ -3,13 +3,13 @@ import logo from '../../assets/header-b-objective.svg'
 // import tmdbLogo from '../../assets/tmdb-logo.svg'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 
-const Header = () => {
+const Header = ({ isLoggedIn, isAdmin }) => {
   return (
     <HeaderWrapper>
+      <BurgerMenu isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
       <h1>
         <img src={logo} width="240" height="50" alt="be objective" />
       </h1>
-      <BurgerMenu />
     </HeaderWrapper>
   )
 }
