@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import ParagraphCenter from '../../../../styled/ParagraphCenter'
 import ButtonVoteDown from '../Buttons/ButtonVoteDown/ButtonVoteDown'
 import ButtonVoteUp from '../Buttons/ButtonVoteUp/ButtonVoteUp'
 
@@ -7,10 +8,11 @@ const RatingArea = ({ onVoteClick }) => {
     <AreaRating>
       <AreaVoteUp>
         <ButtonVoteUp onVoteClick={onVoteClick} />
-        <p>Vote Up</p>
+        <ParagraphCenter>Upper</ParagraphCenter>
       </AreaVoteUp>
+      <ParagraphCenter>Vote</ParagraphCenter>
       <AreaVoteDown>
-        <p>Vote Down</p>
+        <ParagraphCenter>Below</ParagraphCenter>
         <ButtonVoteDown onVoteClick={onVoteClick} />
       </AreaVoteDown>
     </AreaRating>
@@ -27,10 +29,6 @@ const AreaVoteUp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
-  p {
-    margin-top: 0.5rem;
-  }
 `
 
 const AreaVoteDown = styled.div`
