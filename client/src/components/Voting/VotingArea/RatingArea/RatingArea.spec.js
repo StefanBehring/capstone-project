@@ -2,13 +2,16 @@ import { render, screen } from '@testing-library/react'
 import RatingArea from './RatingArea'
 
 describe('RatingArea', () => {
-  it('renders texts', () => {
+  it('renders', () => {
     render(<RatingArea />)
 
-    const voteUpText = screen.getByText('Vote Up')
+    const voteUpText = screen.getByText('Upper')
     expect(voteUpText).toBeInTheDocument()
 
-    const voteDownText = screen.getByText('Vote Down')
+    const voteText = screen.getByText('Vote')
+    expect(voteText).toBeInTheDocument()
+
+    const voteDownText = screen.getByText('Below')
     expect(voteDownText).toBeInTheDocument()
   })
 
