@@ -14,12 +14,25 @@ describe('Home', () => {
     expect(headerElement).toBeInTheDocument()
 
     const text2 = screen.getByText(
-      'On this app you will have the option to rate movies in a more accurate way than on other rating forms.'
+      'On this app you will have the option to rate movies.'
     )
     expect(text2).toBeInTheDocument()
 
-    const text3 = screen.getByText('Have fun!')
+    const text3 = screen.getByText(
+      "You don't do it in the typical 5-star fashion way. You decide which movie you like more!"
+    )
     expect(text3).toBeInTheDocument()
+
+    const text4 = screen.getByText(
+      'This way we get a way better understanding of which one really is the best movie.'
+    )
+    expect(text4).toBeInTheDocument()
+
+    const text5 = screen.getByText('Have fun!')
+    expect(text5).toBeInTheDocument()
+
+    const text6 = screen.getByText("Don't have an account yet?")
+    expect(text6).toBeInTheDocument()
 
     const linkLogin = screen.getByText('Login')
     expect(linkLogin).toBeInTheDocument()
