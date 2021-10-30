@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from './Header'
 
 export default {
@@ -6,6 +5,22 @@ export default {
   component: Header,
 }
 
-const Template = () => <Header />
+const Template = args => <Header {...args} />
 
-export const JustHeader = Template.bind({})
+export const HeaderGuest = Template.bind({})
+HeaderGuest.args = {
+  isLoggedIn: false,
+  isAdmin: false,
+}
+
+export const HeaderUser = Template.bind({})
+HeaderUser.args = {
+  isLoggedIn: true,
+  isAdmin: false,
+}
+
+export const HeaderAdmin = Template.bind({})
+HeaderAdmin.args = {
+  isLoggedIn: true,
+  isAdmin: true,
+}
