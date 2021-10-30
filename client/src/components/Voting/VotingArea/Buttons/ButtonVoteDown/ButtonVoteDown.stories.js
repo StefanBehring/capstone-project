@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import ButtonVoteDown from './ButtonVoteDown'
 
 export default {
@@ -5,6 +6,10 @@ export default {
   component: ButtonVoteDown,
 }
 
-const Template = () => <ButtonVoteDown />
+const Template = args => <ButtonVoteDown {...args} />
 
 export const ButtonVoteDownComplete = Template.bind({})
+ButtonVoteDownComplete.args = {
+  onVoteClick: action(direction => console.log(direction)),
+  direction: 'DOWN',
+}
