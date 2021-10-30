@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import Profile from './Profile'
 
 export default {
@@ -9,8 +10,5 @@ const Template = args => <Profile {...args} />
 
 export const ProfileComplete = Template.bind({})
 ProfileComplete.args = {
-  userData: {
-    username: 'John Doe',
-    email: 'johndoe@mail.com',
-  },
+  onLogout: action(() => console.log('Logout')),
 }
