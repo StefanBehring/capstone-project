@@ -11,8 +11,10 @@ const Button = styled(Link)`
   border-radius: 10px;
   color: #fff;
   margin: 0.5rem auto;
-  padding: 0.5rem 0.8rem;
+  padding: 0.7rem 1rem;
+  text-align: center;
   text-decoration: none;
+  width: 100%;
 
   &:hover {
     background-color: var(--color-red-hover);
