@@ -10,8 +10,8 @@ describe('Header', () => {
       </Router>
     )
 
-    const h1element = screen.getByRole('heading', { level: 1 })
-    expect(h1element).toBeInTheDocument()
+    const headingElements = screen.getByRole('heading', { level: 1 })
+    expect(headingElements).toBeInTheDocument()
   })
 
   it('renders only 1 heading', () => {
