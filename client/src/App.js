@@ -20,6 +20,7 @@ import UnwatchedMoviesOverview from './components/UnwatchedMoviesOverview/Unwatc
 import ProtectedAdminRoute from './components/Routes/ProtectedAdminRoute/ProtectedAdminRoute'
 import ProtectedUserRoute from './components/Routes/ProtectedUserRoute/ProtectedUserRoute'
 import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute'
+import Explanation from './components/Explanation/Explanation'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -105,6 +106,9 @@ function App() {
 
             <Route exact path="/toplist">
               <Toplist />
+            </Route>
+            <Route exact path="/explanation">
+              <Explanation />
             </Route>
             <Route exact path="/not-logged-in">
               <NotLoggedIn />
