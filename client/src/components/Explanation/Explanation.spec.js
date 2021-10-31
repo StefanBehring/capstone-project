@@ -59,7 +59,7 @@ describe('Home', () => {
     expect(text11).toBeInTheDocument()
   })
 
-  it('renders 2 header elements', () => {
+  it('renders 4 header elements', () => {
     render(<Explanation />)
 
     const headerElements = screen.getAllByRole('heading')
