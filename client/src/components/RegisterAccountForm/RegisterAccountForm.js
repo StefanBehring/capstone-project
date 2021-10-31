@@ -6,6 +6,9 @@ import ButtonGreen from '../Buttons/ButtonGreen/ButtonGreen'
 import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import SuccessCard from '../Messages/SuccessCard/SuccessCard'
 import postNewUser from '../../services/postNewUser'
+import ParagraphCenter from '../../styled/ParagraphCenter'
+import CardWrapper from '../../styled/CardWrapper'
+import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 
 const RegisterAccountForm = () => {
   const [username, setUsername] = useState('')
@@ -60,52 +63,57 @@ const RegisterAccountForm = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <H2>Register Account</H2>
-      {successMessage && (
-        <SuccessCard title="Success" message={successMessage} />
-      )}
-      {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        minLength="6"
-        placeholder="your username"
-        autoFocus="true"
-        required
-        onChange={handleChangeUsername}
-      />
-      <label htmlFor="email">E-Mail</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="your email"
-        required
-        onChange={handleChangeEmail}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        minLength="8"
-        required
-        onChange={handleChangePassword}
-      />
-      <label htmlFor="passwordReType">Re-Type</label>
-      <input
-        type="password"
-        id="passwordReType"
-        name="passwordReType"
-        minLength="8"
-        required
-        onChange={handleChangePasswordReType}
-      />
-      <ButtonGreen message="Register" />
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <H2>Register Account</H2>
+        {successMessage && (
+          <SuccessCard title="Success" message={successMessage} />
+        )}
+        {errorMessage && <ErrorCard title="Error" message={errorMessage} />}
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          minLength="6"
+          placeholder="your username"
+          required
+          onChange={handleChangeUsername}
+        />
+        <label htmlFor="email">E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your email"
+          required
+          onChange={handleChangeEmail}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          minLength="8"
+          required
+          onChange={handleChangePassword}
+        />
+        <label htmlFor="passwordReType">Re-Type</label>
+        <input
+          type="password"
+          id="passwordReType"
+          name="passwordReType"
+          minLength="8"
+          required
+          onChange={handleChangePasswordReType}
+        />
+        <ButtonGreen message="Register" />
+      </Form>
+      <CardWrapper>
+        <ParagraphCenter>Already have an account?</ParagraphCenter>
+        <LinkButtonBlue direction="/login" message="Login" />
+      </CardWrapper>
+    </>
   )
 }
 

@@ -20,7 +20,7 @@ const MovieDetails = () => {
       <PosterBig src={movie.imgUrl} alt="" height="562" width="375" />
       <H2>{movie.title}</H2>
       <ParagraphCenter>
-        {movie.year} {movie.genre}
+        {movie.year} - {movie.genre}
       </ParagraphCenter>
       <ParagraphCenter>{movie.overview}</ParagraphCenter>
       <Detail>

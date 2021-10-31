@@ -5,6 +5,7 @@ const H1 = styled.h1`
   font-family: var(--font-family-heading);
   margin: 0 auto;
   text-align: center;
+  padding-right: 1.5rem;
 `
 
 export default H1
