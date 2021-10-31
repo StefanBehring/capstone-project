@@ -21,6 +21,7 @@ import ProtectedAdminRoute from './components/Routes/ProtectedAdminRoute/Protect
 import ProtectedUserRoute from './components/Routes/ProtectedUserRoute/ProtectedUserRoute'
 import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute'
 import Explanation from './components/Explanation/Explanation'
+import MovieDetails from './components/MovieDetails/MovieDetails'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -106,6 +107,9 @@ function App() {
 
             <Route exact path="/toplist">
               <Toplist />
+            </Route>
+            <Route exact path="/movie-details/:tmdbId">
+              <MovieDetails />
             </Route>
             <Route exact path="/explanation">
               <Explanation />
