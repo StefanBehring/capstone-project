@@ -30,14 +30,14 @@ const Explanation = () => {
           alt="VotingArea"
         />
         <ParagraphCenter>
-          On the top and the bottom you find the movies that are competing with
-          each other. In the middle you find the buttons that you can use.
+          On the top and the bottom you can see the movies that are competing
+          with each other. In the middle you find the buttons that you can use.
         </ParagraphCenter>
         <H3>Unwatched Movies</H3>
         <ParagraphCenter>
           The red buttons on the left side are the 'unwatched' buttons. If you
           haven't watched one or both movies you can click on the corresponding
-          button. The app will then save this and not show the movie again.
+          button. The app will then save this and won't show the movie again.
         </ParagraphCenter>
         <ParagraphCenter>
           The movie is saved in your 'unwatched' movies list. If you have

@@ -1,10 +1,15 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter as Router } from 'react-router'
 
 import MovieCard from './MovieCard'
 
 describe('MovieCard', () => {
   it('renders', async () => {
-    render(<MovieCard tmdbId="550" />)
+    render(
+      <Router>
+        <MovieCard tmdbId="550" />
+      </Router>
+    )
 
     const h3Element = await screen.findByRole('heading', { level: 3 })
     expect(h3Element).toBeInTheDocument()
@@ -23,14 +28,22 @@ describe('MovieCard', () => {
   })
 
   it('renders 1 h3 element', async () => {
-    render(<MovieCard tmdbId="550" />)
+    render(
+      <Router>
+        <MovieCard tmdbId="550" />
+      </Router>
+    )
 
     const h3Elements = await screen.findAllByRole('heading', { level: 3 })
     expect(h3Elements).toHaveLength(1)
   })
 
   it('renders 1 img element', async () => {
-    render(<MovieCard tmdbId="550" />)
+    render(
+      <Router>
+        <MovieCard tmdbId="550" />
+      </Router>
+    )
 
     const imgElements = await screen.findAllByRole('img')
     expect(imgElements).toHaveLength(1)

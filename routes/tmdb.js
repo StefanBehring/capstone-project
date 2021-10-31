@@ -18,6 +18,11 @@ router.get('/:id', async (request, response, next) => {
       year: responseTmdb.data.release_date.slice(0, 4),
       genre: responseTmdb.data.genres[0].name,
       imgUrl: `https://image.tmdb.org/t/p/w500${responseTmdb.data.poster_path}`,
+      budget: responseTmdb.data.budget,
+      revenue: responseTmdb.data.revenue,
+      overview: responseTmdb.data.overview,
+      runtime: responseTmdb.data.runtime,
+      voteAverage: responseTmdb.data.vote_average,
     }
     return response.status(200).json(newMovie)
   } catch (error) {
