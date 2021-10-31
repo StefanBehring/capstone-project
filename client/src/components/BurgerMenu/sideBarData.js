@@ -39,6 +39,15 @@ export const sideBarData = [
   },
   {
     id: 4,
+    title: 'Explanation',
+    path: '/explanation',
+    icon: <AiIcons.AiFillQuestionCircle />,
+    showToLoggedIn: true,
+    mustBeLoggedIn: false,
+    mustBeAdmin: false,
+  },
+  {
+    id: 5,
     title: 'Profile',
     path: '/profile',
     icon: <AiIcons.AiFillIdcard />,
@@ -47,7 +56,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Login',
     path: '/login',
     icon: <AiIcons.AiOutlineLogin />,
@@ -56,7 +65,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
-    id: 6,
+    id: 7,
     title: 'Register',
     path: '/register',
     icon: <AiIcons.AiFillPlayCircle />,
@@ -65,7 +74,7 @@ export const sideBarData = [
     mustBeAdmin: false,
   },
   {
-    id: 7,
+    id: 8,
     title: 'Add New Movie',
     path: '/add-new-movie',
     icon: <AiIcons.AiFillPlusCircle />,
@@ -74,7 +83,7 @@ export const sideBarData = [
     mustBeAdmin: true,
   },
   {
-    id: 8,
+    id: 9,
     title: 'Movie Overview',
     path: '/movie-overview',
     icon: <AiIcons.AiFillRead />,
@@ -83,7 +92,7 @@ export const sideBarData = [
     mustBeAdmin: true,
   },
   {
-    id: 9,
+    id: 10,
     title: 'Logout',
     path: '/profile',
     icon: <AiIcons.AiOutlineLogout />,
