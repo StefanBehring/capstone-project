@@ -80,6 +80,12 @@ export const handlers = [
         genre: 'Adventure',
         imgUrl:
           'https://image.tmdb.org/t/p/w500/kGiaOztahZV2x7bil7sbk7fb6ob.jpg',
+        budget: 23000000,
+        revenue: 51881013,
+        overview:
+          "After another deadly shark attack, Ellen Brody decides she has had enough of New England's Amity Island and moves to the Caribbean to join her son, Michael, and his family. But a great white shark has followed her there, hungry for more lives.",
+        runtime: 89,
+        voteAverage: 4,
       })
     )
   }),
