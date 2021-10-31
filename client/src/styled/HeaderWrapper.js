@@ -5,8 +5,7 @@ const HeaderWrapper = styled.header`
   color: var(--color-white-default);
   display: flex;
   align-items: center;
-  padding-top: 1rem;
-  padding-left: 1.5rem;
+  padding: 1rem 1.5rem 0;
 `
 
 export default HeaderWrapper
