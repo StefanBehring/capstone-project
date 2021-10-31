@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import LoginForm from './LoginForm'
 
 export default {
@@ -5,6 +6,9 @@ export default {
   component: LoginForm,
 }
 
-const Template = () => <LoginForm />
+const Template = args => <LoginForm {...args} />
 
 export const LoginFormComplete = Template.bind({})
+LoginFormComplete.args = {
+  onLogin: action(() => console.log('Login')),
+}

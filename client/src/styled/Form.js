@@ -10,17 +10,20 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   margin-top: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem;
   width: 340px;
 
   label {
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 0.8rem 0.5rem 0;
+    width: 100%;
   }
 
   input {
     background-color: var(--color-primary-light);
     color: var(--color-primary-heavy);
     padding: 0.5rem 0.8rem;
+    margin-bottom: 1rem;
+    width: 100%;
   }
 `
 

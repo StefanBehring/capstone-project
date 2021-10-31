@@ -6,7 +6,7 @@ import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
 const Home = () => {
   return (
     <CardWrapper>
-      <H2>Welcome to be objective</H2>
+      <H2>Welcome!</H2>
       <ParagraphCenter>
         On this app you will have the option to rate movies.
       </ParagraphCenter>

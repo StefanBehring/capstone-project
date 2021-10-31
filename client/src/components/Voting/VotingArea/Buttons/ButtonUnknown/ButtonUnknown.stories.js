@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import ButtonUnknown from './ButtonUnknown'
 
 export default {
@@ -5,6 +6,10 @@ export default {
   component: ButtonUnknown,
 }
 
-const Template = () => <ButtonUnknown />
+const Template = args => <ButtonUnknown {...args} />
 
 export const ButtonUnknownComplete = Template.bind({})
+ButtonUnknownComplete.args = {
+  onUnknownMovieClick: action(direction => console.log(direction)),
+  direction: 'UP',
+}

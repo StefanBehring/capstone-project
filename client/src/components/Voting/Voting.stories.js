@@ -5,12 +5,6 @@ export default {
   component: Voting,
 }
 
-const Template = args => <Voting {...args} />
+const Template = () => <Voting />
 
 export const VotingComplete = Template.bind({})
-VotingComplete.args = {
-  userData: {
-    username: 'John Doe',
-    email: 'johndoe@mail.com',
-  },
-}

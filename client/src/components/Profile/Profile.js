@@ -64,7 +64,8 @@ const Links = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
+  height: 260px;
+  width: 100%;
 `
 
 export default Profile
