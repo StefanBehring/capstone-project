@@ -33,6 +33,8 @@ const Explanation = () => {
           On the top and the bottom you can see the movies that are competing
           with each other. In the middle you find the buttons that you can use.
         </ParagraphCenter>
+      </CardWrapper>
+      <CardWrapper>
         <H3>Unwatched Movies</H3>
         <ParagraphCenter>
           The red buttons on the left side are the 'unwatched' buttons. If you
@@ -48,6 +50,8 @@ const Explanation = () => {
           'unwatched' movies list and will from there on be displayed within the
           voting.
         </ParagraphCenter>
+      </CardWrapper>
+      <CardWrapper>
         <H3>The voting buttons</H3>
         <ParagraphCenter>
           On the right side you find the green voting buttons. The button on the
