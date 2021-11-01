@@ -57,6 +57,9 @@ describe('Home', () => {
 
     const text11 = screen.getByText("Easy, isn't it?")
     expect(text11).toBeInTheDocument()
+
+    const buttonElement = screen.getByRole('button')
+    expect(buttonElement).toBeInTheDocument()
   })
 
   it('renders 4 header elements', () => {

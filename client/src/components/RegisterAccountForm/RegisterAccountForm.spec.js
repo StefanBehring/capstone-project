@@ -26,9 +26,6 @@ describe('RegisterAccountForm', () => {
     const textReType = screen.getByLabelText('Re-Type')
     expect(textReType).toBeInTheDocument()
 
-    const buttonElement = screen.getByRole('button')
-    expect(buttonElement).toBeInTheDocument()
-
     const textQuestion = screen.getByText('Already have an account?')
     expect(textQuestion).toBeInTheDocument()
 
@@ -146,7 +143,7 @@ describe('RegisterAccountForm', () => {
     expect(inputElement).toBeRequired()
   })
 
-  it('has 1 button element', () => {
+  it('has 2 button elements', () => {
     render(
       <Router>
         <RegisterAccountForm />
@@ -154,6 +151,6 @@ describe('RegisterAccountForm', () => {
     )
 
     const buttonElements = screen.getAllByRole('button')
-    expect(buttonElements).toHaveLength(1)
+    expect(buttonElements).toHaveLength(2)
   })
 })

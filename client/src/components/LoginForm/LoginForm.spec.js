@@ -20,9 +20,6 @@ describe('LoginForm', () => {
     const textPassword = screen.getByLabelText('Password')
     expect(textPassword).toBeInTheDocument()
 
-    const buttonElement = screen.getByRole('button')
-    expect(buttonElement).toBeInTheDocument()
-
     const textQuestion = screen.getByText("Don't have an account?")
     expect(textQuestion).toBeInTheDocument()
 
@@ -96,7 +93,7 @@ describe('LoginForm', () => {
     expect(inputElement).toBeRequired()
   })
 
-  it('renders only 1 button element', () => {
+  it('renders only 2 button element', () => {
     render(
       <Router>
         <LoginForm />
@@ -104,17 +101,17 @@ describe('LoginForm', () => {
     )
 
     const buttonElements = screen.getAllByRole('button')
-    expect(buttonElements).toHaveLength(1)
+    expect(buttonElements).toHaveLength(2)
   })
 
-  it('renders "Login" for the button element', () => {
+  it('renders "Login" for the first button element', () => {
     render(
       <Router>
         <LoginForm />
       </Router>
     )
 
-    const buttonElement = screen.getByRole('button')
-    expect(buttonElement).toHaveTextContent('Login')
+    const buttonElements = screen.getAllByRole('button')
+    expect(buttonElements[0]).toHaveTextContent('Login')
   })
 })
