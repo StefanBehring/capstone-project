@@ -9,6 +9,7 @@ import postNewUser from '../../services/postNewUser'
 import ParagraphCenter from '../../styled/ParagraphCenter'
 import CardWrapper from '../../styled/CardWrapper'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
+import ButtonBack from '../Buttons/ButtonBack/ButtonBack'
 
 const RegisterAccountForm = () => {
   const [username, setUsername] = useState('')
@@ -112,6 +113,7 @@ const RegisterAccountForm = () => {
       <CardWrapper>
         <ParagraphCenter>Already have an account?</ParagraphCenter>
         <LinkButtonBlue direction="/login" message="Login" />
+        <ButtonBack />
       </CardWrapper>
     </>
   )
