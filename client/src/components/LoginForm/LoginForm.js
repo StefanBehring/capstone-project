@@ -8,6 +8,7 @@ import ErrorCard from '../Messages/ErrorCard/ErrorCard'
 import CardWrapper from '../../styled/CardWrapper'
 import ParagraphCenter from '../../styled/ParagraphCenter'
 import LinkButtonBlue from '../Buttons/LinkButtonBlue/LinkButtonBlue'
+import ButtonBack from '../Buttons/ButtonBack/ButtonBack'
 
 const LoginForm = ({ onLogin }) => {
   const history = useHistory()
@@ -69,6 +70,7 @@ const LoginForm = ({ onLogin }) => {
       <CardWrapper>
         <ParagraphCenter>Don't have an account?</ParagraphCenter>
         <LinkButtonBlue direction="/register" message="Register" />
+        <ButtonBack />
       </CardWrapper>
     </>
   )
