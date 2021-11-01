@@ -6,6 +6,7 @@ import H2 from '../../styled/H2'
 import PosterBig from '../../styled/PosterBig'
 import LoadingSpinner from '../Messages/LoadingSpinner/LoadingSpinner'
 import ParagraphCenter from '../../styled/ParagraphCenter'
+import ButtonBack from '../Buttons/ButtonBack/ButtonBack'
 
 const MovieDetails = () => {
   const { tmdbId } = useParams()
@@ -49,6 +50,7 @@ const MovieDetails = () => {
           }).format(movie.revenue)}
         </span>
       </Detail>
+      <ButtonBack />
     </CardWrapper>
   )
 }
