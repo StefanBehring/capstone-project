@@ -4,6 +4,7 @@ import ComponentsWrapper from '../../styled/ComponentsWrapper'
 import H2 from '../../styled/H2'
 import H3 from '../../styled/H3'
 import ParagraphCenter from '../../styled/ParagraphCenter'
+import ButtonBack from '../Buttons/ButtonBack/ButtonBack'
 
 const Explanation = () => {
   return (
@@ -63,6 +64,7 @@ const Explanation = () => {
           click the green button with the arrow that shows downwards.
         </ParagraphCenter>
         <ParagraphCenter>Easy, isn't it?</ParagraphCenter>
+        <ButtonBack />
       </CardWrapper>
     </ComponentsWrapper>
   )
