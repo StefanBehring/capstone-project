@@ -1,4 +1,4 @@
-# `be objective`
+﻿# `be objective`
 
 This app is my 'Digitales Gesellenstück' of my web development bootcamp @neuefische. It is optimized for mobile usage only.
 
@@ -14,7 +14,8 @@ This way we get a way better understanding of which one really is the best movie
 
 ## `Screenshots`
 
-_coming soon_
+![firstScreenshots](https://user-images.githubusercontent.com/89029415/139831501-a4e5e266-6895-4afe-84c1-f8bd685f72cf.png)
+![secondScreenshots](https://user-images.githubusercontent.com/89029415/139831538-15219d09-94f0-4240-987c-f00ee4cbb05f.png)
 
 ## `Tech stack`
 
